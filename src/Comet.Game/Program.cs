@@ -5,6 +5,8 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Comet.Game.Database;
+    using Comet.Game.Managers;
+
     using Comet.Game.Packets;
     using Comet.Network.RPC;
     using Comet.Network.Security;
@@ -17,6 +19,7 @@
     /// </summary>
     internal static class Program
     {
+        public static MapManager MapManager { get; private set; }
         private static async Task Main(string[] args)
         {
             // Copyright notice may not be commented out. If adding your own copyright or
@@ -58,6 +61,9 @@
             Console.WriteLine("Launching server listeners...");
             var rpcServer = new RpcServerListener(new Remote());
             var rpcServerTask = rpcServer.StartAsync(config.RpcNetwork.Port, config.RpcNetwork.IPAddress);
+
+            Console.WriteLine("Initializing Map Manager...");
+            MapManager = new MapManager();
 
             // Start the game server listener
             var server = new Server(config);

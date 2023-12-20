@@ -86,9 +86,9 @@ namespace Comet.Game.Packets
             else
             {
                 // Character already exists
-                client.Character = new Character(character);
+                client.Character = new Character(character, client);
                 await client.SendAsync(MsgTalk.LoginOk);
-                await client.SendAsync(new MsgUserInfo(client.Character));
+                await client.SendAsync(new MsgUserInfo(client.Character.DbCharacter));
             }            
         }
     }

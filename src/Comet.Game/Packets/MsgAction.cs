@@ -1,6 +1,7 @@
 namespace Comet.Game.Packets
 {
     using System;
+    using System.Collections.Generic;
     using System.Threading.Tasks;
     using Comet.Game.States;
     using Comet.Network.Packets;
@@ -87,13 +88,34 @@ namespace Comet.Game.Packets
             {
                 case ActionType.LoginSpawn:
                     this.CharacterID = client.ID;
-                    this.Command = client.Character.MapID;
-                    this.X = client.Character.X;
-                    this.Y = client.Character.Y;
+                    this.Command = client.Character.DbCharacter.MapID;
+                    this.X = client.Character.DbCharacter.X;
+                    this.Y = client.Character.DbCharacter.Y;
+                    Program.MapManager.AddUser(client.Character.DbCharacter.MapID, client.Character);
                     await client.SendAsync(this);
                     break;
 
                 case ActionType.LoginComplete:
+                    await client.SendAsync(this);
+                    break;
+
+                case ActionType.MapJump:
+                    ushort newX = (ushort)Command;
+                    ushort newY = (ushort)(Command >> 16);
+
+                    await client.Character.JumpPosAsync(newX, newY);
+
+                    IEnumerable<Character> characters = Program.MapManager.GetUsersInMap(client.Character.DbCharacter.MapID);
+                    foreach (Character character in characters)
+                    {
+                        if (character.DbCharacter.CharacterID != client.Character.DbCharacter.CharacterID)
+                        {
+                            await character.SendSpawnToAsync(client.Character);
+                        }
+                    }
+                    X = client.Character.X;
+                    Y = client.Character.Y;
+                    
                     await client.SendAsync(this);
                     break;
 
@@ -103,7 +125,7 @@ namespace Comet.Game.Packets
                         String.Format("Missing packet {0}, Action {1}, Length {2}",
                         this.Type, this.Action, this.Length)));
                     Console.WriteLine(
-                        "Missing packet {0}, Action {1}, Length {2}\n{3}", 
+                        "Missing packet {0}, Action {1}, Length {2}\n{3}",
                         this.Type, this.Action, this.Length, PacketDump.Hex(this.Encode()));
                     break;
             }

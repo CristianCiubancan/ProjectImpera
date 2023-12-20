@@ -81,6 +81,13 @@ namespace Comet.Game.Packets
                 return;
             }
 
+            // if character class is Ninja (50) we want to send RegisterInvalid
+            if (this.Class == 50)
+            {
+                await client.SendAsync(MsgTalk.RegisterInvalid);
+                return;
+            }
+            
             // Create the character
             var character = new DbCharacter(client.Creation.AccountID, this.CharacterName);
             character.CurrentClass = (byte)this.Class;
