@@ -60,7 +60,7 @@ namespace Comet.Game.World.Maps
             {
                 MsgAction msg = new MsgAction
                 {
-                    CharacterID = idRole,
+                    Identity = idRole,
                     Action = MsgAction.ActionType.RemoveEntity
                 };
                 await m_user.SendAsync(msg);
@@ -80,14 +80,14 @@ namespace Comet.Game.World.Maps
 
         public async Task UpdateAsync(IPacket msg = null)
         {
-            var targets = m_user.Map.Query9BlocksByPos(m_user.X, m_user.Y);
+            var targets = m_user.Map.Query9BlocksByPos(m_user.MapX, m_user.MapY);
             targets.AddRange(Roles.Values);
             foreach (Role target in targets.Select(x => x).Distinct())
             {
                 if (target.UID == m_user.UID) continue;
 
                 Character targetUser = target as Character;
-                if (ScreenCalculations.GetDistance(m_user.X, m_user.Y, target.X, target.Y) < VIEW_SIZE)
+                if (ScreenCalculations.GetDistance(m_user.MapX, m_user.MapY, target.MapX, target.MapY) < VIEW_SIZE)
                 {
                     /*
                      * I add the target to my screen and it doesn't matter if he already sees me, I'll try to add myself into his screen.
@@ -151,7 +151,7 @@ namespace Comet.Game.World.Maps
 
                     MsgAction msg = new MsgAction
                     {
-                        CharacterID = role.UID,
+                        Identity = role.UID,
                         Action = MsgAction.ActionType.RemoveEntity
                     };
                     await m_user.SendAsync(msg);

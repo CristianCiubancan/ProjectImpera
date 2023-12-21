@@ -89,33 +89,37 @@ namespace Comet.Game.Packets
             }
             
             // Create the character
-            var character = new DbCharacter(client.Creation.AccountID, this.CharacterName);
-            character.CurrentClass = (byte)this.Class;
-            character.Mesh = this.Mesh;
-            character.Silver = 1000;
-            character.Level = 1;
-            character.MapID = 1010;
-            character.X = 61;
-            character.Y = 109;
-            character.Strength = 4;
-            character.Agility = 6;
-            character.Vitality = 12;
-            character.Spirit = 0;
-            character.HealthPoints = 
-                (ushort)((character.Strength * 3) 
-                + (character.Agility * 3)
-                + (character.Spirit * 3)
-                + (character.Vitality * 24));
-            character.ManaPoints = (ushort)(character.Spirit * 5);
-            character.Registered = DateTime.UtcNow;
-
-            // Generate a random look for the character
-            character.Avatar = (ushort)(character.Mesh < 1005 
-                ? await Kernel.NextAsync(1, 49) 
-                : await Kernel.NextAsync(201, 249));
-            character.Hairstyle = (ushort)(
-                (await Kernel.NextAsync(3, 9) * 100) + MsgRegister.Hairstyles[
-                 await Kernel.NextAsync(0, MsgRegister.Hairstyles.Length)]);
+            var character = new DbCharacter
+            {
+                AccountIdentity = client.Creation.AccountID,
+                Name = CharacterName,
+                Mate = 0,
+                Profession = (byte) Class,
+                Mesh = Mesh,
+                Silver = 1000,
+                Level = 1,
+                //MapID = 1002,
+                //X = m_startX[await Kernel.NextAsync(m_startX.Length) % m_startX.Length],
+                //Y = m_startY[await Kernel.NextAsync(m_startY.Length) % m_startY.Length],
+                MapID = 1010,
+                X = 61,
+                Y = 109,
+                // Strength = allot.Strength,
+                // Agility = allot.Agility,
+                // Vitality = allot.Vitality,
+                // Spirit = allot.Spirit,
+                // HealthPoints =
+                    // (ushort) (allot.Strength * 3
+                            //   + allot.Agility * 3
+                            //   + allot.Spirit * 3
+                            //   + allot.Vitality * 24),
+                // ManaPoints = (ushort) (allot.Spirit * 5),
+                Registered = DateTime.Now,
+                ExperienceMultiplier = 5,
+                ExperienceExpires = DateTime.Now.AddHours(1),
+                HeavenBlessing = DateTime.Now.AddDays(30),
+                AutoAllot = 1
+            };
 
             try 
             { 

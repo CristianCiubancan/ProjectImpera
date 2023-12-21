@@ -9,19 +9,50 @@ namespace Comet.Game.Packets
 
     /// <remarks>Packet Type 1010</remarks>
     /// <summary>
-    /// Message containing a general action being performed by the client. Commonly used
-    /// as a request-response protocol for question and answer like exchanges. For example,
-    /// walk requests are responded to with an answer as to if the step is legal or not.
+    ///     Message containing a general action being performed by the client. Commonly used
+    ///     as a request-response protocol for question and answer like exchanges. For example,
+    ///     walk requests are responded to with an answer as to if the step is legal or not.
     /// </summary>
     public sealed class MsgAction : MsgBase<Client>
     {
+        public MsgAction()
+        {
+            Timestamp = (uint) Environment.TickCount;
+        }
+
         // Packet Properties
-        public uint CharacterID { get; set; }
-        public uint Command { get; set; }
-        public ushort[] Arguments { get; set; }
         public uint Timestamp { get; set; }
-        public ActionType Action { get; set; }
+        public uint Identity { get; set; }
+        public uint Data { get; set; }
+        public uint Command { get; set; }
+
+        public ushort CommandX
+        {
+            get => (ushort) (Command - (CommandY << 16));
+            set => Command = (uint) (CommandY << 16 | value);
+        }
+
+        public ushort CommandY
+        {
+            get => (ushort) (Command >> 16);
+            set => Command = (uint) (value << 16) | Command;
+        }
+
+        public uint Argument { get; set; }
+
+        public ushort ArgumentX
+        {
+            get => (ushort)(Argument - (ArgumentY << 16));
+            set => Argument = (uint)(ArgumentY << 16 | value);
+        }
+
+        public ushort ArgumentY
+        {
+            get => (ushort)(Argument >> 16);
+            set => Argument = (uint)(value << 16) | Argument;
+        }
         public ushort Direction { get; set; }
+        public ActionType Action { get; set; }
         public ushort X { get; set; }
         public ushort Y { get; set; }
         public uint Map { get; set; }
@@ -36,20 +67,18 @@ namespace Comet.Game.Packets
         public override void Decode(byte[] bytes)
         {
             var reader = new PacketReader(bytes);
-            this.Length = reader.ReadUInt16();
-            this.Type = (PacketType)reader.ReadUInt16();
-            this.CharacterID = reader.ReadUInt32();
-            this.Command = reader.ReadUInt32();
-            this.Arguments = new ushort[2];
-            for (int i = 0; i < this.Arguments.Length; i++)
-                this.Arguments[i] = reader.ReadUInt16();
-            this.Timestamp = reader.ReadUInt32();
-            this.Action = (ActionType)reader.ReadUInt16();
-            this.Direction = reader.ReadUInt16();
-            this.X = reader.ReadUInt16();
-            this.Y = reader.ReadUInt16();
-            this.Map = reader.ReadUInt32();
-            this.Color = reader.ReadUInt32();
+            Length = reader.ReadUInt16();
+            Type = (PacketType) reader.ReadUInt16();
+            Identity = reader.ReadUInt32();
+            Command = reader.ReadUInt32();
+            Argument = reader.ReadUInt32();
+            Timestamp = reader.ReadUInt32();
+            Action = (ActionType)reader.ReadUInt16();
+            Direction = reader.ReadUInt16();
+            X = reader.ReadUInt16();
+            Y = reader.ReadUInt16();
+            Map = reader.ReadUInt32();
+            Color = reader.ReadUInt32();
         }
 
         /// <summary>
@@ -61,18 +90,17 @@ namespace Comet.Game.Packets
         public override byte[] Encode()
         {
             var writer = new PacketWriter();
-            writer.Write((ushort)base.Type);
-            writer.Write(this.CharacterID);
-            writer.Write(this.Command);
-            for (int i = 0; i < this.Arguments.Length; i++)
-                writer.Write(this.Arguments[i]);
-            writer.Write(this.Timestamp);
-            writer.Write((ushort)this.Action);
-            writer.Write(this.Direction);
-            writer.Write(this.X);
-            writer.Write(this.Y);
-            writer.Write(this.Map);
-            writer.Write(this.Color);
+            writer.Write((ushort)PacketType.MsgAction);
+            writer.Write(Identity);
+            writer.Write(Command);
+            writer.Write(Argument);
+            writer.Write(Timestamp);
+            writer.Write((ushort)Action);
+            writer.Write(Direction);
+            writer.Write(X);
+            writer.Write(Y);
+            writer.Write(Map);
+            writer.Write(Color);
             return writer.ToArray();
         }
 
@@ -85,10 +113,11 @@ namespace Comet.Game.Packets
         /// <param name="client">Client requesting packet processing</param>
         public override async Task ProcessAsync(Client client)
         {
+            Character user = client.Character;
             switch (this.Action)
             {
-                case ActionType.LoginSpawn:
-                    this.CharacterID = client.Character.DbCharacter.CharacterID;
+                case ActionType.LoginSpawn: // 74
+                    Identity = client.Character.Identity;
 
                     // if (user.IsOfflineTraining)
                     // {
@@ -97,19 +126,32 @@ namespace Comet.Game.Packets
                     //     client.Character.MapY = 54;
                     // }
 
-                    GameMap userMap = Kernel.MapManager.GetMap(client.Character.DbCharacter.MapID);
-                    // TODO: load maps from database to have this working
-                    // if (userMap == null)
-                    // {
-                    //     await client.Character.SavePositionAsync(1002, 430, 378);
-                    //     client.Disconnect();
-                    // }
+                    GameMap targetMap = Kernel.MapManager.GetMap(client.Character.MapIdentity);
+                    if (targetMap == null)
+                    {
+                        await user.SavePositionAsync(1002, 430, 378);
+                        client.Disconnect();
+                        return;
+                    }
 
-                    this.Command = client.Character.DbCharacter.MapID;
-                    this.X = client.Character.DbCharacter.X;
-                    this.Y = client.Character.DbCharacter.Y;
+                    Command = targetMap.MapDoc;
+                    X = client.Character.MapX;
+                    Y = client.Character.MapY;
+
                     await client.Character.EnterMapAsync();
                     await client.SendAsync(this);
+
+                    // await GameAction.ExecuteActionAsync(1000000, user, null, null, "");
+
+                    // if (client.Character.VipLevel > 0)
+                    //     await client.Character.SendAsync(
+                    //         string.Format(Language.StrVipNotify, client.Character.VipLevel,
+                    //             client.Character.VipExpiration.ToString("U")), MsgTalk.TalkChannel.Talk);
+
+                    if (user.Life == 0)
+                        // await user.SetAttributesAsync(ClientUpdateType.Hitpoints, 10);
+
+                    user.Connection = Character.ConnectionStage.Ready; // set user ready to be processed.
                     break;
 
                 case ActionType.LoginComplete:
@@ -137,8 +179,8 @@ namespace Comet.Game.Packets
                     //         await character.SendSpawnToAsync(client.Character);
                     //     }
                     // }
-                    X = client.Character.X;
-                    Y = client.Character.Y;
+                    X = client.Character.MapX;
+                    Y = client.Character.MapY;
 
                     await client.SendAsync(this);
                     break;

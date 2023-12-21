@@ -3,6 +3,8 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using Comet.Game.Database.Models;
+using Comet.Game.Database.Repositories;
 using Comet.Game.States;
 using Comet.Game.World.Maps;
 
@@ -53,6 +55,40 @@ namespace Comet.Game.Managers
             await stream.DisposeAsync();
         }
 
+        public async Task LoadMapsAsync()
+        {
+            List<DbMap> maps = await MapsRepository.GetAsync();
+            foreach (var dbmap in maps)
+            {
+                Console.WriteLine($"Loading map {dbmap.Name} with ID {dbmap.Identity}");
+                GameMap map = new GameMap(dbmap);
+                if (await map.InitializeAsync())
+                {
+                    GameMaps.TryAdd(map.Identity, map);
+                    Console.WriteLine($"Loaded map {map.Name} with ID {map.Identity}");
+                }
+            }
+
+            List<DbDynamap> dynaMaps = await MapsRepository.GetDynaAsync();
+            foreach (var dbmap in dynaMaps)
+            {
+                GameMap map = new GameMap(dbmap);
+                if (await map.InitializeAsync())
+                {
+                    GameMaps.TryAdd(map.Identity, map);
+                    Console.WriteLine($"Loaded map {map.Name} with ID {map.Identity}");
+                }
+            }
+
+            // foreach (var map in GameMaps.Values)
+            // {
+            //     await map.LoadTrapsAsync();
+            // }
+        }
+        public GameMapData GetMapData(uint idDoc)
+        {
+            return m_mapData.TryGetValue(idDoc, out var map) ? map : null;
+        }
         public GameMap GetMap(uint idMap)
         {
             return GameMaps.TryGetValue(idMap, out var value) ? value : null;

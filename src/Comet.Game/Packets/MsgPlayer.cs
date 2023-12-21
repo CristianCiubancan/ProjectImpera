@@ -41,9 +41,9 @@ namespace Comet.Game.Packets
             DbCharacter user = mUser.DbCharacter;
             Type = PacketType.MsgPlayer;
 
-            Identity = user.CharacterID;
+            Identity = user.Identity;
             Mesh = user.Mesh;
-            Avatar = user.Avatar;
+            // Avatar = user.Avatar;
 
             MapX = user.X;
             MapY = user.Y;

@@ -14,7 +14,7 @@ namespace Comet.Game.States.BaseEntities
         /// <summary>
         ///     Current X position of the user in the map.
         /// </summary>
-        public virtual ushort X
+        public virtual ushort MapX
         {
             get => currentX;
             set => currentX = value;
@@ -23,7 +23,7 @@ namespace Comet.Game.States.BaseEntities
         /// <summary>
         ///     Current Y position of the user in the map.
         /// </summary>
-        public virtual ushort Y
+        public virtual ushort MapY
         {
             get => currentY;
             set => currentY = value;

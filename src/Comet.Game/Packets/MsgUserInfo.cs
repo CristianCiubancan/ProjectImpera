@@ -48,11 +48,11 @@ namespace Comet.Game.Packets
         public MsgUserInfo(DbCharacter character)
         {
             base.Type = PacketType.MsgUserInfo;
-            this.CharacterID = character.CharacterID;
-            this.Mesh = (uint)(character.Mesh + (character.Avatar * 10000));
+            this.CharacterID = character.Identity;
+            this.Mesh = (uint)character.Mesh;
             this.Hairstyle = character.Hairstyle;
             this.Silver = character.Silver;
-            this.Jewels = character.Jewels;
+            this.Jewels = character.ConquerPoints;
             this.Experience = character.Experience;
             this.Strength = character.Strength;
             this.Agility = character.Agility;
@@ -63,13 +63,13 @@ namespace Comet.Game.Packets
             this.ManaPoints = character.ManaPoints;
             this.KillPoints = character.KillPoints;
             this.Level = character.Level;
-            this.CurrentClass = character.CurrentClass;
-            this.PreviousClass = character.PreviousClass;
-            this.AncestorClass = character.AncestorClass;
+            this.CurrentClass = character.Profession;
+            this.PreviousClass = character.PreviousProfession;
+            this.AncestorClass = character.FirstProfession;
             this.Rebirths = character.Rebirths;
-            this.EnlightenPoints = character.EnlightenPoints;
+            // this.EnlightenPoints = character.EnlightenPoints;
             this.QuizPoints = character.QuizPoints;
-            this.VIPLevel = character.VIPLevel;
+            // this.VIPLevel = character.VIPLevel;
             this.CharacterName = character.Name;
             this.SpouseName = "None";
         }

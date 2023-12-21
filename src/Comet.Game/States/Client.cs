@@ -19,7 +19,7 @@ namespace Comet.Game.States
         public DiffieHellman DiffieHellman = null;
 
         // Client unique identifier
-        public uint ID => Character?.DbCharacter?.CharacterID ?? 0;
+        public uint ID => Character?.DbCharacter?.Identity ?? 0;
 
         /// <summary>
         /// Instantiates a new instance of <see cref="Client"/> using the Accepted event's

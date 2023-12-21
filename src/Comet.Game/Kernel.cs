@@ -7,6 +7,9 @@ namespace Comet.Game
     using System.Runtime.Caching;
     using System.Threading.Tasks;
     using Comet.Game.Managers;
+    using Comet.Game.Database;
+    using Comet.Game.World.Managers;
+
 
 
     /// <summary>
@@ -22,6 +25,8 @@ namespace Comet.Game
         public static MemoryCache Logins = MemoryCache.Default;
         public static List<uint> Registration = new List<uint>();
         public static MapManager MapManager = new MapManager();
+        public static EventManager EventManager = new EventManager();
+        public static ServerConfiguration.GameNetworkConfiguration Configuration;
         // Background services
         public static class Services
         {
@@ -42,7 +47,7 @@ namespace Comet.Game
         public static async Task<bool> StartupAsync()
         {
             await MapManager.LoadDataAsync().ConfigureAwait(true);
-            // await MapManager.LoadMapsAsync().ConfigureAwait(true);
+            await MapManager.LoadMapsAsync().ConfigureAwait(true);
             return true;
         }
     }

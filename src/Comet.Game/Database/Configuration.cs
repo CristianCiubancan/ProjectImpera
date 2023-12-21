@@ -8,14 +8,13 @@ namespace Comet.Game.Database
     /// default configuration settings for the server, only if the file is newer than the
     /// file bring replaced.
     /// </summary>
-    public class ServerConfiguration 
+    public class ServerConfiguration
     {
         // Properties and fields
         public DatabaseConfiguration Database { get; set; }
         public GameNetworkConfiguration GameNetwork { get; set; }
         public RpcNetworkConfiguration RpcNetwork { get; set; }
         public AuthenticationConfiguration Authentication { get; set; }
-
         /// <summary>
         /// Encapsulates database configuration for Entity Framework.
         /// </summary>
@@ -73,8 +72,8 @@ namespace Comet.Game.Database
         /// <summary>
         /// Returns true if the server configuration is valid after reading.
         /// </summary>
-        public bool Valid => 
-            this.Database != null && 
+        public bool Valid =>
+            this.Database != null &&
             this.GameNetwork != null &&
             this.RpcNetwork != null &&
             this.Authentication != null;

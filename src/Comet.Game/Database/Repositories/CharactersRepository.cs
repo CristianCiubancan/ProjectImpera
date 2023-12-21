@@ -40,7 +40,7 @@ namespace Comet.Game.Database.Repositories
         {
             using var db = new ServerDbContext();
             return await db.Characters
-                .Where(x => x.AccountID == accountID)
+                .Where(x => x.AccountIdentity == accountID)
                 .SingleOrDefaultAsync();
         }
 

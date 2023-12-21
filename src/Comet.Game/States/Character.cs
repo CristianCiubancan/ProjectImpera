@@ -17,11 +17,13 @@ namespace Comet.Game.States
     public sealed class Character : Role
     {
         // Fields and properties
+        public ConnectionStage Connection { get; set; } = ConnectionStage.Connected;
+     
         private DateTime LastSaveTimestamp { get; set; }
         public DbCharacter DbCharacter { get; set; }
-        public uint UID
+        public uint Identity
         {
-            get => DbCharacter.CharacterID;
+            get => DbCharacter.Identity;
         }
         public ushort CurrentX
         {
@@ -37,7 +39,7 @@ namespace Comet.Game.States
         /// <summary>
         ///     Current X position of the user in the map.
         /// </summary>
-        public override ushort X
+        public override ushort MapX
         {
             get => CurrentX;
             set => CurrentX = value;
@@ -46,12 +48,12 @@ namespace Comet.Game.States
         /// <summary>
         ///     Current Y position of the user in the map.
         /// </summary>
-        public override ushort Y
+        public override ushort MapY
         {
             get => CurrentY;
             set => CurrentY = value;
         }
-        public uint MapID
+        public uint MapIdentity
         {
             get => DbCharacter.MapID;
             set => DbCharacter.MapID = value;
@@ -62,7 +64,11 @@ namespace Comet.Game.States
         {
             get => DbCharacter.HealthPoints > 0;
         }
-
+        public ushort Life
+        {
+            get => DbCharacter.HealthPoints;
+            set => DbCharacter.HealthPoints = value;
+        }
         public string Name
         {
             get => DbCharacter.Name;
@@ -70,7 +76,7 @@ namespace Comet.Game.States
 
         public Screen Screen { get; set; }
 
-        public Client Client { get; init; }
+        public Client m_socket { get; init; }
         /// <summary>
         /// Instantiates a new instance of <see cref="Character"/> using a database fetched
         /// <see cref="DbCharacter"/>. Copies attributes over to the base class of this
@@ -83,9 +89,9 @@ namespace Comet.Game.States
             this.LastSaveTimestamp = DateTime.UtcNow;
             this.CurrentX = character.X;
             this.CurrentY = character.Y;
-            this.MapID = character.MapID;
+            this.MapIdentity = character.MapID;
             Screen = new Screen(this);
-            Client = socket;
+            m_socket = socket;
         }
 
         /// <summary>
@@ -104,24 +110,16 @@ namespace Comet.Game.States
 
         public override Task SendAsync(IPacket msg)
         {
-            return SendAsync(msg.Encode());
-        }
-
-        public override Task SendAsync(byte[] msg)
-        {
             try
             {
-                if (Client != null)
-                {
-                    return Client.SendAsync(msg);
-                }
-                return Task.CompletedTask;
+                if (Connection != ConnectionStage.Disconnected)
+                    return m_socket.SendAsync(msg);
             }
-            // catch (Exception ex)
-            catch
+            catch (Exception ex)
             {
-                return Task.CompletedTask;
+                // return Log.WriteLogAsync(LogLevel.Error, ex.Message);
             }
+            return Task.CompletedTask;
         }
 
         public override async Task SendSpawnToAsync(Character player)
@@ -131,8 +129,8 @@ namespace Comet.Game.States
 
         public async Task<bool> JumpPosAsync(int x, int y, bool sync = false)
         {
-            this.X = (ushort)x;
-            this.Y = (ushort)y;
+            this.MapX = (ushort)x;
+            this.MapY = (ushort)y;
             return true;
         }
 
@@ -140,21 +138,20 @@ namespace Comet.Game.States
         {
             GameMap map = Kernel.MapManager.GetMap(idMap);
             // TODO: add check for type of map...
-            X = x;
-            Y = y;
-            MapID = idMap;
+            MapX = x;
+            MapY = y;
+            MapIdentity = idMap;
             await SaveAsync();
         }
 
         public override async Task EnterMapAsync()
         {
-            Map = Kernel.MapManager.GetMap(MapID);
+            Map = Kernel.MapManager.GetMap(MapIdentity);
             if (Map != null)
             {
                 await Map.AddAsync(this);
                 await Map.SendMapInfoAsync(this);
-                // TODO: ADD THE SCREEN CLASS
-                // await Screen.SynchroScreenAsync();
+                await Screen.SynchroScreenAsync();
 
                 // m_respawn.Startup(10);
 
@@ -175,15 +172,20 @@ namespace Comet.Game.States
                 // if (Team != null)
                 //     await Team.SyncFamilyBattlePowerAsync();
             }
-            // TODO: load maps from database to have this working
-            // else
-            // {
-            //     Console.WriteLine($"Map {MapID} not found while entering map.");
-            //     Client?.Disconnect();
-            // }
+            else
+            {
+                Console.WriteLine($"Map {MapIdentity} not found");
+                m_socket?.Disconnect();
+            }
+        }
+
+        public enum ConnectionStage
+        {
+            Connected,
+            Ready,
+            Disconnected
         }
     }
-
     /// <summary>Enumeration type for body types for player characters.</summary>
     public enum BodyType : ushort
     {

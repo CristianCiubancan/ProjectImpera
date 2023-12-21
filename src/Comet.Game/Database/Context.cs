@@ -12,9 +12,15 @@ namespace Comet.Game.Database
     {
         // Connection String Configuration
         public static ServerConfiguration.DatabaseConfiguration Configuration;
+        public virtual DbSet<DbMap> Maps { get; set; }
+        public virtual DbSet<DbDynamap> DynaMaps { get; set; }
+        public virtual DbSet<DbTask> Tasks { get; set; }
+        public virtual DbSet<DbAction> Actions { get; set; }
+
 
         // Table Definitions
         public virtual DbSet<DbCharacter> Characters { get; set; }
+        
 
         /// <summary>
         /// Configures the database to be used for this context. This method is called
@@ -27,9 +33,9 @@ namespace Comet.Game.Database
         {
             options.UseLazyLoadingProxies(false);
             options.UseMySql(string.Format("server={0};database={1};user={2};password={3}",
-                ServerDbContext.Configuration.Hostname, 
+                ServerDbContext.Configuration.Hostname,
                 ServerDbContext.Configuration.Schema,
-                ServerDbContext.Configuration.Username, 
+                ServerDbContext.Configuration.Username,
                 ServerDbContext.Configuration.Password),
                 MySqlServerVersion.LatestSupportedServerVersion);
         }
@@ -42,7 +48,7 @@ namespace Comet.Game.Database
         /// <param name="builder">Builder for creating models in the context</param>
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<DbCharacter>(e => e.HasKey(x => x.CharacterID));
+            builder.Entity<DbCharacter>(e => e.HasKey(x => x.Identity));
         }
 
         /// <summary>
@@ -50,7 +56,7 @@ namespace Comet.Game.Database
         /// </summary>
         public static bool Ping()
         {
-            try 
+            try
             {
                 using ServerDbContext ctx = new ServerDbContext();
                 return ctx.Database.CanConnect();
