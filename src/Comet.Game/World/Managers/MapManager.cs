@@ -1,3 +1,26 @@
+﻿// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Copyright (C) FTW! Masters
+// Keep the headers and the patterns adopted by the project. If you changed anything in the file just insert
+// your name below, but don't remove the names of who worked here before.
+// 
+// This project is a fork from Comet, a Conquer Online Server Emulator created by Spirited, which can be
+// found here: https://gitlab.com/spirited/comet
+// 
+// Comet - Comet.Game - Map Manager.cs
+// Description:
+// 
+// Creator: FELIPEVIEIRAVENDRAMI [FELIPE VIEIRA VENDRAMINI]
+// 
+// Developed by:
+// Felipe Vieira Vendramini <felipevendramini@live.com>
+// 
+// Programming today is a race between software engineers striving to build bigger and better
+// idiot-proof programs, and the Universe trying to produce bigger and better idiots.
+// So far, the Universe is winning.
+// //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#region References
+
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -5,46 +28,41 @@ using System.IO;
 using System.Threading.Tasks;
 using Comet.Game.Database.Models;
 using Comet.Game.Database.Repositories;
-using Comet.Game.States;
 using Comet.Game.World.Maps;
+using Comet.Shared;
 
-namespace Comet.Game.Managers
+#endregion
+
+namespace Comet.Game.World.Managers
 {
-    public class MapManager
+    public sealed class MapManager
     {
-        // A thread-safe dictionary to store users mapped to their map IDs
-        private readonly ConcurrentDictionary<uint, GameMap> GameMaps;
         private readonly ConcurrentDictionary<uint, GameMapData> m_mapData =
             new ConcurrentDictionary<uint, GameMapData>();
-        public MapManager()
-        {
-            GameMaps = new ConcurrentDictionary<uint, GameMap>();
-        }
+
+        public ConcurrentDictionary<uint, GameMap> GameMaps { get; } = new ConcurrentDictionary<uint, GameMap>();
 
         public async Task LoadDataAsync()
         {
-            var filePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "ini", "GameMap.dat");
-            var stream = File.OpenRead(filePath);
-            BinaryReader reader = new(stream);
+            var stream = File.OpenRead(string.Format(".{0}ini{0}GameMap.dat", Path.DirectorySeparatorChar));
+            BinaryReader reader = new BinaryReader(stream);
 
             int mapDataCount = reader.ReadInt32();
-            Console.WriteLine($"Loading {mapDataCount} map data entries...");
+            await Log.WriteLogAsync(LogLevel.Debug, $"Loading {mapDataCount} maps...");
+
             for (int i = 0; i < mapDataCount; i++)
             {
                 uint idMap = reader.ReadUInt32();
                 int length = reader.ReadInt32();
-                string name = new(reader.ReadChars(length));
+                string name = new string(reader.ReadChars(length));
                 uint puzzle = reader.ReadUInt32();
 
-                // Construct the full path for the map file
-                string mapFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,
-                                                  "ini",
-                                                  name.Replace("\\", Path.DirectorySeparatorChar.ToString()));
-
-                GameMapData mapData = new(idMap);
-                if (mapData.Load(mapFilePath)) // Use the full path here
+                GameMapData mapData = new GameMapData(idMap);
+                if (mapData.Load(name.Replace("\\", Path.DirectorySeparatorChar.ToString())))
                 {
-                    Console.WriteLine($"Loaded map {name} with ID {idMap}");
+#if DEBUG
+                    Console.WriteLine($"Map [{idMap},{name}] loaded...");
+#endif
                     m_mapData.TryAdd(idMap, mapData);
                 }
             }
@@ -60,12 +78,11 @@ namespace Comet.Game.Managers
             List<DbMap> maps = await MapsRepository.GetAsync();
             foreach (var dbmap in maps)
             {
-                Console.WriteLine($"Loading map {dbmap.Name} with ID {dbmap.Identity}");
                 GameMap map = new GameMap(dbmap);
                 if (await map.InitializeAsync())
                 {
                     GameMaps.TryAdd(map.Identity, map);
-                    Console.WriteLine($"Loaded map {map.Name} with ID {map.Identity}");
+                    await Log.GmLogAsync("map_channel", $"{map.Identity}\t{map.Name}\t\t\tPartition: {map.Partition}");
                 }
             }
 
@@ -76,22 +93,34 @@ namespace Comet.Game.Managers
                 if (await map.InitializeAsync())
                 {
                     GameMaps.TryAdd(map.Identity, map);
-                    Console.WriteLine($"Loaded map {map.Name} with ID {map.Identity}");
+                    await Log.GmLogAsync("map_channel", $"{map.Identity}\t{map.Name}\t\t\tPartition: {map.Partition}");
                 }
             }
 
-            // foreach (var map in GameMaps.Values)
-            // {
-            //     await map.LoadTrapsAsync();
-            // }
+            foreach (var map in GameMaps.Values)
+            {
+                await map.LoadTrapsAsync();
+            }
         }
+
+        public GameMap GetMap(uint idMap)
+        {
+            return GameMaps.TryGetValue(idMap, out var value) ? value : null;
+        }
+
         public GameMapData GetMapData(uint idDoc)
         {
             return m_mapData.TryGetValue(idDoc, out var map) ? map : null;
         }
-        public GameMap GetMap(uint idMap)
+
+        public bool AddMap(GameMap map)
         {
-            return GameMaps.TryGetValue(idMap, out var value) ? value : null;
+            return GameMaps.TryAdd(map.Identity, map);
+        }
+
+        public bool RemoveMap(uint idMap)
+        {
+            return GameMaps.TryRemove(idMap, out _);
         }
     }
 }

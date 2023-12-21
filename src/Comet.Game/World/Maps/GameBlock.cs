@@ -60,12 +60,12 @@ namespace Comet.Game.World.Maps
                 //    mob.PlayerOnSight++;
                 //}
             }
-            return RoleSet.TryAdd(role.UID, role);
+            return RoleSet.TryAdd(role.Identity, role);
         }
 
         public bool Remove(Role role)
         {
-            bool remove = RoleSet.TryRemove(role.UID, out _);
+            bool remove = RoleSet.TryRemove(role.Identity, out _);
             if (role is Character && remove)
             {
                 Interlocked.Decrement(ref m_userCount);

@@ -5,9 +5,9 @@
     using System.Threading;
     using System.Threading.Tasks;
     using Comet.Game.Database;
-    using Comet.Game.Managers;
 
     using Comet.Game.Packets;
+    using Comet.Game.World.Managers;
     using Comet.Network.RPC;
     using Comet.Network.Security;
 

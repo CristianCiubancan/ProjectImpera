@@ -35,6 +35,7 @@ namespace Comet.Game.Database
             public int Port { get; set; }
             public int MaxConn { get; set; }
             public int ServerIdentity { get; set; }
+            public string ServerName { get; set; }
         }
 
         /// <summary>

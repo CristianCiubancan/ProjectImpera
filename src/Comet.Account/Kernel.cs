@@ -1,8 +1,12 @@
 namespace Comet.Account
 {
+    using System.Collections.Concurrent;
+
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Comet.Account.Database.Models;
+    using Comet.Account.States;
+
     using Comet.Network.Services;
 
     /// <summary>
@@ -15,6 +19,9 @@ namespace Comet.Account
     {
         // State caches
         public static Dictionary<string, DbRealm> Realms;
+        public static ConcurrentDictionary<uint, Client> Clients = new ConcurrentDictionary<uint, Client>();
+        public static ConcurrentDictionary<uint, Player> Players = new ConcurrentDictionary<uint, Player>();
+
 
         // Background services
         public static class Services

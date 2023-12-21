@@ -23,11 +23,10 @@
 
 #region References
 
-using System;
 using System.Collections.Generic;
 using System.IO;
-using Comet.Game.Database.Models;
 using Comet.Game.States;
+using Comet.Game.States.Items;
 using Comet.Network.Packets;
 
 #endregion
@@ -36,91 +35,87 @@ namespace Comet.Game.Packets
 {
     public sealed class MsgPlayer : MsgBase<Client>
     {
-        public MsgPlayer(Character mUser)
+        public MsgPlayer(Character user)
         {
-            DbCharacter user = mUser.DbCharacter;
             Type = PacketType.MsgPlayer;
 
             Identity = user.Identity;
             Mesh = user.Mesh;
-            // Avatar = user.Avatar;
 
-            MapX = user.X;
-            MapY = user.Y;
+            MapX = user.MapX;
+            MapY = user.MapY;
 
-            // Status = (uint) user.StatusFlag;
+            Status = (uint) user.StatusFlag;
 
             Hairstyle = user.Hairstyle;
-            // Direction = (byte) user.Direction;
-            // Pose = (byte) user.Action;
-            // Metempsychosis = user.Metempsychosis;
+            Direction = (byte) user.Direction;
+            Pose = (byte) user.Action;
+            Metempsychosis = user.Metempsychosis;
             Level = user.Level;
 
-            // SyndicateIdentity = user.SyndicateIdentity;
-            // SyndicatePosition = (ushort) user.SyndicateRank;
+            SyndicateIdentity = user.SyndicateIdentity;
+            SyndicatePosition = (ushort) user.SyndicateRank;
 
-            // NobilityRank = (uint) user.NobilityRank;
+            NobilityRank = (uint) user.NobilityRank;
 
-            // Helmet = user.Headgear?.Type ?? 0;
-            // HelmetColor = (ushort) (user.Headgear?.Color ?? Item.ItemColor.None);
-            // RightHand = user.RightHand?.Type ?? 0;
-            // LeftHand = user.LeftHand?.Type ?? 0;
-            // LeftHandColor = (ushort) (user.LeftHand?.Color ?? Item.ItemColor.None);
-            // Armor = user.Armor?.Type ?? 0;
-            // ArmorColor = (ushort) (user.Armor?.Color ?? Item.ItemColor.None);
-            // Garment = user.Garment?.Type ?? 0;
+            Helmet = user.Headgear?.Type ?? 0;
+            HelmetColor = (ushort) (user.Headgear?.Color ?? Item.ItemColor.None);
+            RightHand = user.RightHand?.Type ?? 0;
+            LeftHand = user.LeftHand?.Type ?? 0;
+            LeftHandColor = (ushort) (user.LeftHand?.Color ?? Item.ItemColor.None);
+            Armor = user.Armor?.Type ?? 0;
+            ArmorColor = (ushort) (user.Armor?.Color ?? Item.ItemColor.None);
+            Garment = user.Garment?.Type ?? 0;
 
-            // FlowerRanking = user.FlowerCharm;
+            FlowerRanking = user.FlowerCharm;
             QuizPoints = user.QuizPoints;
-            // UserTitle = user.UserTitle;
+            UserTitle = user.UserTitle;
 
-            // Away = user.IsAway;
+            Away = user.IsAway;
             
-            // if (user.Syndicate != null)
-            //     SharedBattlePower = (uint) user.Syndicate.GetSharedBattlePower(user.SyndicateRank);
+            if (user.Syndicate != null)
+                SharedBattlePower = (uint) user.Syndicate.GetSharedBattlePower(user.SyndicateRank);
 
-            // FamilyIdentity = user.FamilyIdentity;
-            // FamilyRank = (uint) user.FamilyPosition;
-            // FamilyBattlePower = user.FamilyBattlePower;
+            FamilyIdentity = user.FamilyIdentity;
+            FamilyRank = (uint) user.FamilyPosition;
+            FamilyBattlePower = user.FamilyBattlePower;
 
             Name = user.Name;
-            // FamilyName = user.FamilyName;
+            FamilyName = user.FamilyName;
         }
 
-        // public MsgPlayer(Monster monster)
-        // {
-        //     Type = PacketType.MsgPlayer;
+        public MsgPlayer(Monster monster)
+        {
+            Type = PacketType.MsgPlayer;
 
-        //     Identity = monster.Identity;
+            Identity = monster.Identity;
 
-        //     Mesh = monster.Mesh;
+            Mesh = monster.Mesh;
 
-        //     MapX = monster.MapX;
-        //     MapY = monster.MapY;
+            MapX = monster.MapX;
+            MapY = monster.MapY;
 
-        //     Status = (uint) monster.StatusFlag;
+            Status = (uint) monster.StatusFlag;
 
-        //     Direction = (byte) monster.Direction;
-        //     Pose = (byte) monster.Action;
+            Direction = (byte) monster.Direction;
+            Pose = (byte) monster.Action;
 
-        //     MonsterLevel = monster.Level;
-        //     if (monster.Life > ushort.MaxValue)
-        //     {
-        //         MonsterLife = (ushort) (ushort.MaxValue / monster.Life * 100);
-        //     }
-        //     else
-        //     {
-        //         MonsterLife = (ushort) monster.Life;
-        //     }
+            MonsterLevel = monster.Level;
+            if (monster.Life > ushort.MaxValue)
+            {
+                MonsterLife = (ushort) (ushort.MaxValue / monster.Life * 100);
+            }
+            else
+            {
+                MonsterLife = (ushort) monster.Life;
+            }
 
-        //     Name = monster.Name;
-        //     FamilyName = "";
-        // }
+            Name = monster.Name;
+            FamilyName = "";
+        }
 
         public uint Identity { get; set; }
         public uint Mesh { get; set; }
-
-        public uint Avatar { get; set; }
 
         #region Union
 
@@ -192,7 +187,7 @@ namespace Comet.Game.Packets
         public uint UserTitle { get; set; }
 
         public string Name { get; set; }
-        public string FamilyName { get; set; } = "";
+        public string FamilyName { get; set; }
 
         /// <summary>
         ///     Encodes the packet structure defined by this message class into a byte packet
@@ -204,8 +199,7 @@ namespace Comet.Game.Packets
         {
             var writer = new PacketWriter();
             writer.Write((ushort) Type);
-            // writer.Write(Mesh); // 4
-            writer.Write((uint)(Mesh + (Avatar * 10000))); // 4
+            writer.Write(Mesh); // 4
             writer.Write(Identity); // 8
 
             if (OwnerIdentity > 0)

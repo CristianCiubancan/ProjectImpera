@@ -19,11 +19,11 @@
 // So far, the Universe is winning.
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-using System;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using Comet.Game.Database.Models;
 using Comet.Game.Database.Repositories;
+using Comet.Game.States.NPCs;
 using Comet.Shared;
 
 namespace Comet.Game.World.Managers
@@ -47,15 +47,13 @@ namespace Comet.Game.World.Managers
                     string[] response = action.Param.Split(' ');
                     if (response.Length < 2)
                     {
-                        // await Log.WriteLogAsync(LogLevel.Warning, $"Action [{action.Identity}] Type 102 doesn't set a task [param: {action.Param}]");
-                        Console.WriteLine($"Action [{action.Identity}] Type 102 doesn't set a task [param: {action.Param}]");
+                        await Log.WriteLogAsync(LogLevel.Warning, $"Action [{action.Identity}] Type 102 doesn't set a task [param: {action.Param}]");
                     }
                     else if (response[1] != "0")
                     {
                         if (!uint.TryParse(response[1], out uint taskId) || !m_dicTasks.ContainsKey(taskId))
                         {
-                            // await Log.WriteLogAsync(LogLevel.Warning, $"Task not found for action {action.Identity}");
-                            Console.WriteLine($"Task not found for action {action.Identity}");
+                            await Log.WriteLogAsync(LogLevel.Warning, $"Task not found for action {action.Identity}");
                         }
                     }
                 }
@@ -63,30 +61,30 @@ namespace Comet.Game.World.Managers
                 m_dicActions.TryAdd(action.Identity, action);
             }
 
-            // foreach (var dbNpc in await NpcRepository.GetAsync())
-            // {
-            //     Npc npc = new Npc(dbNpc);
+            foreach (var dbNpc in await NpcRepository.GetAsync())
+            {
+                Npc npc = new Npc(dbNpc);
 
-            //     if (!await npc.InitializeAsync())
-            //     {
-            //         await Log.WriteLogAsync(LogLevel.Warning, $"Could not load NPC {dbNpc.Id} {dbNpc.Name}");
-            //     }
+                if (!await npc.InitializeAsync())
+                {
+                    await Log.WriteLogAsync(LogLevel.Warning, $"Could not load NPC {dbNpc.Id} {dbNpc.Name}");
+                }
 
-            //     if (npc.Task0 != 0 && !m_dicTasks.ContainsKey(npc.Task0))
-            //         await Log.WriteLogAsync(LogLevel.Warning, $"Npc {npc.Identity} {npc.Name} no task found [taskid: {npc.Task0}]");
-            // }
+                if (npc.Task0 != 0 && !m_dicTasks.ContainsKey(npc.Task0))
+                    await Log.WriteLogAsync(LogLevel.Warning, $"Npc {npc.Identity} {npc.Name} no task found [taskid: {npc.Task0}]");
+            }
 
-            // foreach (var dbDynaNpc in await DynaNpcRespository.GetAsync())
-            // {
-            //     DynamicNpc npc = new DynamicNpc(dbDynaNpc);
-            //     if (!await npc.InitializeAsync())
-            //     {
-            //         await Log.WriteLogAsync(LogLevel.Warning, $"Could not load NPC {dbDynaNpc.Id} {dbDynaNpc.Name}");
-            //     }
+            foreach (var dbDynaNpc in await DynaNpcRespository.GetAsync())
+            {
+                DynamicNpc npc = new DynamicNpc(dbDynaNpc);
+                if (!await npc.InitializeAsync())
+                {
+                    await Log.WriteLogAsync(LogLevel.Warning, $"Could not load NPC {dbDynaNpc.Id} {dbDynaNpc.Name}");
+                }
 
-            //     if (npc.Task0 != 0 && !m_dicTasks.ContainsKey(npc.Task0))
-            //         await Log.WriteLogAsync(LogLevel.Warning, $"Npc {npc.Identity} {npc.Name} no task found [taskid: {npc.Task0}]");
-            // }
+                if (npc.Task0 != 0 && !m_dicTasks.ContainsKey(npc.Task0))
+                    await Log.WriteLogAsync(LogLevel.Warning, $"Npc {npc.Identity} {npc.Name} no task found [taskid: {npc.Task0}]");
+            }
 
             return true;
         }
@@ -98,8 +96,7 @@ namespace Comet.Game.World.Managers
             {
                 m_dicTasks.TryAdd(task.Id, task);
             }
-            // await Log.WriteLogAsync(LogLevel.Debug, $"All Tasks has been reloaded. {m_dicTasks.Count} in the server.");
-            Console.WriteLine($"All Tasks has been reloaded. {m_dicTasks.Count} in the server.");
+            await Log.WriteLogAsync(LogLevel.Debug, $"All Tasks has been reloaded. {m_dicTasks.Count} in the server.");
 
             m_dicActions.Clear();
             foreach (var action in await ActionRepository.GetAsync())
@@ -109,15 +106,13 @@ namespace Comet.Game.World.Managers
                     string[] response = action.Param.Split(' ');
                     if (response.Length < 2)
                     {
-                        // await Log.WriteLogAsync(LogLevel.Warning, $"Action [{action.Identity}] Type 102 doesn't set a task [param: {action.Param}]");
-                        Console.WriteLine($"Action [{action.Identity}] Type 102 doesn't set a task [param: {action.Param}]");
+                        await Log.WriteLogAsync(LogLevel.Warning, $"Action [{action.Identity}] Type 102 doesn't set a task [param: {action.Param}]");
                     }
                     else if (response[1] != "0")
                     {
                         if (!uint.TryParse(response[1], out uint taskId) || !m_dicTasks.ContainsKey(taskId))
                         {
-                            // await Log.WriteLogAsync(LogLevel.Warning, $"Task not found for action {action.Identity}");
-                            Console.WriteLine($"Task not found for action {action.Identity}");
+                            await Log.WriteLogAsync(LogLevel.Warning, $"Task not found for action {action.Identity}");
                         }
                     }
                 }
@@ -125,8 +120,7 @@ namespace Comet.Game.World.Managers
                 m_dicActions.TryAdd(action.Identity, action);
             }
 
-            // await Log.WriteLogAsync(LogLevel.Debug, $"All Actions has been reloaded. {m_dicActions.Count} in the server.");
-            Console.WriteLine($"All Actions has been reloaded. {m_dicActions.Count} in the server.");
+            await Log.WriteLogAsync(LogLevel.Debug, $"All Actions has been reloaded. {m_dicActions.Count} in the server.");
         }
 
         public DbAction GetAction(uint idAction)

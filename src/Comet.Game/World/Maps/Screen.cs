@@ -49,12 +49,19 @@ namespace Comet.Game.World.Maps
             m_user = user;
         }
 
+        public bool Add(Role role)
+        {
+            if (role is Monster mob)
+                mob.PlayerOnSight++;
+            return Roles.TryAdd(role.Identity, role);
+        }
+
         public async Task RemoveAsync(uint idRole, bool force = false)
         {
             Roles.TryRemove(idRole, out var role);
 
-            // if (role is  Monster mob)
-            //     mob.PlayerOnSight--;
+            if (role is  Monster mob)
+                mob.PlayerOnSight--;
 
             if (force)
             {
@@ -84,7 +91,7 @@ namespace Comet.Game.World.Maps
             targets.AddRange(Roles.Values);
             foreach (Role target in targets.Select(x => x).Distinct())
             {
-                if (target.UID == m_user.UID) continue;
+                if (target.Identity == m_user.Identity) continue;
 
                 Character targetUser = target as Character;
                 if (ScreenCalculations.GetDistance(m_user.MapX, m_user.MapY, target.MapX, target.MapY) < VIEW_SIZE)
@@ -104,9 +111,9 @@ namespace Comet.Game.World.Maps
                 }
                 else
                 {
-                    await RemoveAsync(target.UID);
+                    await RemoveAsync(target.Identity);
                     if (targetUser != null)
-                        await targetUser.Screen.RemoveAsync(m_user.UID);
+                        await targetUser.Screen.RemoveAsync(m_user.Identity);
                 }
 
                 if (msg != null && targetUser != null)
@@ -128,10 +135,10 @@ namespace Comet.Game.World.Maps
         /// </summary>
         public async Task<bool> SpawnAsync(Role role)
         {
-            if (Roles.TryAdd(role.UID, role))
+            if (Roles.TryAdd(role.Identity, role))
             {
-                // if (role is Monster mob)
-                //     mob.PlayerOnSight++;
+                if (role is Monster mob)
+                    mob.PlayerOnSight++;
 
                 await role.SendSpawnToAsync(m_user);
                 return true;
@@ -146,12 +153,12 @@ namespace Comet.Game.World.Maps
             {
                 foreach (var role in Roles.Values)
                 {
-                    // if (role is Monster mob)
-                    //     mob.PlayerOnSight--;
+                    if (role is Monster mob)
+                        mob.PlayerOnSight--;
 
                     MsgAction msg = new MsgAction
                     {
-                        Identity = role.UID,
+                        Identity = role.Identity,
                         Action = MsgAction.ActionType.RemoveEntity
                     };
                     await m_user.SendAsync(msg);
@@ -159,13 +166,6 @@ namespace Comet.Game.World.Maps
             }
 
             Roles.Clear();
-        }
-
-        public bool Add(Role role)
-        {
-            // if (role is Monster mob)
-            //     mob.PlayerOnSight++;
-            return Roles.TryAdd(role.UID, role);
         }
     }
 }

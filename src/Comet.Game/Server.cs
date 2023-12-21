@@ -139,7 +139,7 @@ namespace Comet.Game
                         Console.WriteLine(
                             "Missing packet {0}, Length {1}\n{2}", 
                             type, length, PacketDump.Hex(packet));
-                        await actor.SendAsync(new MsgTalk(actor.ID, MsgTalk.TalkChannel.Service,
+                        await actor.SendAsync(new MsgTalk(actor.Identity, MsgTalk.TalkChannel.Service,
                             String.Format("Missing packet {0}, Length {1}",
                             type, length)));
                         return;
@@ -161,17 +161,45 @@ namespace Comet.Game
         /// from other actors and server collections.
         /// </summary>
         /// <param name="actor">Server actor that represents the remote client</param>
-        protected override void Disconnected(Client actor) 
+        protected override void Disconnected(Client actor)
         {
-            if (actor == null) return;
-            this.Processor.DeselectPartition(actor.Partition);
-            Kernel.Clients.TryRemove(actor.ID, out _);
+            if (actor == null)
+            {
+                Console.WriteLine(@"Disconnected with actor null ???");
+                return;
+            }
 
+            Processor.DeselectPartition(actor.Partition);
+
+            bool fromCreation = false;
             if (actor.Creation != null)
+            {
                 Kernel.Registration.Remove(actor.Creation.Token);
+                fromCreation = true;
+            }
 
             if (actor.Character != null)
-                actor.Character.SaveAsync().GetAwaiter();
-        }
+            {
+                // Log.WriteLogAsync(LogLevel.Info, $"{actor.Character.Name} has logged out.").ConfigureAwait(false);
+                actor.Character.Connection = Character.ConnectionStage.Disconnected;
+
+                Kernel.Services.Processor.Queue(actor.Character.Map?.Partition ?? 0, async () =>
+                {
+                    Kernel.RoleManager.ForceLogoutUser(actor.Character.Identity);
+                    await actor.Character.OnDisconnectAsync();
+                });
+            }
+            else
+            {
+                if (fromCreation)
+                {
+                    // Log.WriteLogAsync(LogLevel.Info, $"{actor.AccountIdentity} has created a new character and has logged out.").ConfigureAwait(false);
+                }
+                else
+                {
+                    // Log.WriteLogAsync(LogLevel.Info, $"[{actor.IPAddress}] {actor.AccountIdentity} has logged out.").ConfigureAwait(false);
+                }                
+            }
+        } 
     }
 }

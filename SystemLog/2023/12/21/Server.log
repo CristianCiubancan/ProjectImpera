@@ -1,0 +1,453 @@
+14:48:36.682 [Debug     ] - Loading 185 maps...
+14:48:39.127 [Warning   ] - Map data for file 1712 'map/map/kunlun1.DMap' has not been found.
+14:48:39.127 [Warning   ] - Map data for file 1713 'map/map/kunlun2.DMap' has not been found.
+14:48:39.128 [Warning   ] - Map data for file 1714 'map/map/kunlun3.DMap' has not been found.
+14:48:39.128 [Warning   ] - Map data for file 1715 'map/map/kunlun4.DMap' has not been found.
+14:48:39.128 [Warning   ] - Map data for file 1716 'map/map/kunlun5.DMap' has not been found.
+14:48:39.128 [Warning   ] - Map data for file 1717 'map/map/kunlun6.DMap' has not been found.
+14:48:39.129 [Warning   ] - Map data for file 1718 'map/map/kunlun7.DMap' has not been found.
+14:48:39.129 [Warning   ] - Map data for file 1719 'map/map/kunlun8.DMap' has not been found.
+14:51:39.947 [Debug     ] - Loading 185 maps...
+14:51:42.324 [Warning   ] - Map data for file 1712 'map/map/kunlun1.DMap' has not been found.
+14:51:42.325 [Warning   ] - Map data for file 1713 'map/map/kunlun2.DMap' has not been found.
+14:51:42.325 [Warning   ] - Map data for file 1714 'map/map/kunlun3.DMap' has not been found.
+14:51:42.326 [Warning   ] - Map data for file 1715 'map/map/kunlun4.DMap' has not been found.
+14:51:42.326 [Warning   ] - Map data for file 1716 'map/map/kunlun5.DMap' has not been found.
+14:51:42.326 [Warning   ] - Map data for file 1717 'map/map/kunlun6.DMap' has not been found.
+14:51:42.326 [Warning   ] - Map data for file 1718 'map/map/kunlun7.DMap' has not been found.
+14:51:42.327 [Warning   ] - Map data for file 1719 'map/map/kunlun8.DMap' has not been found.
+14:51:42.327 [Warning   ] - Map data for file 1720 'map/map/kunlun9.DMap' has not been found.
+14:51:44.167 [Warning   ] - Could not load map 2058(2071): map data not found
+14:51:44.176 [Warning   ] - Could not load map 1999(1999): map data not found
+14:51:44.177 [Warning   ] - Could not load map 2054(2054): map data not found
+14:51:44.177 [Warning   ] - Could not load map 2055(2055): map data not found
+14:51:44.178 [Warning   ] - Could not load map 2056(2056): map data not found
+14:51:44.178 [Warning   ] - Could not load map 2057(2057): map data not found
+14:51:44.179 [Warning   ] - Could not load map 2071(2071): map data not found
+14:51:44.179 [Warning   ] - Could not load map 2072(2071): map data not found
+14:51:44.179 [Warning   ] - Could not load map 2073(2071): map data not found
+14:51:44.180 [Warning   ] - Could not load map 2074(2071): map data not found
+14:51:44.180 [Warning   ] - Could not load map 2060(2060): map data not found
+14:52:03.190 [Debug     ] - [192.168.0.106] has connected to the game server.
+14:52:03.258 [Warning   ] - 0 non cooperator account.
+14:52:36.512 [Debug     ] - Loading 185 maps...
+14:52:38.887 [Warning   ] - Map data for file 1712 'map/map/kunlun1.DMap' has not been found.
+14:52:38.888 [Warning   ] - Map data for file 1713 'map/map/kunlun2.DMap' has not been found.
+14:52:38.889 [Warning   ] - Map data for file 1714 'map/map/kunlun3.DMap' has not been found.
+14:52:38.889 [Warning   ] - Map data for file 1715 'map/map/kunlun4.DMap' has not been found.
+14:52:38.890 [Warning   ] - Map data for file 1716 'map/map/kunlun5.DMap' has not been found.
+14:52:38.890 [Warning   ] - Map data for file 1717 'map/map/kunlun6.DMap' has not been found.
+14:52:38.890 [Warning   ] - Map data for file 1718 'map/map/kunlun7.DMap' has not been found.
+14:52:38.890 [Warning   ] - Map data for file 1719 'map/map/kunlun8.DMap' has not been found.
+14:52:38.891 [Warning   ] - Map data for file 1720 'map/map/kunlun9.DMap' has not been found.
+14:52:40.713 [Warning   ] - Could not load map 2058(2071): map data not found
+14:52:40.718 [Warning   ] - Could not load map 1999(1999): map data not found
+14:52:40.719 [Warning   ] - Could not load map 2054(2054): map data not found
+14:52:40.719 [Warning   ] - Could not load map 2055(2055): map data not found
+14:52:40.719 [Warning   ] - Could not load map 2056(2056): map data not found
+14:52:40.720 [Warning   ] - Could not load map 2057(2057): map data not found
+14:52:40.720 [Warning   ] - Could not load map 2071(2071): map data not found
+14:52:40.721 [Warning   ] - Could not load map 2072(2071): map data not found
+14:52:40.721 [Warning   ] - Could not load map 2073(2071): map data not found
+14:52:40.721 [Warning   ] - Could not load map 2074(2071): map data not found
+14:52:40.722 [Warning   ] - Could not load map 2060(2060): map data not found
+14:52:51.925 [Debug     ] - [192.168.0.106] has connected to the game server.
+14:53:26.512 [Debug     ] - Loading 185 maps...
+14:53:28.827 [Warning   ] - Map data for file 1712 'map/map/kunlun1.DMap' has not been found.
+14:53:28.827 [Warning   ] - Map data for file 1713 'map/map/kunlun2.DMap' has not been found.
+14:53:28.828 [Warning   ] - Map data for file 1714 'map/map/kunlun3.DMap' has not been found.
+14:53:28.828 [Warning   ] - Map data for file 1715 'map/map/kunlun4.DMap' has not been found.
+14:53:28.828 [Warning   ] - Map data for file 1716 'map/map/kunlun5.DMap' has not been found.
+14:53:28.828 [Warning   ] - Map data for file 1717 'map/map/kunlun6.DMap' has not been found.
+14:53:28.828 [Warning   ] - Map data for file 1718 'map/map/kunlun7.DMap' has not been found.
+14:53:28.829 [Warning   ] - Map data for file 1720 'map/map/kunlun9.DMap' has not been found.
+14:53:30.609 [Warning   ] - Could not load map 2058(2071): map data not found
+14:53:30.615 [Warning   ] - Could not load map 1999(1999): map data not found
+14:53:30.615 [Warning   ] - Could not load map 2054(2054): map data not found
+14:53:30.616 [Warning   ] - Could not load map 2055(2055): map data not found
+14:53:30.616 [Warning   ] - Could not load map 2056(2056): map data not found
+14:53:30.617 [Warning   ] - Could not load map 2057(2057): map data not found
+14:53:30.617 [Warning   ] - Could not load map 2071(2071): map data not found
+14:53:30.617 [Warning   ] - Could not load map 2072(2071): map data not found
+14:53:30.618 [Warning   ] - Could not load map 2073(2071): map data not found
+14:53:30.618 [Warning   ] - Could not load map 2074(2071): map data not found
+14:53:30.619 [Warning   ] - Could not load map 2060(2060): map data not found
+14:53:32.445 [Warning   ] - Npc 35 ArtisanCloud no task found [taskid: 80000]
+14:53:32.461 [Warning   ] - Npc 30106 David no task found [taskid: 310001]
+14:53:32.533 [Warning   ] - Npc 810 Trojan no task found [taskid: 150010]
+14:53:32.571 [Warning   ] - File 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\ini\QuestInfo.ini' is missing
+14:53:32.601 [Error     ] - Could not load map (2060) for generator (20344)
+14:53:32.601 [Error     ] - Could not load map (2060) for generator (20345)
+14:53:32.601 [Error     ] - Could not load map (2060) for generator (20346)
+14:53:32.601 [Error     ] - Could not load map (2060) for generator (20347)
+14:53:32.601 [Error     ] - Could not load map (2060) for generator (20348)
+14:53:32.602 [Error     ] - Could not load map (2060) for generator (20349)
+14:53:32.602 [Error     ] - Could not load map (2060) for generator (20350)
+14:53:32.603 [Info      ] - Timer [System Thread] has started
+14:53:32.603 [Info      ] - Timer [User Thread] has started
+14:53:32.604 [Info      ] - Timer [Ai Thread] has started
+14:53:32.605 [Info      ] - Timer [AutomaticActionsProcessing] has started
+14:53:32.633 [Error     ] - Could not start TimedGuildWar, invalid mapid 2058
+14:53:32.643 [Warning   ] - Could not load HonorRewards.ini file. Error wont stop server execution but no Honor Rewards will be given. Exception: Could not find file 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\ini\HonorRewards.ini'.
+14:53:32.667 [Error     ] - Could not start GuildContest, invalid mapid 2060
+14:53:32.667 [Info      ] - Timer [EventsProcessing] has started
+14:53:32.668 [Info      ] - Timer [Generator Thread] has started
+14:53:47.593 [Debug     ] - [192.168.0.106] has connected to the game server.
+14:54:13.234 [Debug     ] - Loading 185 maps...
+14:54:15.643 [Warning   ] - Map data for file 1712 'map/map/kunlun1.DMap' has not been found.
+14:54:15.644 [Warning   ] - Map data for file 1713 'map/map/kunlun2.DMap' has not been found.
+14:54:15.644 [Warning   ] - Map data for file 1714 'map/map/kunlun3.DMap' has not been found.
+14:54:15.645 [Warning   ] - Map data for file 1715 'map/map/kunlun4.DMap' has not been found.
+14:54:15.645 [Warning   ] - Map data for file 1716 'map/map/kunlun5.DMap' has not been found.
+14:54:15.645 [Warning   ] - Map data for file 1717 'map/map/kunlun6.DMap' has not been found.
+14:54:15.645 [Warning   ] - Map data for file 1718 'map/map/kunlun7.DMap' has not been found.
+14:54:15.645 [Warning   ] - Map data for file 1719 'map/map/kunlun8.DMap' has not been found.
+14:54:15.646 [Warning   ] - Map data for file 1720 'map/map/kunlun9.DMap' has not been found.
+14:54:17.457 [Warning   ] - Could not load map 2058(2071): map data not found
+14:54:17.464 [Warning   ] - Could not load map 1999(1999): map data not found
+14:54:17.465 [Warning   ] - Could not load map 2054(2054): map data not found
+14:54:17.466 [Warning   ] - Could not load map 2055(2055): map data not found
+14:54:17.466 [Warning   ] - Could not load map 2056(2056): map data not found
+14:54:17.467 [Warning   ] - Could not load map 2057(2057): map data not found
+14:54:17.467 [Warning   ] - Could not load map 2071(2071): map data not found
+14:54:17.468 [Warning   ] - Could not load map 2072(2071): map data not found
+14:54:17.468 [Warning   ] - Could not load map 2073(2071): map data not found
+14:54:17.468 [Warning   ] - Could not load map 2074(2071): map data not found
+14:54:17.469 [Warning   ] - Could not load map 2060(2060): map data not found
+14:54:19.408 [Warning   ] - Npc 35 ArtisanCloud no task found [taskid: 80000]
+14:54:19.426 [Warning   ] - Npc 30106 David no task found [taskid: 310001]
+14:54:19.493 [Warning   ] - Npc 810 Trojan no task found [taskid: 150010]
+14:54:19.532 [Warning   ] - File 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\ini\QuestInfo.ini' is missing
+14:54:19.561 [Error     ] - Could not load map (2060) for generator (20344)
+14:54:19.562 [Error     ] - Could not load map (2060) for generator (20345)
+14:54:19.562 [Error     ] - Could not load map (2060) for generator (20346)
+14:54:19.562 [Error     ] - Could not load map (2060) for generator (20347)
+14:54:19.562 [Error     ] - Could not load map (2060) for generator (20348)
+14:54:19.563 [Error     ] - Could not load map (2060) for generator (20349)
+14:54:19.563 [Error     ] - Could not load map (2060) for generator (20350)
+14:54:19.563 [Info      ] - Timer [System Thread] has started
+14:54:19.564 [Info      ] - Timer [User Thread] has started
+14:54:19.564 [Info      ] - Timer [Ai Thread] has started
+14:54:19.565 [Info      ] - Timer [AutomaticActionsProcessing] has started
+14:54:19.594 [Error     ] - Could not start TimedGuildWar, invalid mapid 2058
+14:54:19.605 [Warning   ] - Could not load HonorRewards.ini file. Error wont stop server execution but no Honor Rewards will be given. Exception: Could not find file 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\ini\HonorRewards.ini'.
+14:54:19.626 [Error     ] - Could not start GuildContest, invalid mapid 2060
+14:54:19.627 [Info      ] - Timer [EventsProcessing] has started
+14:54:19.627 [Info      ] - Timer [Generator Thread] has started
+14:54:35.064 [Debug     ] - [192.168.0.106] has connected to the game server.
+14:55:12.576 [Debug     ] - Loading 185 maps...
+14:55:14.945 [Warning   ] - Map data for file 1712 'map/map/kunlun1.DMap' has not been found.
+14:55:14.945 [Warning   ] - Map data for file 1713 'map/map/kunlun2.DMap' has not been found.
+14:55:14.946 [Warning   ] - Map data for file 1714 'map/map/kunlun3.DMap' has not been found.
+14:55:14.946 [Warning   ] - Map data for file 1715 'map/map/kunlun4.DMap' has not been found.
+14:55:14.946 [Warning   ] - Map data for file 1716 'map/map/kunlun5.DMap' has not been found.
+14:55:14.947 [Warning   ] - Map data for file 1717 'map/map/kunlun6.DMap' has not been found.
+14:55:14.947 [Warning   ] - Map data for file 1718 'map/map/kunlun7.DMap' has not been found.
+14:55:14.947 [Warning   ] - Map data for file 1719 'map/map/kunlun8.DMap' has not been found.
+14:55:14.947 [Warning   ] - Map data for file 1720 'map/map/kunlun9.DMap' has not been found.
+14:55:16.942 [Warning   ] - Could not load map 2058(2071): map data not found
+14:55:16.951 [Warning   ] - Could not load map 1999(1999): map data not found
+14:55:16.951 [Warning   ] - Could not load map 2054(2054): map data not found
+14:55:16.952 [Warning   ] - Could not load map 2055(2055): map data not found
+14:55:16.952 [Warning   ] - Could not load map 2056(2056): map data not found
+14:55:16.952 [Warning   ] - Could not load map 2057(2057): map data not found
+14:55:16.953 [Warning   ] - Could not load map 2071(2071): map data not found
+14:55:16.953 [Warning   ] - Could not load map 2072(2071): map data not found
+14:55:16.953 [Warning   ] - Could not load map 2073(2071): map data not found
+14:55:16.954 [Warning   ] - Could not load map 2074(2071): map data not found
+14:55:16.954 [Warning   ] - Could not load map 2060(2060): map data not found
+14:55:18.775 [Warning   ] - Npc 35 ArtisanCloud no task found [taskid: 80000]
+14:55:18.792 [Warning   ] - Npc 30106 David no task found [taskid: 310001]
+14:55:18.855 [Warning   ] - Npc 810 Trojan no task found [taskid: 150010]
+14:55:18.899 [Warning   ] - File 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\ini\QuestInfo.ini' is missing
+14:55:18.928 [Error     ] - Could not load map (2060) for generator (20344)
+14:55:18.928 [Error     ] - Could not load map (2060) for generator (20345)
+14:55:18.929 [Error     ] - Could not load map (2060) for generator (20346)
+14:55:18.929 [Error     ] - Could not load map (2060) for generator (20347)
+14:55:18.929 [Error     ] - Could not load map (2060) for generator (20348)
+14:55:18.929 [Error     ] - Could not load map (2060) for generator (20349)
+14:55:18.929 [Error     ] - Could not load map (2060) for generator (20350)
+14:55:18.930 [Info      ] - Timer [System Thread] has started
+14:55:18.931 [Info      ] - Timer [User Thread] has started
+14:55:18.931 [Info      ] - Timer [Ai Thread] has started
+14:55:18.932 [Info      ] - Timer [AutomaticActionsProcessing] has started
+14:55:18.961 [Error     ] - Could not start TimedGuildWar, invalid mapid 2058
+14:55:18.972 [Warning   ] - Could not load HonorRewards.ini file. Error wont stop server execution but no Honor Rewards will be given. Exception: Could not find file 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\ini\HonorRewards.ini'.
+14:55:18.994 [Error     ] - Could not start GuildContest, invalid mapid 2060
+14:55:18.995 [Info      ] - Timer [EventsProcessing] has started
+14:55:18.995 [Info      ] - Timer [Generator Thread] has started
+14:55:27.809 [Debug     ] - [192.168.0.106] has connected to the game server.
+14:55:28.073 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:28.078 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:29.085 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:29.086 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:29.195 [Error     ] - Timer error for user 1000001:Ninja[PM]
+14:55:29.200 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.States.BaseEntities.Role.QueueAction(Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\States\BaseEntities\Role.cs:line 903
+   at Comet.Game.States.Character.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\States\Character.cs:line 5762
+14:55:30.100 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:30.101 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:30.225 [Error     ] - Timer error for user 1000001:Ninja[PM]
+14:55:30.226 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.States.BaseEntities.Role.QueueAction(Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\States\BaseEntities\Role.cs:line 903
+   at Comet.Game.States.Character.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\States\Character.cs:line 5762
+14:55:31.114 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:31.115 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:32.124 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:32.125 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:33.135 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:33.136 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:34.146 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:34.148 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:35.160 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:35.161 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:36.167 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:36.168 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:37.175 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:37.176 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:38.190 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:38.192 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:39.199 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:39.201 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:40.216 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:40.217 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:41.227 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:41.228 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:42.232 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:42.232 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:43.245 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:43.247 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:44.260 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:44.261 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:45.270 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:45.272 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:46.290 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:46.291 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:47.292 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:47.293 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:48.308 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:48.310 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:49.320 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:49.321 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:50.323 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:50.325 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:51.336 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:51.338 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:55:52.342 [Error     ] - Exception thrown on [Generator Thread] thread!!!
+14:55:52.343 [Exception ] - System.NullReferenceException: Object reference not set to an instance of an object.
+   at Comet.Game.World.ServerProcessor.Queue(Int32 partition, Func`1 task) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\ServerProcessor.cs:line 81
+   at Comet.Game.World.Generator.GenerateAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Generator.cs:line 174
+   at Comet.Game.World.Managers.GeneratorManager.OnTimerAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\GeneratorManager.cs:line 92
+   at Comet.Game.World.Threading.GeneratorProcessing.OnElapseAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Threading\GeneratorProcessing.cs:line 15
+   at Comet.Shared.Comet.Shared.TimerBase.TimerOnElapse(Object sender, ElapsedEventArgs e) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Shared\TimerBase.cs:line 87
+14:58:28.183 [Debug     ] - Loading 185 maps...
+14:58:30.568 [Warning   ] - Map data for file 1712 'map/map/kunlun1.DMap' has not been found.
+14:58:30.569 [Warning   ] - Map data for file 1713 'map/map/kunlun2.DMap' has not been found.
+14:58:30.569 [Warning   ] - Map data for file 1714 'map/map/kunlun3.DMap' has not been found.
+14:58:30.569 [Warning   ] - Map data for file 1715 'map/map/kunlun4.DMap' has not been found.
+14:58:30.570 [Warning   ] - Map data for file 1716 'map/map/kunlun5.DMap' has not been found.
+14:58:30.570 [Warning   ] - Map data for file 1717 'map/map/kunlun6.DMap' has not been found.
+14:58:30.570 [Warning   ] - Map data for file 1718 'map/map/kunlun7.DMap' has not been found.
+14:58:30.570 [Warning   ] - Map data for file 1719 'map/map/kunlun8.DMap' has not been found.
+14:58:30.570 [Warning   ] - Map data for file 1720 'map/map/kunlun9.DMap' has not been found.
+14:58:32.411 [Warning   ] - Could not load map 2058(2071): map data not found
+14:58:32.418 [Warning   ] - Could not load map 1999(1999): map data not found
+14:58:32.418 [Warning   ] - Could not load map 2054(2054): map data not found
+14:58:32.418 [Warning   ] - Could not load map 2055(2055): map data not found
+14:58:32.419 [Warning   ] - Could not load map 2056(2056): map data not found
+14:58:32.419 [Warning   ] - Could not load map 2057(2057): map data not found
+14:58:32.419 [Warning   ] - Could not load map 2071(2071): map data not found
+14:58:32.420 [Warning   ] - Could not load map 2072(2071): map data not found
+14:58:32.420 [Warning   ] - Could not load map 2073(2071): map data not found
+14:58:32.420 [Warning   ] - Could not load map 2074(2071): map data not found
+14:58:32.421 [Warning   ] - Could not load map 2060(2060): map data not found
+14:58:34.275 [Warning   ] - Npc 35 ArtisanCloud no task found [taskid: 80000]
+14:58:34.289 [Warning   ] - Npc 30106 David no task found [taskid: 310001]
+14:58:34.357 [Warning   ] - Npc 810 Trojan no task found [taskid: 150010]
+14:58:34.396 [Warning   ] - File 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\ini\QuestInfo.ini' is missing
+14:58:34.424 [Error     ] - Could not load map (2060) for generator (20344)
+14:58:34.424 [Error     ] - Could not load map (2060) for generator (20345)
+14:58:34.424 [Error     ] - Could not load map (2060) for generator (20346)
+14:58:34.424 [Error     ] - Could not load map (2060) for generator (20347)
+14:58:34.425 [Error     ] - Could not load map (2060) for generator (20349)
+14:58:34.425 [Error     ] - Could not load map (2060) for generator (20350)
+14:58:34.426 [Info      ] - Timer [System Thread] has started
+14:58:34.426 [Info      ] - Timer [User Thread] has started
+14:58:34.427 [Info      ] - Timer [Ai Thread] has started
+14:58:34.427 [Info      ] - Timer [AutomaticActionsProcessing] has started
+14:58:34.456 [Error     ] - Could not start TimedGuildWar, invalid mapid 2058
+14:58:34.466 [Warning   ] - Could not load HonorRewards.ini file. Error wont stop server execution but no Honor Rewards will be given. Exception: Could not find file 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\ini\HonorRewards.ini'.
+14:58:34.487 [Error     ] - Could not start GuildContest, invalid mapid 2060
+14:58:34.488 [Info      ] - Timer [EventsProcessing] has started
+14:58:34.488 [Info      ] - Timer [Generator Thread] has started
+14:58:48.672 [Debug     ] - [192.168.0.106] has connected to the game server.
+14:58:51.424 [Warning   ] - Skill not existent (type:11230, level:0, player: 1000001)
+15:10:21.864 [Debug     ] - [192.168.0.106] has connected to the game server.
+15:10:25.150 [Warning   ] - Skill not existent (type:11230, level:0, player: 1000001)
+15:10:39.265 [Debug     ] - [192.168.0.106] has connected to the game server.
+15:10:41.958 [Warning   ] - Skill not existent (type:11230, level:0, player: 1000001)
+15:12:55.148 [Debug     ] - Loading 185 maps...
+15:12:57.538 [Warning   ] - Map data for file 1712 'map/map/kunlun1.DMap' has not been found.
+15:12:57.538 [Warning   ] - Map data for file 1713 'map/map/kunlun2.DMap' has not been found.
+15:12:57.538 [Warning   ] - Map data for file 1714 'map/map/kunlun3.DMap' has not been found.
+15:12:57.539 [Warning   ] - Map data for file 1715 'map/map/kunlun4.DMap' has not been found.
+15:12:57.539 [Warning   ] - Map data for file 1716 'map/map/kunlun5.DMap' has not been found.
+15:12:57.539 [Warning   ] - Map data for file 1717 'map/map/kunlun6.DMap' has not been found.
+15:12:57.539 [Warning   ] - Map data for file 1718 'map/map/kunlun7.DMap' has not been found.
+15:12:57.539 [Warning   ] - Map data for file 1719 'map/map/kunlun8.DMap' has not been found.
+15:12:57.540 [Warning   ] - Map data for file 1720 'map/map/kunlun9.DMap' has not been found.
+15:12:59.334 [Warning   ] - Could not load map 2058(2071): map data not found
+15:12:59.341 [Warning   ] - Could not load map 1999(1999): map data not found
+15:12:59.341 [Warning   ] - Could not load map 2054(2054): map data not found
+15:12:59.342 [Warning   ] - Could not load map 2055(2055): map data not found
+15:12:59.342 [Warning   ] - Could not load map 2056(2056): map data not found
+15:12:59.343 [Warning   ] - Could not load map 2057(2057): map data not found
+15:12:59.343 [Warning   ] - Could not load map 2071(2071): map data not found
+15:12:59.344 [Warning   ] - Could not load map 2072(2071): map data not found
+15:12:59.344 [Warning   ] - Could not load map 2073(2071): map data not found
+15:12:59.345 [Warning   ] - Could not load map 2074(2071): map data not found
+15:12:59.345 [Warning   ] - Could not load map 2060(2060): map data not found
+15:13:01.350 [Warning   ] - Npc 35 ArtisanCloud no task found [taskid: 80000]
+15:13:01.367 [Warning   ] - Npc 30106 David no task found [taskid: 310001]
+15:13:01.467 [Warning   ] - Npc 810 Trojan no task found [taskid: 150010]
+15:13:01.509 [Warning   ] - File 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\ini\QuestInfo.ini' is missing
+15:13:01.536 [Error     ] - Could not load map (2060) for generator (20344)
+15:13:01.536 [Error     ] - Could not load map (2060) for generator (20345)
+15:13:01.536 [Error     ] - Could not load map (2060) for generator (20346)
+15:13:01.537 [Error     ] - Could not load map (2060) for generator (20347)
+15:13:01.537 [Error     ] - Could not load map (2060) for generator (20348)
+15:13:01.537 [Error     ] - Could not load map (2060) for generator (20349)
+15:13:01.537 [Error     ] - Could not load map (2060) for generator (20350)
+15:13:01.538 [Info      ] - Timer [System Thread] has started
+15:13:01.539 [Info      ] - Timer [User Thread] has started
+15:13:01.540 [Info      ] - Timer [Ai Thread] has started
+15:13:01.541 [Info      ] - Timer [AutomaticActionsProcessing] has started
+15:13:01.570 [Error     ] - Could not start TimedGuildWar, invalid mapid 2058
+15:13:01.581 [Warning   ] - Could not load HonorRewards.ini file. Error wont stop server execution but no Honor Rewards will be given. Exception: Could not find file 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\ini\HonorRewards.ini'.
+15:13:01.604 [Error     ] - Could not start GuildContest, invalid mapid 2060
+15:13:01.605 [Info      ] - Timer [EventsProcessing] has started
+15:13:01.605 [Info      ] - Timer [Generator Thread] has started
+15:13:15.406 [Debug     ] - [192.168.0.106] has connected to the game server.
+15:13:18.080 [Warning   ] - Skill not existent (type:11230, level:0, player: 1000001)
