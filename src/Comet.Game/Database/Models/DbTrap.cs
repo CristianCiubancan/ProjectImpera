@@ -6,7 +6,7 @@
 // This project is a fork from Comet, a Conquer Online Server Emulator created by Spirited, which can be
 // found here: https://gitlab.com/spirited/comet
 // 
-// Comet - Comet.Game - MapsRepository.cs
+// Comet - Comet.Game - DbTrap.cs
 // Description:
 // 
 // Creator: FELIPEVIEIRAVENDRAMI [FELIPE VIEIRA VENDRAMINI]
@@ -22,35 +22,35 @@
 #region References
 
 using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading.Tasks;
-using Comet.Game.Database.Models;
 using Microsoft.EntityFrameworkCore;
 
 #endregion
 
-namespace Comet.Game.Database.Repositories
+namespace Comet.Game.Database.Models
 {
-    public static class MapsRepository
+    [Table("cq_trap")]
+    public class DbTrap
     {
-        public static async Task<DbMap> GetAsync(uint idMap)
-        {
-            await using var db = new ServerDbContext();
-            return await db.Maps.FirstOrDefaultAsync(x => x.Identity == idMap);
-        }
+        [Key] [Column("id")] public virtual uint Id { get; set; }
+        [Column("type")] public virtual uint TypeId { get; set; }
+        [Column("look")] public virtual uint Look { get; set; }
+        [Column("owner_id")] public virtual uint OwnerId { get; set; }
+        [Column("map_id")] public virtual uint MapId { get; set; }
+        [Column("pos_x")] public virtual ushort PosX { get; set; }
+        [Column("pos_y")] public virtual ushort PosY { get; set; }
+        [Column("data")] public virtual uint Data { get; set; }
 
-        public static async Task<List<DbMap>> GetAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.Maps
-                .ToList();
-        }
+        public virtual DbTrapType Type { get; set; }
 
-        public static async Task<List<DbDynamap>> GetDynaAsync()
+        public static async Task<List<DbTrap>> GetAsync()
         {
-            await using var db = new ServerDbContext();
-            return db.DynaMaps
-                .ToList();
+            await using ServerDbContext ctx = new ServerDbContext();
+            return await ctx.Traps
+                .Include(x => x.Type)
+                .ToListAsync();
         }
     }
 }

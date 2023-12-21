@@ -176,8 +176,8 @@ namespace Comet.Game.Database.Models
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex);
                 // await Log.WriteLogAsync(LogLevel.Exception, ex.ToString());
+                Console.WriteLine(ex.ToString());
                 return new List<DbCharacter>();
             }
         }

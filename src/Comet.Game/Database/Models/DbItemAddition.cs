@@ -6,7 +6,7 @@
 // This project is a fork from Comet, a Conquer Online Server Emulator created by Spirited, which can be
 // found here: https://gitlab.com/spirited/comet
 // 
-// Comet - Comet.Game - MapsRepository.cs
+// Comet - Comet.Game - DbItemAddition.cs
 // Description:
 // 
 // Creator: FELIPEVIEIRAVENDRAMI [FELIPE VIEIRA VENDRAMINI]
@@ -21,36 +21,36 @@
 
 #region References
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Comet.Game.Database.Models;
-using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #endregion
 
-namespace Comet.Game.Database.Repositories
+namespace Comet.Game.Database.Models
 {
-    public static class MapsRepository
+    [Table("cq_itemaddition")]
+    public class DbItemAddition
     {
-        public static async Task<DbMap> GetAsync(uint idMap)
-        {
-            await using var db = new ServerDbContext();
-            return await db.Maps.FirstOrDefaultAsync(x => x.Identity == idMap);
-        }
+        [Key] [Column("id")] public virtual uint Identity { get; set; }
 
-        public static async Task<List<DbMap>> GetAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.Maps
-                .ToList();
-        }
+        [Column("typeid")] public virtual uint TypeId { get; set; }
 
-        public static async Task<List<DbDynamap>> GetDynaAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.DynaMaps
-                .ToList();
-        }
+        [Column("level")] public virtual byte Level { get; set; }
+
+        [Column("life")] public virtual ushort Life { get; set; }
+
+        [Column("attack_max")] public virtual ushort AttackMax { get; set; }
+
+        [Column("attack_min")] public virtual ushort AttackMin { get; set; }
+
+        [Column("defense")] public virtual ushort Defense { get; set; }
+
+        [Column("magic_atk")] public virtual ushort MagicAtk { get; set; }
+
+        [Column("magic_def")] public virtual ushort MagicDef { get; set; }
+
+        [Column("dexterity")] public virtual ushort Dexterity { get; set; }
+
+        [Column("dodge")] public virtual ushort Dodge { get; set; }
     }
 }

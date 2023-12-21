@@ -6,7 +6,7 @@
 // This project is a fork from Comet, a Conquer Online Server Emulator created by Spirited, which can be
 // found here: https://gitlab.com/spirited/comet
 // 
-// Comet - Comet.Game - MapsRepository.cs
+// Comet - Comet.Game - DbFlower.cs
 // Description:
 // 
 // Creator: FELIPEVIEIRAVENDRAMI [FELIPE VIEIRA VENDRAMINI]
@@ -22,35 +22,33 @@
 #region References
 
 using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading.Tasks;
-using Comet.Game.Database.Models;
 using Microsoft.EntityFrameworkCore;
 
 #endregion
 
-namespace Comet.Game.Database.Repositories
+namespace Comet.Game.Database.Models
 {
-    public static class MapsRepository
+    [Table("flower")]
+    public class DbFlower
     {
-        public static async Task<DbMap> GetAsync(uint idMap)
-        {
-            await using var db = new ServerDbContext();
-            return await db.Maps.FirstOrDefaultAsync(x => x.Identity == idMap);
-        }
+        [Key] [Column("id")] public uint Identity { get; set; }
+        [Column("player_id")] public uint UserId { get; set; }
+        [Column("flower_r")] public uint RedRose { get; set; }
+        [Column("flower_w")] public uint WhiteRose { get; set; }
+        [Column("flower_lily")] public uint Orchids { get; set; }
+        [Column("flower_tulip")] public uint Tulips { get; set; }
 
-        public static async Task<List<DbMap>> GetAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.Maps
-                .ToList();
-        }
+        public virtual DbCharacter User { get; set; }
 
-        public static async Task<List<DbDynamap>> GetDynaAsync()
+        public static async Task<List<DbFlower>> GetAsync()
         {
-            await using var db = new ServerDbContext();
-            return db.DynaMaps
-                .ToList();
+            await using var ctx = new ServerDbContext();
+            return await ctx.Flowers
+                .Include(x => x.User)
+                .ToListAsync();
         }
     }
 }

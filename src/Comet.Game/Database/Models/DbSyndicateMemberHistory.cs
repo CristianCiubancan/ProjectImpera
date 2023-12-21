@@ -6,7 +6,7 @@
 // This project is a fork from Comet, a Conquer Online Server Emulator created by Spirited, which can be
 // found here: https://gitlab.com/spirited/comet
 // 
-// Comet - Comet.Game - MapsRepository.cs
+// Comet - Comet.Game - DbSyndicateMemberHistory.cs
 // Description:
 // 
 // Creator: FELIPEVIEIRAVENDRAMI [FELIPE VIEIRA VENDRAMINI]
@@ -21,36 +21,26 @@
 
 #region References
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Comet.Game.Database.Models;
-using Microsoft.EntityFrameworkCore;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #endregion
 
-namespace Comet.Game.Database.Repositories
+namespace Comet.Game.Database.Models
 {
-    public static class MapsRepository
+    [Table("cq_syn_history")]
+    public class DbSyndicateMemberHistory
     {
-        public static async Task<DbMap> GetAsync(uint idMap)
-        {
-            await using var db = new ServerDbContext();
-            return await db.Maps.FirstOrDefaultAsync(x => x.Identity == idMap);
-        }
-
-        public static async Task<List<DbMap>> GetAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.Maps
-                .ToList();
-        }
-
-        public static async Task<List<DbDynamap>> GetDynaAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.DynaMaps
-                .ToList();
-        }
+        [Key] [Column("id")] public virtual uint Identity { get; set; }
+        [Column("user_id")] public virtual uint UserIdentity { get; set; }
+        [Column("syn_id")] public virtual uint SyndicateIdentity { get; set; }
+        [Column("join_date")] public virtual DateTime JoinDate { get; set; }
+        [Column("leave_date")] public virtual DateTime LeaveDate { get; set; }
+        [Column("silver")] public virtual long Silver { get; set; }
+        [Column("emoney")] public virtual uint ConquerPoints { get; set; }
+        [Column("pk")] public virtual uint PkPoints { get; set; }
+        [Column("guide")] public virtual uint Guide { get; set; }
+        [Column("rank")] public virtual ushort Rank { get; set; }
     }
 }

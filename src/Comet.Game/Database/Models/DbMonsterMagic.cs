@@ -6,7 +6,7 @@
 // This project is a fork from Comet, a Conquer Online Server Emulator created by Spirited, which can be
 // found here: https://gitlab.com/spirited/comet
 // 
-// Comet - Comet.Game - MapsRepository.cs
+// Comet - Comet.Game - DbMonsterMagic.cs
 // Description:
 // 
 // Creator: FELIPEVIEIRAVENDRAMI [FELIPE VIEIRA VENDRAMINI]
@@ -22,35 +22,29 @@
 #region References
 
 using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading.Tasks;
-using Comet.Game.Database.Models;
 using Microsoft.EntityFrameworkCore;
 
 #endregion
 
-namespace Comet.Game.Database.Repositories
+namespace Comet.Game.Database.Models
 {
-    public static class MapsRepository
+    [Table("cq_monster_magic")]
+    public class DbMonsterMagic
     {
-        public static async Task<DbMap> GetAsync(uint idMap)
-        {
-            await using var db = new ServerDbContext();
-            return await db.Maps.FirstOrDefaultAsync(x => x.Identity == idMap);
-        }
+        [Key] [Column("id")] public virtual uint Identity { get; set; }
 
-        public static async Task<List<DbMap>> GetAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.Maps
-                .ToList();
-        }
+        [Column("monster_id")] public virtual uint OwnerIdentity { get; set; }
+        [Column("magic_id")] public virtual ushort MagicIdentity { get; set; }
+        [Column("magic_level")] public virtual byte MagicLevel { get; set; }
+        [Column("chance")] public virtual uint Chance { get; set; }
 
-        public static async Task<List<DbDynamap>> GetDynaAsync()
+        public static async Task<List<DbMonsterMagic>> GetAsync()
         {
-            await using var db = new ServerDbContext();
-            return db.DynaMaps
-                .ToList();
+            await using ServerDbContext ctx = new ServerDbContext();
+            return await ctx.MonsterMagics.ToListAsync();
         }
     }
 }

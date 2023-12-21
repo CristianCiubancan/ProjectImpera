@@ -6,7 +6,7 @@
 // This project is a fork from Comet, a Conquer Online Server Emulator created by Spirited, which can be
 // found here: https://gitlab.com/spirited/comet
 // 
-// Comet - Comet.Game - MapsRepository.cs
+// Comet - Comet.Game - BonusRepository.cs
 // Description:
 // 
 // Creator: FELIPEVIEIRAVENDRAMI [FELIPE VIEIRA VENDRAMINI]
@@ -21,7 +21,6 @@
 
 #region References
 
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Comet.Game.Database.Models;
@@ -31,26 +30,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Comet.Game.Database.Repositories
 {
-    public static class MapsRepository
+    public static class BonusRepository
     {
-        public static async Task<DbMap> GetAsync(uint idMap)
+        public static async Task<DbBonus> GetAsync(uint account)
         {
             await using var db = new ServerDbContext();
-            return await db.Maps.FirstOrDefaultAsync(x => x.Identity == idMap);
+            return await db.Bonus.FirstOrDefaultAsync(x => x.AccountIdentity == account && x.Flag == 0 && x.Time == null);
         }
 
-        public static async Task<List<DbMap>> GetAsync()
+        public static async Task<int> CountAsync(uint account)
         {
             await using var db = new ServerDbContext();
-            return db.Maps
-                .ToList();
-        }
-
-        public static async Task<List<DbDynamap>> GetDynaAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.DynaMaps
-                .ToList();
+            return await db.Bonus.CountAsync(x => x.AccountIdentity == account && x.Flag == 0 && x.Time == null);
         }
     }
 }

@@ -6,7 +6,7 @@
 // This project is a fork from Comet, a Conquer Online Server Emulator created by Spirited, which can be
 // found here: https://gitlab.com/spirited/comet
 // 
-// Comet - Comet.Game - MapsRepository.cs
+// Comet - Comet.Game - DbGoods.cs
 // Description:
 // 
 // Creator: FELIPEVIEIRAVENDRAMI [FELIPE VIEIRA VENDRAMINI]
@@ -21,36 +21,20 @@
 
 #region References
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Comet.Game.Database.Models;
-using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #endregion
 
-namespace Comet.Game.Database.Repositories
+namespace Comet.Game.Database.Models
 {
-    public static class MapsRepository
+    [Table("cq_goods")]
+    public class DbGoods
     {
-        public static async Task<DbMap> GetAsync(uint idMap)
-        {
-            await using var db = new ServerDbContext();
-            return await db.Maps.FirstOrDefaultAsync(x => x.Identity == idMap);
-        }
-
-        public static async Task<List<DbMap>> GetAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.Maps
-                .ToList();
-        }
-
-        public static async Task<List<DbDynamap>> GetDynaAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.DynaMaps
-                .ToList();
-        }
+        [Key] [Column("id")] public virtual uint Identity { get; set; }
+        [Column("ownerid")] public virtual uint OwnerIdentity { get; set; }
+        [Column("itemtype")] public virtual uint Itemtype { get; set; }
+        [Column("moneytype")] public virtual uint Moneytype { get; set; }
+        [Column("monopoly")] public virtual uint Monopoly { get; set; }
     }
 }

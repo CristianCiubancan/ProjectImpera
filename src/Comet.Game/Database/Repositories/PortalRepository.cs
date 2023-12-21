@@ -6,7 +6,7 @@
 // This project is a fork from Comet, a Conquer Online Server Emulator created by Spirited, which can be
 // found here: https://gitlab.com/spirited/comet
 // 
-// Comet - Comet.Game - MapsRepository.cs
+// Comet - Comet.Game - PortalRepository.cs
 // Description:
 // 
 // Creator: FELIPEVIEIRAVENDRAMI [FELIPE VIEIRA VENDRAMINI]
@@ -21,36 +21,20 @@
 
 #region References
 
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Comet.Game.Database.Models;
-using Microsoft.EntityFrameworkCore;
 
 #endregion
 
 namespace Comet.Game.Database.Repositories
 {
-    public static class MapsRepository
+    public static class PortalRepository
     {
-        public static async Task<DbMap> GetAsync(uint idMap)
+        public static async Task<DbPortal> GetAsync(uint idMap, uint idx)
         {
-            await using var db = new ServerDbContext();
-            return await db.Maps.FirstOrDefaultAsync(x => x.Identity == idMap);
-        }
-
-        public static async Task<List<DbMap>> GetAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.Maps
-                .ToList();
-        }
-
-        public static async Task<List<DbDynamap>> GetDynaAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.DynaMaps
-                .ToList();
+            await using ServerDbContext context = new ServerDbContext();
+            return context.Portal.FirstOrDefault(x => x.MapId == idMap && x.PortalIndex == idx);
         }
     }
 }

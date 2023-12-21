@@ -6,7 +6,7 @@
 // This project is a fork from Comet, a Conquer Online Server Emulator created by Spirited, which can be
 // found here: https://gitlab.com/spirited/comet
 // 
-// Comet - Comet.Game - MapsRepository.cs
+// Comet - Comet.Game - DbUserTitle.cs
 // Description:
 // 
 // Creator: FELIPEVIEIRAVENDRAMI [FELIPE VIEIRA VENDRAMINI]
@@ -21,36 +21,35 @@
 
 #region References
 
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-using Comet.Game.Database.Models;
 using Microsoft.EntityFrameworkCore;
 
 #endregion
 
-namespace Comet.Game.Database.Repositories
+namespace Comet.Game.Database.Models
 {
-    public static class MapsRepository
+    [Table("cq_user_title")]
+    public class DbUserTitle
     {
-        public static async Task<DbMap> GetAsync(uint idMap)
-        {
-            await using var db = new ServerDbContext();
-            return await db.Maps.FirstOrDefaultAsync(x => x.Identity == idMap);
-        }
+        [Key] [Column("id")] public uint Identity { get; set; }
 
-        public static async Task<List<DbMap>> GetAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.Maps
-                .ToList();
-        }
+        [Column("player_id")] public uint PlayerId { get; set; }
+        [Column("type")] public uint Type { get; set; }
+        [Column("title_id")] public uint TitleId { get; set; }
+        [Column("status")] public uint Status { get; set; }
+        [Column("del_time")] public DateTime DelTime { get; set; }
 
-        public static async Task<List<DbDynamap>> GetDynaAsync()
+        public static async Task<List<DbUserTitle>> GetAsync(uint idPlayer)
         {
-            await using var db = new ServerDbContext();
-            return db.DynaMaps
-                .ToList();
+            await using var ctx = new ServerDbContext();
+            return await ctx.UserTitle
+                .Where(x => x.PlayerId == idPlayer && x.DelTime > DateTime.Now)
+                .ToListAsync();
         }
     }
 }

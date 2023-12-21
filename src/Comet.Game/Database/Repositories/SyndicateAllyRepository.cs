@@ -6,7 +6,7 @@
 // This project is a fork from Comet, a Conquer Online Server Emulator created by Spirited, which can be
 // found here: https://gitlab.com/spirited/comet
 // 
-// Comet - Comet.Game - MapsRepository.cs
+// Comet - Comet.Game - SyndicateAllyRepository.cs
 // Description:
 // 
 // Creator: FELIPEVIEIRAVENDRAMI [FELIPE VIEIRA VENDRAMINI]
@@ -25,32 +25,28 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Comet.Game.Database.Models;
-using Microsoft.EntityFrameworkCore;
 
 #endregion
 
 namespace Comet.Game.Database.Repositories
 {
-    public static class MapsRepository
+    public static class SyndicateAllyRepository
     {
-        public static async Task<DbMap> GetAsync(uint idMap)
+        public static async Task<List<DbSyndicateAllies>> GetAsync(uint id)
         {
             await using var db = new ServerDbContext();
-            return await db.Maps.FirstOrDefaultAsync(x => x.Identity == idMap);
+            return db.SyndicatesAlly.Where(x => x.SyndicateIdentity == id).ToList();
         }
 
-        public static async Task<List<DbMap>> GetAsync()
+        public static async Task DeleteAsync(uint id0, uint id1)
         {
-            await using var db = new ServerDbContext();
-            return db.Maps
-                .ToList();
-        }
+            DbSyndicateAllies ally = (await GetAsync(id0)).FirstOrDefault(x => x.AllyIdentity == id1);
+            if (ally != null)
+                await BaseRepository.DeleteAsync(ally);
 
-        public static async Task<List<DbDynamap>> GetDynaAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.DynaMaps
-                .ToList();
+            ally = (await GetAsync(id1)).FirstOrDefault(x => x.AllyIdentity == id0);
+            if (ally != null)
+                await BaseRepository.DeleteAsync(ally);
         }
     }
 }

@@ -6,7 +6,7 @@
 // This project is a fork from Comet, a Conquer Online Server Emulator created by Spirited, which can be
 // found here: https://gitlab.com/spirited/comet
 // 
-// Comet - Comet.Game - MapsRepository.cs
+// Comet - Comet.Game - DbGameLoginRecord.cs
 // Description:
 // 
 // Creator: FELIPEVIEIRAVENDRAMI [FELIPE VIEIRA VENDRAMINI]
@@ -19,38 +19,23 @@
 // So far, the Universe is winning.
 // //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#region References
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Comet.Game.Database.Models;
-using Microsoft.EntityFrameworkCore;
-
-#endregion
-
-namespace Comet.Game.Database.Repositories
+namespace Comet.Game.Database.Models
 {
-    public static class MapsRepository
+    [Table("cq_login_rcd")]
+    public class DbGameLoginRecord
     {
-        public static async Task<DbMap> GetAsync(uint idMap)
-        {
-            await using var db = new ServerDbContext();
-            return await db.Maps.FirstOrDefaultAsync(x => x.Identity == idMap);
-        }
-
-        public static async Task<List<DbMap>> GetAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.Maps
-                .ToList();
-        }
-
-        public static async Task<List<DbDynamap>> GetDynaAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.DynaMaps
-                .ToList();
-        }
+        [Key][Column("id")]public virtual uint Identity { get; protected set; }
+        [Column("account_id")] public virtual uint AccountIdentity { get; set; }
+        [Column("user_id")] public virtual uint UserIdentity { get; set; }
+        [Column("session_secs")] public virtual uint OnlineTime { get; set; }
+        [Column("login_time")] public virtual DateTime LoginTime { get; set; }
+        [Column("logout_time")] public virtual DateTime LogoutTime { get; set; }
+        [Column("server_version")] public virtual string ServerVersion { get; set; }
+        [Column("mac_addr")] public virtual string MacAddress { get; set; }
+        [Column("ip_addr")] public virtual string IpAddress { get; set; }
     }
 }

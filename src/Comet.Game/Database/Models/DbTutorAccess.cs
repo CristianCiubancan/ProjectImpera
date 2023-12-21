@@ -6,7 +6,7 @@
 // This project is a fork from Comet, a Conquer Online Server Emulator created by Spirited, which can be
 // found here: https://gitlab.com/spirited/comet
 // 
-// Comet - Comet.Game - MapsRepository.cs
+// Comet - Comet.Game - DbTutorAccess.cs
 // Description:
 // 
 // Creator: FELIPEVIEIRAVENDRAMI [FELIPE VIEIRA VENDRAMINI]
@@ -22,35 +22,30 @@
 #region References
 
 using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading.Tasks;
-using Comet.Game.Database.Models;
 using Microsoft.EntityFrameworkCore;
 
 #endregion
 
-namespace Comet.Game.Database.Repositories
+namespace Comet.Game.Database.Models
 {
-    public static class MapsRepository
+    [Table("cq_tutor_access")]
+    public class DbTutorAccess
     {
-        public static async Task<DbMap> GetAsync(uint idMap)
-        {
-            await using var db = new ServerDbContext();
-            return await db.Maps.FirstOrDefaultAsync(x => x.Identity == idMap);
-        }
+        [Key]
+        [Column("id")]
+        public virtual uint Identity { get; set; }
+        [Column("tutor_id")] public virtual uint GuideIdentity { get; set; }
+        [Column("Exp")] public virtual ulong Experience { get; set; }
+        [Column("God_time")] public virtual ushort Blessing { get; set; }
+        [Column("Addlevel")] public virtual ushort Composition { get; set; }
 
-        public static async Task<List<DbMap>> GetAsync()
+        public static async Task<DbTutorAccess> GetAsync(uint idGuide)
         {
-            await using var db = new ServerDbContext();
-            return db.Maps
-                .ToList();
-        }
-
-        public static async Task<List<DbDynamap>> GetDynaAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.DynaMaps
-                .ToList();
+            await using ServerDbContext ctx = new ServerDbContext();
+            return await ctx.TutorAccess.FirstOrDefaultAsync(x => x.GuideIdentity == idGuide);
         }
     }
 }

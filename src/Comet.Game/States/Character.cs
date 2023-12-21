@@ -2,6 +2,7 @@ namespace Comet.Game.States
 {
     using System;
     using System.Threading.Tasks;
+    using Comet.Game.Database;
     using Comet.Game.Database.Models;
     using Comet.Game.Database.Repositories;
     using Comet.Game.Packets;
@@ -94,20 +95,32 @@ namespace Comet.Game.States
             m_socket = socket;
         }
 
-        /// <summary>
-        /// Saves the character to persistent storage.
-        /// </summary>
-        /// <param name="force">True if the change is important to save immediately.</param>
-        public async Task SaveAsync(bool force = false)
+        // /// <summary>
+        // /// Saves the character to persistent storage.
+        // /// </summary>
+        // /// <param name="force">True if the change is important to save immediately.</param>
+        // public async Task SaveAsync(bool force = false)
+        // {
+        //     DateTime now = DateTime.UtcNow;
+        //     if (force || this.LastSaveTimestamp.AddMilliseconds(CharactersRepository.ThrottleMilliseconds) < now)
+        //     {
+        //         this.LastSaveTimestamp = now;
+        //         await CharactersRepository.SaveAsync(this.DbCharacter);
+        //     }
+        // }
+        public async Task<bool> SaveAsync()
         {
-            DateTime now = DateTime.UtcNow;
-            if (force || this.LastSaveTimestamp.AddMilliseconds(CharactersRepository.ThrottleMilliseconds) < now)
+            try
             {
-                this.LastSaveTimestamp = now;
-                await CharactersRepository.SaveAsync(this.DbCharacter);
+                await using var db = new ServerDbContext();
+                db.Update(DbCharacter);
+                return await Task.FromResult(await db.SaveChangesAsync() != 0);
+            }
+            catch
+            {
+                return await Task.FromResult(false);
             }
         }
-
         public override Task SendAsync(IPacket msg)
         {
             try

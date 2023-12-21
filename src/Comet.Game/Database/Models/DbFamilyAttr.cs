@@ -6,7 +6,7 @@
 // This project is a fork from Comet, a Conquer Online Server Emulator created by Spirited, which can be
 // found here: https://gitlab.com/spirited/comet
 // 
-// Comet - Comet.Game - MapsRepository.cs
+// Comet - Comet.Game - DbFamilyAttr.cs
 // Description:
 // 
 // Creator: FELIPEVIEIRAVENDRAMI [FELIPE VIEIRA VENDRAMINI]
@@ -21,36 +21,34 @@
 
 #region References
 
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
-using Comet.Game.Database.Models;
 using Microsoft.EntityFrameworkCore;
 
 #endregion
 
-namespace Comet.Game.Database.Repositories
+namespace Comet.Game.Database.Models
 {
-    public static class MapsRepository
+    [Table("family_attr")]
+    public class DbFamilyAttr
     {
-        public static async Task<DbMap> GetAsync(uint idMap)
-        {
-            await using var db = new ServerDbContext();
-            return await db.Maps.FirstOrDefaultAsync(x => x.Identity == idMap);
-        }
+        [Key] [Column("id")] public uint Identity { get; set; }
+        [Column("user_id")] public uint UserIdentity { get; set; }
+        [Column("family_id")] public uint FamilyIdentity { get; set; }
+        [Column("rank")] public byte Rank { get; set; }
+        [Column("proffer")] public uint Proffer { get; set; }
+        [Column("join_date")] public DateTime JoinDate { get; set; }
+        [Column("auto_exercise")] public byte AutoExercise { get; set; }
+        [Column("exp_date")] public uint ExpDate { get; set; }
 
-        public static async Task<List<DbMap>> GetAsync()
+        public static async Task<List<DbFamilyAttr>> GetAsync(uint idFamily)
         {
-            await using var db = new ServerDbContext();
-            return db.Maps
-                .ToList();
-        }
-
-        public static async Task<List<DbDynamap>> GetDynaAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.DynaMaps
-                .ToList();
+            await using var ctx = new ServerDbContext();
+            return await ctx.FamilyAttrs.Where(x => x.FamilyIdentity == idFamily).ToListAsync();
         }
     }
 }

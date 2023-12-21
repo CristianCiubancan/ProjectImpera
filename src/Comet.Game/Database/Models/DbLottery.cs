@@ -6,7 +6,7 @@
 // This project is a fork from Comet, a Conquer Online Server Emulator created by Spirited, which can be
 // found here: https://gitlab.com/spirited/comet
 // 
-// Comet - Comet.Game - MapsRepository.cs
+// Comet - Comet.Game - DbLottery.cs
 // Description:
 // 
 // Creator: FELIPEVIEIRAVENDRAMI [FELIPE VIEIRA VENDRAMINI]
@@ -22,35 +22,33 @@
 #region References
 
 using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Threading.Tasks;
-using Comet.Game.Database.Models;
 using Microsoft.EntityFrameworkCore;
 
 #endregion
 
-namespace Comet.Game.Database.Repositories
+namespace Comet.Game.Database.Models
 {
-    public static class MapsRepository
+    [Table("cq_lottery")]
+    public class DbLottery
     {
-        public static async Task<DbMap> GetAsync(uint idMap)
-        {
-            await using var db = new ServerDbContext();
-            return await db.Maps.FirstOrDefaultAsync(x => x.Identity == idMap);
-        }
+        [Key] [Column("id")] public virtual uint Identity { get; set; }
 
-        public static async Task<List<DbMap>> GetAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.Maps
-                .ToList();
-        }
+        [Column("type")] public virtual byte Type { get; set; }
+        [Column("rank")] public virtual byte Rank { get; set; }
+        [Column("chance")] public virtual byte Chance { get; set; }
+        [Column("prize_name")] public virtual string Itemname { get; set; }
+        [Column("prize_item")] public virtual uint ItemIdentity { get; set; }
+        [Column("color")] public virtual byte Color { get; set; }
+        [Column("hole_num")] public virtual byte SocketNum { get; set; }
+        [Column("addition_lev")] public virtual byte Plus { get; set; }
 
-        public static async Task<List<DbDynamap>> GetDynaAsync()
+        public static async Task<List<DbLottery>> GetAsync()
         {
-            await using var db = new ServerDbContext();
-            return db.DynaMaps
-                .ToList();
+            await using ServerDbContext ctx = new ServerDbContext();
+            return await ctx.Lottery.ToListAsync();
         }
     }
 }

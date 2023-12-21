@@ -6,7 +6,7 @@
 // This project is a fork from Comet, a Conquer Online Server Emulator created by Spirited, which can be
 // found here: https://gitlab.com/spirited/comet
 // 
-// Comet - Comet.Game - MapsRepository.cs
+// Comet - Comet.Game - DbStatus.cs
 // Description:
 // 
 // Creator: FELIPEVIEIRAVENDRAMI [FELIPE VIEIRA VENDRAMINI]
@@ -21,36 +21,36 @@
 
 #region References
 
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.IO.Pipes;
 using System.Linq;
 using System.Threading.Tasks;
-using Comet.Game.Database.Models;
 using Microsoft.EntityFrameworkCore;
 
 #endregion
 
-namespace Comet.Game.Database.Repositories
+namespace Comet.Game.Database.Models
 {
-    public static class MapsRepository
+    [Table("cq_status")]
+    public class DbStatus
     {
-        public static async Task<DbMap> GetAsync(uint idMap)
-        {
-            await using var db = new ServerDbContext();
-            return await db.Maps.FirstOrDefaultAsync(x => x.Identity == idMap);
-        }
+        [Key] [Column("id")] public virtual uint Id { get; set; }
+        [Column("owner_id")] public virtual uint OwnerId { get; set; }
+        [Column("status")] public virtual uint Status { get; set; }
+        [Column("power")] public virtual int Power { get; set; }
+        [Column("sort")] public virtual uint Sort { get; set; }
+        [Column("leave_times")] public virtual uint LeaveTimes { get; set; }
+        [Column("remain_time")] public virtual uint RemainTime { get; set; }
+        [Column("end_time")] public virtual DateTime EndTime { get; set; }
+        [Column("interval_time")] public virtual uint IntervalTime { get; set; }
 
-        public static async Task<List<DbMap>> GetAsync()
+        public static async Task<List<DbStatus>> GetAsync(uint idUser)
         {
-            await using var db = new ServerDbContext();
-            return db.Maps
-                .ToList();
-        }
-
-        public static async Task<List<DbDynamap>> GetDynaAsync()
-        {
-            await using var db = new ServerDbContext();
-            return db.DynaMaps
-                .ToList();
+            await using var ctx = new ServerDbContext();
+            return await ctx.Status.Where(x => x.OwnerId == idUser).ToListAsync();
         }
     }
 }
