@@ -12,7 +12,7 @@ COPY . ./
 RUN dotnet restore
 RUN dotnet publish ./src/Comet.Account -c $COMET_BUILD_CONFIG -o out/Comet.Account
 RUN dotnet publish ./src/Comet.Game -c $COMET_BUILD_CONFIG -o out/Comet.Game
-
+COPY ./src/Comet.Game/ini ./out/Comet.Game/ini
 # Stage 2: Copy the compiled server binaries from the previous stage and prepare an image to
 # be tagged as a new release of Comet.
 FROM mcr.microsoft.com/dotnet/runtime:7.0

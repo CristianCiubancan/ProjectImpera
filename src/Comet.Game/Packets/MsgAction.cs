@@ -4,6 +4,7 @@ namespace Comet.Game.Packets
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using Comet.Game.States;
+    using Comet.Game.World.Maps;
     using Comet.Network.Packets;
 
     /// <remarks>Packet Type 1010</remarks>
@@ -87,11 +88,27 @@ namespace Comet.Game.Packets
             switch (this.Action)
             {
                 case ActionType.LoginSpawn:
-                    this.CharacterID = client.ID;
+                    this.CharacterID = client.Character.DbCharacter.CharacterID;
+
+                    // if (user.IsOfflineTraining)
+                    // {
+                    //     client.Character.MapIdentity = 601;
+                    //     client.Character.MapX = 61;
+                    //     client.Character.MapY = 54;
+                    // }
+
+                    GameMap userMap = Kernel.MapManager.GetMap(client.Character.DbCharacter.MapID);
+                    // TODO: load maps from database to have this working
+                    // if (userMap == null)
+                    // {
+                    //     await client.Character.SavePositionAsync(1002, 430, 378);
+                    //     client.Disconnect();
+                    // }
+
                     this.Command = client.Character.DbCharacter.MapID;
                     this.X = client.Character.DbCharacter.X;
                     this.Y = client.Character.DbCharacter.Y;
-                    Program.MapManager.AddUser(client.Character.DbCharacter.MapID, client.Character);
+                    await client.Character.EnterMapAsync();
                     await client.SendAsync(this);
                     break;
 
@@ -104,18 +121,25 @@ namespace Comet.Game.Packets
                     ushort newY = (ushort)(Command >> 16);
 
                     await client.Character.JumpPosAsync(newX, newY);
+                    // GameMap userMap = Kernel.MapManager.GetMap(client.Character.DbCharacter.MapID);
 
-                    IEnumerable<Character> characters = Program.MapManager.GetUsersInMap(client.Character.DbCharacter.MapID);
-                    foreach (Character character in characters)
-                    {
-                        if (character.DbCharacter.CharacterID != client.Character.DbCharacter.CharacterID)
-                        {
-                            await character.SendSpawnToAsync(client.Character);
-                        }
-                    }
+                    // if (userMap == null)
+                    // {
+                    //     await client.Character.SavePositionAsync(1002, 430, 378);
+                    //     client.Disconnect();
+                    // }
+
+                    // IEnumerable<Character> characters = userMap.GetUsersInMap(client.Character.DbCharacter.MapID);
+                    // foreach (Character character in characters)
+                    // {
+                    //     if (character.DbCharacter.CharacterID != client.Character.DbCharacter.CharacterID)
+                    //     {
+                    //         await character.SendSpawnToAsync(client.Character);
+                    //     }
+                    // }
                     X = client.Character.X;
                     Y = client.Character.Y;
-                    
+
                     await client.SendAsync(this);
                     break;
 
@@ -156,9 +180,10 @@ namespace Comet.Game.Packets
             MapMine = 99,
             MapTeamLeaderStar = 101,
             MapQuery,
-            MapSkyColor = 104,
+            AbortMagic = 103,
+            MapArgb = 104,
             MapTeamMemberStar = 106,
-            MapKickBack = 108,
+            Kickback = 108,
             SpellRemove,
             ProficiencyRemove,
             BoothSpawn,
@@ -173,17 +198,19 @@ namespace Comet.Game.Packets
             RelationshipsEnemy = 123,
             ClientDialog = 126,
             LoginComplete = 132,
-            MapEffect,
-            LoginOfflineMessages,
-            MapRemoveSpawn = 135,
+            MapEffect = 134,
+            RemoveEntity = 135,
             MapJump = 137,
             CharacterDead = 145,
-            MapTeleportEnd = 146,
             RelationshipsFriend = 148,
             CharacterAvatar = 151,
-            CharacterPartnerInfo,
-            CharacterAway = 161,
-            MapPathfinding
+            QueryTradeBuddy = 143,
+            ItemDetained = 153,
+            ItemDetainedEx = 155,
+            NinjaStep = 156,
+            Away = 161,
+            //SetGhost = 145,
+            FriendObservation = 310,
         }
     }
 }

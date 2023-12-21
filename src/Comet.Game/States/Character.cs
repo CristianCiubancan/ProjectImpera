@@ -5,6 +5,8 @@ namespace Comet.Game.States
     using Comet.Game.Database.Models;
     using Comet.Game.Database.Repositories;
     using Comet.Game.Packets;
+    using Comet.Game.States.BaseEntities;
+    using Comet.Game.World.Maps;
     using Comet.Network.Packets;
 
     /// <summary>
@@ -21,7 +23,7 @@ namespace Comet.Game.States
         {
             get => DbCharacter.CharacterID;
         }
-        public ushort CurrentX 
+        public ushort CurrentX
         {
             get => DbCharacter.X;
             set => DbCharacter.X = value;
@@ -49,11 +51,12 @@ namespace Comet.Game.States
             get => CurrentY;
             set => CurrentY = value;
         }
-        public uint Map
+        public uint MapID
         {
             get => DbCharacter.MapID;
             set => DbCharacter.MapID = value;
         }
+        public GameMap Map { get; set; }
         // public uint DynamicID { get; }
         public bool Alive
         {
@@ -64,6 +67,8 @@ namespace Comet.Game.States
         {
             get => DbCharacter.Name;
         }
+
+        public Screen Screen { get; set; }
 
         public Client Client { get; init; }
         /// <summary>
@@ -78,8 +83,8 @@ namespace Comet.Game.States
             this.LastSaveTimestamp = DateTime.UtcNow;
             this.CurrentX = character.X;
             this.CurrentY = character.Y;
-            this.Map = character.MapID;
-
+            this.MapID = character.MapID;
+            Screen = new Screen(this);
             Client = socket;
         }
 
@@ -129,6 +134,53 @@ namespace Comet.Game.States
             this.X = (ushort)x;
             this.Y = (ushort)y;
             return true;
+        }
+
+        public async Task SavePositionAsync(uint idMap, ushort x, ushort y)
+        {
+            GameMap map = Kernel.MapManager.GetMap(idMap);
+            // TODO: add check for type of map...
+            X = x;
+            Y = y;
+            MapID = idMap;
+            await SaveAsync();
+        }
+
+        public override async Task EnterMapAsync()
+        {
+            Map = Kernel.MapManager.GetMap(MapID);
+            if (Map != null)
+            {
+                await Map.AddAsync(this);
+                await Map.SendMapInfoAsync(this);
+                // TODO: ADD THE SCREEN CLASS
+                // await Screen.SynchroScreenAsync();
+
+                // m_respawn.Startup(10);
+
+                // if (Map.IsTeamDisable() && Team != null)
+                // {
+                //     if (Team.Leader.Identity == Identity)
+                //         await Team.DismissAsync(this);
+                //     else await Team.DismissMemberAsync(this);
+                // }
+
+                // if (CurrentEvent == null)
+                // {
+                //     GameEvent @event = Kernel.EventThread.GetEvent(m_idMap);
+                //     if (@event != null)
+                //         await SignInEventAsync(@event);
+                // }
+
+                // if (Team != null)
+                //     await Team.SyncFamilyBattlePowerAsync();
+            }
+            // TODO: load maps from database to have this working
+            // else
+            // {
+            //     Console.WriteLine($"Map {MapID} not found while entering map.");
+            //     Client?.Disconnect();
+            // }
         }
     }
 

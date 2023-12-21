@@ -62,8 +62,11 @@
             var rpcServer = new RpcServerListener(new Remote());
             var rpcServerTask = rpcServer.StartAsync(config.RpcNetwork.Port, config.RpcNetwork.IPAddress);
 
-            Console.WriteLine("Initializing Map Manager...");
-            MapManager = new MapManager();
+            if (!await Kernel.StartupAsync().ConfigureAwait(true))
+            {
+                Console.WriteLine("Failed to start the kernel");
+                return;
+            }
 
             // Start the game server listener
             var server = new Server(config);
