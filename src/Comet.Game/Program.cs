@@ -51,11 +51,14 @@
                 return;
             }
 
-            // Start background services
-            var tasks = new List<Task>();
-            tasks.Add(Kernel.Services.Randomness.StartAsync(CancellationToken.None));
-            tasks.Add(DiffieHellman.ProbablePrimes.StartAsync(CancellationToken.None));
-            await Task.WhenAll(tasks.ToArray());
+            // Start background services (needed before init)
+            var tasks = new List<Task>
+            {
+                Kernel.Services.Randomness.StartAsync(CancellationToken.None),
+                DiffieHellman.ProbablePrimes.StartAsync(CancellationToken.None),
+                Kernel.Services.Processor.StartAsync(CancellationToken.None)
+            };
+            Task.WaitAll(tasks.ToArray());
             
             // Start the RPC server listener
             Console.WriteLine("Launching server listeners...");

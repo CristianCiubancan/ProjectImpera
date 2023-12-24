@@ -30,6 +30,7 @@ using Comet.Game.Database;
 using Comet.Game.Database.Models;
 using Comet.Game.Packets;
 using Comet.Game.States;
+using Comet.Shared;
 
 #endregion
 
@@ -63,7 +64,8 @@ namespace Comet.Game.World.Managers
                     Profession = ushort.Parse(row["profession"]?.ToString() ?? "0"),
                     Position = int.Parse(row["rank"]?.ToString() ?? "0")
                 };
-
+                await Log.WriteLogAsync(LogLevel.Debug, $"FlowerRanking: {item.Identity} {item.Name} {item.Profession} {item.Position} {item.Value} {type}");
+                await Log.WriteLogAsync(LogLevel.Debug, $"FlowerRanking: {row["id"]} {row["name"]} {row["profession"]} {row["rank"]} {row["value"]} {type} {row["rose"]} {row["lily"]} {row["orchid"]} {row["tulip"]}");
                 switch (type)
                 {
                     case MsgFlower.FlowerType.RedRose:

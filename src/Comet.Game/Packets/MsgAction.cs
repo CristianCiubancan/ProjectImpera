@@ -588,7 +588,7 @@ namespace Comet.Game.Packets
                     }
 
                     await Log.WriteLogAsync(LogLevel.Warning,
-                        "Missing packet {0}, Action {1}, Length {2}\n{3}",
+                        "In MsgAction: Missing packet {0}, Action {1}, Length {2}\n{3}",
                         Type, Action, Length, PacketDump.Hex(Encode()));
                     break;
             }

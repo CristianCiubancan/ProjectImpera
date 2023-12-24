@@ -133,7 +133,7 @@ namespace Comet.Game
         {
             try
             {
-                await Services.Processor.StartAsync(CancellationToken.None);
+                // await Services.Processor.StartAsync(CancellationToken.None);
                 await MapManager.LoadDataAsync().ConfigureAwait(true);
                 await MapManager.LoadMapsAsync().ConfigureAwait(true);
 

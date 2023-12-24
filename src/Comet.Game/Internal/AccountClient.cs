@@ -83,7 +83,7 @@ namespace Comet.Game.Internal
 
                     default:
                         await Log.WriteLogAsync(LogLevel.Warning,
-                            "Missing packet {0}, Length {1}\n{2}",
+                            "In Account Client: Missing packet {0}, Length {1}\n{2}",
                             type, length, PacketDump.Hex(packet));
                         return;
                 }

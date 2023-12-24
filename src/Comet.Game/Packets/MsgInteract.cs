@@ -317,9 +317,9 @@ namespace Comet.Game.Packets
 
                 default:
                     await client.SendAsync(new MsgTalk(client.Identity, MsgTalk.TalkChannel.Service,
-                        $"Missing packet {Type}, Action {Action}, Length {Length}"));
+                        $"In MsgInteract: Missing packet {Type}, Action {Action}, Length {Length}"));
                     await Log.WriteLogAsync(LogLevel.Warning,
-                        "Missing packet {0}, Action {1}, Length {2}\n{3}",
+                        "In MsgInteract: Missing packet {0}, Action {1}, Length {2}\n{3}",
                         Type, Action, Length, PacketDump.Hex(Encode()));
                     break;
             }

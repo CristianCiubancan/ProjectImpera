@@ -166,22 +166,241 @@ namespace Comet.Game
                 MsgBase<Client> msg = null;
                 switch (type)
                 {
-                    case PacketType.MsgRegister: msg = new MsgRegister(); break;
-                    case PacketType.MsgItem: msg = new MsgItem(); break;
-                    case PacketType.MsgAction: msg = new MsgAction(); break;
-                    case PacketType.MsgConnect: msg = new MsgConnect(); break;
+                    case PacketType.MsgRegister:
+                        msg = new MsgRegister();
+                        break;
+
+                    case PacketType.MsgTalk:
+                        msg = new MsgTalk();
+                        break;
+
+                    case PacketType.MsgWalk:
+                        msg = new MsgWalk();
+                        break;
+
+                    case PacketType.MsgItem:
+                        msg = new MsgItem();
+                        break;
+
+                    case PacketType.MsgAction:
+                        msg = new MsgAction();
+                        break;
+
+                    case PacketType.MsgName:
+                        msg = new MsgName();
+                        break;
+
+                    case PacketType.MsgFriend:
+                        msg = new MsgFriend();
+                        break;
+
+                    case PacketType.MsgInteract:
+                        msg = new MsgInteract();
+                        break;
+
+                    case PacketType.MsgTeam:
+                        msg = new MsgTeam();
+                        break;
+
+                    case PacketType.MsgAllot:
+                        msg = new MsgAllot();
+                        break;
+
+                    case PacketType.MsgGemEmbed:
+                        msg = new MsgGemEmbed();
+                        break;
+
+                    case PacketType.MsgGodExp:
+                        msg = new MsgGodExp();
+                        break;
+
+                    case PacketType.MsgPing:
+                        msg = new MsgPing();
+                        break;
+
+                    case PacketType.MsgConnect:
+                        msg = new MsgConnect();
+                        break;
+
+                    case PacketType.MsgTrade:
+                        msg = new MsgTrade();
+                        break;
+
+                    case PacketType.MsgSynpOffer:
+                        msg = new MsgSynpOffer();
+                        break;
+
+                    case PacketType.MsgMapItem:
+                        msg = new MsgMapItem();
+                        break;
+
+                    case PacketType.MsgPackage:
+                        msg = new MsgPackage();
+                        break;
+
+                    case PacketType.MsgSyndicate:
+                        msg = new MsgSyndicate();
+                        break;
+
+                    case PacketType.MsgMessageBoard:
+                        msg = new MsgMessageBoard();
+                        break;
+
+                    case PacketType.MsgSynMemberInfo:
+                        msg = new MsgSynMemberInfo();
+                        break;
+
+                    case PacketType.MsgInviteTrans:
+                        msg = new MsgInviteTrans();
+                        break;
+
+                    case PacketType.MsgTitle:
+                        msg = new MsgTitle();
+                        break;
+
+                    case PacketType.MsgTaskStatus:
+                        msg = new MsgTaskStatus();
+                        break;
+
+                    case PacketType.MsgTaskDetailInfo:
+                        msg = new MsgTaskDetailInfo();
+                        break;
+
+                    case PacketType.MsgRank:
+                        msg = new MsgRank();
+                        break;
+
+                    case PacketType.MsgFlower:
+                        msg = new MsgFlower();
+                        break;
+
+                    case PacketType.MsgFamily:
+                        msg = new MsgFamily();
+                        break;
+
+                    case PacketType.MsgFamilyOccupy:
+                        msg = new MsgFamilyOccupy();
+                        break;
+
+                    case PacketType.MsgNpc:
+                        msg = new MsgNpc();
+                        break;
+
+                    case PacketType.MsgNpcInfo:
+                        msg = new MsgNpcInfo();
+                        break;
+
+                    case PacketType.MsgTaskDialog:
+                        msg = new MsgTaskDialog();
+                        break;
+
+                    case PacketType.MsgDataArray:
+                        msg = new MsgDataArray();
+                        break;
+
+                    case PacketType.MsgTraining:
+                        msg = new MsgTraining();
+                        break;
+
+                    case PacketType.MsgTradeBuddy:
+                        msg = new MsgTradeBuddy();
+                        break;
+
+                    case PacketType.MsgEquipLock:
+                        msg = new MsgEquipLock();
+                        break;
+
+                    case PacketType.MsgPigeon:
+                        msg = new MsgPigeon();
+                        break;
+
+                    case PacketType.MsgPeerage:
+                        msg = new MsgPeerage();
+                        break;
+
+                    case PacketType.MsgGuide:
+                        msg = new MsgGuide();
+                        break;
+
+                    case PacketType.MsgGuideInfo:
+                        msg = new MsgGuideInfo();
+                        break;
+
+                    case PacketType.MsgGuideContribute:
+                        msg = new MsgGuideContribute();
+                        break;
+
+                    case PacketType.MsgQuiz:
+                        msg = new MsgQuiz();
+                        break;
+
+                    case PacketType.MsgFactionRankInfo:
+                        msg = new MsgFactionRankInfo();
+                        break;
+
+                    case PacketType.MsgSynMemberList:
+                        msg = new MsgSynMemberList();
+                        break;
+
+                    case PacketType.MsgTotemPoleInfo:
+                        msg = new MsgTotemPoleInfo();
+                        break;
+
+                    case PacketType.MsgWeaponsInfo:
+                        msg  = new MsgWeaponsInfo();
+                        break;
+
+                    case PacketType.MsgTotemPole:
+                        msg = new MsgTotemPole();
+                        break;
+
+                    case PacketType.MsgQualifyingInteractive:
+                        msg = new MsgQualifyingInteractive();
+                        break;
+
+                    case PacketType.MsgQualifyingFightersList:
+                        msg = new MsgQualifyingFightersList();
+                        break;
+
+                    case PacketType.MsgQualifyingRank:
+                        msg = new MsgQualifyingRank();
+                        break;
+
+                    case PacketType.MsgQualifyingSeasonRankList:
+                        msg = new MsgQualifyingSeasonRankList();
+                        break;
+
+                    case PacketType.MsgQualifyingDetailInfo:
+                        msg = new MsgQualifyingDetailInfo();
+                        break;
 
                     default:
-                        await Log.WriteLogAsync(LogLevel.Warning, $"Missing packet {type}, Length {length}").ConfigureAwait(false);
-                        await actor.SendAsync(new MsgTalk(actor.Identity, MsgTalk.TalkChannel.Service,
-                            String.Format("Missing packet {0}, Length {1}",
-                            type, length)));
+                        await Log.WriteLogAsync(LogLevel.Warning, "Missing packet {0}, Length {1}\n{2}", type, length, PacketDump.Hex(packet));
+                        if (actor.Character?.IsGm() == true)
+                        {
+                            await actor.SendAsync(new MsgTalk(actor.Identity, MsgTalk.TalkChannel.Service,
+                                $"Missing packet {type}, Length {length}"));
+                        }
+
                         return;
                 }
 
                 // Decode packet bytes into the structure and process
                 msg.Decode(packet);
-                await msg.ProcessAsync(actor);
+                // Packet has been decrypted and now will be queued in the region processor
+                if (actor.Character?.Map != null)
+                {
+                    Character user = Kernel.RoleManager.GetUser(actor.Character.Identity);
+                    if (user == null || !user.Client.GUID.Equals(actor.GUID))
+                    {
+                        actor.Disconnect();
+                        if (user != null)
+                            await Kernel.RoleManager.KickOutAsync(actor.Identity);
+                        return;
+                    }
+                    Kernel.Services.Processor.Queue(actor.Character.Map.Partition, () => msg.ProcessAsync(actor));
+                }
+                else await msg.ProcessAsync(actor);
             }
             catch (Exception e)
             {
