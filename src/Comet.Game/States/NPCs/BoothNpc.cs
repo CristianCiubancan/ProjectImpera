@@ -74,7 +74,7 @@ namespace Comet.Game.States.NPCs
             {
                 if (!ValidateItem(item.Identity))
                 {
-                    m_items.TryRemove(item.Identity, out _);
+                    _ = m_items.TryRemove(item.Identity, out _);
                     continue;
                 }
 

@@ -158,7 +158,7 @@ namespace Comet.Game.Packets
                 case ActionType.CharacterObservation: // 117
                 case ActionType.FriendObservation: // 310
                     user.BattleSystem.ResetBattle();
-                    await user.MagicData.AbortMagicAsync(true);
+                    _ = await user.MagicData.AbortMagicAsync(true);
                     break;
             }
 
@@ -189,7 +189,7 @@ namespace Comet.Game.Packets
                     await client.Character.EnterMapAsync();
                     await client.SendAsync(this);
 
-                    await GameAction.ExecuteActionAsync(1000000, user, null, null, "");
+                    _ = await GameAction.ExecuteActionAsync(1000000, user, null, null, "");
 
                     if (client.Character.VipLevel > 0)
                         await client.Character.SendAsync(
@@ -197,18 +197,18 @@ namespace Comet.Game.Packets
                                 client.Character.VipExpiration.ToString("U")), MsgTalk.TalkChannel.Talk);
 
                     if (user.Life == 0)
-                        await user.SetAttributesAsync(ClientUpdateType.Hitpoints, 10);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Hitpoints, 10);
 
                     user.Connection = Character.ConnectionStage.Ready; // set user ready to be processed.
                     break;
 
                 case ActionType.LoginInventory: // 75
-                    await user.UserPackage.CreateAsync();
+                    _ = await user.UserPackage.CreateAsync();
                     await user.UserPackage.SendAsync();
                     await user.SendDetainRewardAsync();
                     await user.SendDetainedEquipmentAsync();
-                    await user.Statistic.InitializeAsync();
-                    await user.TaskDetail.InitializeAsync();
+                    _ = await user.Statistic.InitializeAsync();
+                    _ = await user.TaskDetail.InitializeAsync();
                     await user.LoadTitlesAsync();
                     await client.SendAsync(this);
                     break;
@@ -218,7 +218,7 @@ namespace Comet.Game.Packets
                     {
                         Friend friend = new Friend(user);
                         await friend.CreateAsync(dbFriend);
-                        user.AddFriend(friend);
+                        _ = user.AddFriend(friend);
                     }
                     await user.SendAllFriendAsync();
 
@@ -226,12 +226,12 @@ namespace Comet.Game.Packets
                     {
                         if (dbEnemy.TargetIdentity == user.Identity)
                         {
-                            await BaseRepository.DeleteAsync(dbEnemy);
+                            _ = await BaseRepository.DeleteAsync(dbEnemy);
                             continue;
                         }
                         Enemy enemy = new Enemy(user);
                         await enemy.CreateAsync(dbEnemy);
-                        user.AddEnemy(enemy);
+                        _ = user.AddEnemy(enemy);
                     }
                     await user.SendAllEnemiesAsync();
 
@@ -259,7 +259,7 @@ namespace Comet.Game.Packets
                     break;
 
                 case ActionType.LoginSpells: // 78
-                    await client.Character.MagicData.InitializeAsync();
+                    _ = await client.Character.MagicData.InitializeAsync();
                     await client.Character.MagicData.SendAllAsync();
                     await client.SendAsync(this);
                     break;
@@ -308,14 +308,14 @@ namespace Comet.Game.Packets
                     Point sourcePos = new Point(client.Character.MapX, client.Character.MapY);
                     if (!client.Character.Map.GetPassageMap(ref idMap, ref tgtPos, ref sourcePos))
                     {
-                        client.Character.Map.GetRebornMap(ref idMap, ref tgtPos);
+                        _ = client.Character.Map.GetRebornMap(ref idMap, ref tgtPos);
                     }
-                    await client.Character.FlyMapAsync(idMap, tgtPos.X, tgtPos.Y);
+                    _ = await client.Character.FlyMapAsync(idMap, tgtPos.X, tgtPos.Y);
                     break;
 
                 case ActionType.SpellAbortXp: // 93
                     if (client.Character.QueryStatus(StatusSet.START_XP) != null)
-                        await client.Character.DetachStatusAsync(StatusSet.START_XP);
+                        _ = await client.Character.DetachStatusAsync(StatusSet.START_XP);
                     break;
 
                 case ActionType.CharacterRevive: // 94
@@ -403,7 +403,7 @@ namespace Comet.Game.Packets
                     break;
 
                 case ActionType.BoothLeave: // 114
-                    await user.DestroyBoothAsync();
+                    _ = await user.DestroyBoothAsync();
                     await user.Screen.SynchroScreenAsync();
                     break;
 
@@ -432,7 +432,7 @@ namespace Comet.Game.Packets
 
                 case ActionType.SpellAbortFlight: // 120
                     if (user.QueryStatus(StatusSet.FLY) != null)
-                        await user.DetachStatusAsync(StatusSet.FLY);
+                        _ = await user.DetachStatusAsync(StatusSet.FLY);
                     break;
 
                 case ActionType.RelationshipsEnemy: // 123
@@ -477,10 +477,10 @@ namespace Comet.Game.Packets
                     if (user.VipLevel > 0)
                     {
                         if (!user.HasTitle(Character.UserTitles.Vip))
-                            await user.AddTitleAsync(Character.UserTitles.Vip, user.VipExpiration);
+                            _ = await user.AddTitleAsync(Character.UserTitles.Vip, user.VipExpiration);
                     }
 
-                    Kernel.EventThread.GetEvent<QuizShow>()?.Enter(user);
+                    _ = (Kernel.EventThread.GetEvent<QuizShow>()?.Enter(user));
 
                     await client.SendAsync(this);
                     break;
@@ -505,7 +505,7 @@ namespace Comet.Game.Packets
                         }
 
                         await user.ProcessOnMoveAsync();
-                        await user.JumpPosAsync(newX, newY);
+                        _ = await user.JumpPosAsync(newX, newY);
 
                         X = user.MapX;
                         Y = user.MapY;
@@ -539,7 +539,7 @@ namespace Comet.Game.Packets
                     
                     user.Avatar = (ushort) Command;
                     await user.BroadcastRoomMsgAsync(this, true);
-                    await user.SaveAsync();
+                    _ = await user.SaveAsync();
                     break;
 
                 case ActionType.QueryTradeBuddy: // 143

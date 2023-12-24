@@ -67,7 +67,7 @@ namespace Comet.Game.States.Syndicates
 
         public override async Task OnAcceptAsync()
         {
-            await m_sender.CreateAllianceAsync(m_senderUser, m_target);
+            _ = await m_sender.CreateAllianceAsync(m_senderUser, m_target);
         }
 
         public override async Task OnCancelAsync()

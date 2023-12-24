@@ -361,29 +361,29 @@ namespace Comet.Game.Packets
                 {
                     case "/pro":
                         if (byte.TryParse(param, out byte proProf))
-                            await user.SetAttributesAsync(ClientUpdateType.Class, proProf);
+                            _ = await user.SetAttributesAsync(ClientUpdateType.Class, proProf);
 
                         return true;
 
                     case "/life":
-                        await user.SetAttributesAsync(ClientUpdateType.Hitpoints, user.MaxLife);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Hitpoints, user.MaxLife);
                         return true;
 
                     case "/mana":
-                        await user.SetAttributesAsync(ClientUpdateType.Mana, user.MaxMana);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Mana, user.MaxMana);
                         return true;
 
                     case "/superman":
-                        await user.SetAttributesAsync(ClientUpdateType.Strength, 176);
-                        await user.SetAttributesAsync(ClientUpdateType.Agility, 256);
-                        await user.SetAttributesAsync(ClientUpdateType.Vitality, 110);
-                        await user.SetAttributesAsync(ClientUpdateType.Spirit, 125);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Strength, 176);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Agility, 256);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Vitality, 110);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Spirit, 125);
 
                         return true;
 
                     case "/uplev":
                         if (byte.TryParse(param, out byte uplevValue))
-                            await user.AwardLevelAsync(uplevValue);
+                            _ = await user.AwardLevelAsync(uplevValue);
 
                         return true;
 
@@ -398,7 +398,7 @@ namespace Comet.Game.Packets
                             return true;
                         }
 
-                        await user.UserPackage.AwardItemAsync(idAwardItem);
+                        _ = await user.UserPackage.AwardItemAsync(idAwardItem);
                         return true;
                     case "/awardmoney":
                         if (int.TryParse(param, out int moneyAmount))
@@ -422,7 +422,7 @@ namespace Comet.Game.Packets
                         {
                             magic = user.MagicData[skillType];
                             magic.Level = Math.Min(magic.MaxLevel, Math.Max((byte)0, skillLevel));
-                            await magic.SaveAsync();
+                            _ = await magic.SaveAsync();
                             await magic.SendAsync();
                         }
                         else
@@ -442,11 +442,11 @@ namespace Comet.Game.Packets
                             return true;
 
                         if (user.WeaponSkill[type] == null)
-                            await user.WeaponSkill.CreateAsync(type, level);
+                            _ = await user.WeaponSkill.CreateAsync(type, level);
                         else
                         {
                             user.WeaponSkill[type].Level = level;
-                            await user.WeaponSkill.SaveAsync(user.WeaponSkill[type]);
+                            _ = await user.WeaponSkill.SaveAsync(user.WeaponSkill[type]);
                             await user.WeaponSkill.SendAsync(user.WeaponSkill[type]);
                         }
                         return true;
@@ -454,7 +454,7 @@ namespace Comet.Game.Packets
                     case "/status":
                         if (int.TryParse(param, out int flag))
                         {
-                            await user.AttachStatusAsync(user, flag, 0, 10, 0, 0);
+                            _ = await user.AttachStatusAsync(user, flag, 0, 10, 0, 0);
                         }
                         return true;
 
@@ -518,12 +518,12 @@ namespace Comet.Game.Packets
                             Generator pGen = new Generator(newGen);
                             await pGen.GenerateAsync();
                             //await Kernel.WorldThread.AddGeneratorAsync(pGen);
-                            await Kernel.GeneratorManager.AddGeneratorAsync(pGen);
+                            _ = await Kernel.GeneratorManager.AddGeneratorAsync(pGen);
                             return true;
                         }
                     case "/action":
                         if (uint.TryParse(param, out var idExecuteAction))
-                            await GameAction.ExecuteActionAsync(idExecuteAction, user, null, null, string.Empty);
+                            _ = await GameAction.ExecuteActionAsync(idExecuteAction, user, null, null, string.Empty);
                         return true;
 
                     case "/reloadactionall":
@@ -532,11 +532,11 @@ namespace Comet.Game.Packets
 
                     case "/xp":
                         await user.AddXpAsync(100);
-                        await user.BurstXpAsync();
+                        _ = await user.BurstXpAsync();
                         return true;
 
                     case "/sp":
-                        await user.SetAttributesAsync(ClientUpdateType.Stamina, user.MaxEnergy);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Stamina, user.MaxEnergy);
                         return true;
 
                     case "/querynpcs":
@@ -579,7 +579,7 @@ namespace Comet.Game.Packets
                             if (!map.IsValidPoint(mapX, mapY))
                                 return true;
 
-                            await npc.ChangePosAsync(idMap, mapX, mapY);
+                            _ = await npc.ChangePosAsync(idMap, mapX, mapY);
                             return true;
                         }
 
@@ -766,7 +766,7 @@ namespace Comet.Game.Packets
                                 return true;
                             }
 
-                            await bringTarget.FlyMapAsync(user.MapIdentity, user.MapX, user.MapY);
+                            _ = await bringTarget.FlyMapAsync(user.MapIdentity, user.MapX, user.MapY);
                             return true;
                         }
                     case "/cmd":
@@ -820,7 +820,7 @@ namespace Comet.Game.Packets
                         if (uint.TryParse(chgMapParams[0], out uint chgMapId)
                             && ushort.TryParse(chgMapParams[1], out ushort chgMapX)
                             && ushort.TryParse(chgMapParams[2], out ushort chgMapY))
-                            await user.FlyMapAsync(chgMapId, chgMapX, chgMapY);
+                            _ = await user.FlyMapAsync(chgMapId, chgMapX, chgMapY);
 
                         return true;
 
@@ -898,7 +898,7 @@ namespace Comet.Game.Packets
                                 return true;
                             }
 
-                            await user.FlyMapAsync(findTarget.MapIdentity, findTarget.MapX, findTarget.MapY);
+                            _ = await user.FlyMapAsync(findTarget.MapIdentity, findTarget.MapX, findTarget.MapY);
                             return true;
                         }
 
@@ -917,8 +917,8 @@ namespace Comet.Game.Packets
                             {
                                 await Log.GmLogAsync("botjail", $"{user.Identity} {user.Name} botjailed {target.Identity} {target.Name} by: {myParams[1]}");
                                 await target.SendAsync(Language.StrBotjail);
-                                await target.FlyMapAsync(6002, 28, 74);
-                                await target.SaveAsync();
+                                _ = await target.FlyMapAsync(6002, 28, 74);
+                                _ = await target.SaveAsync();
                             }
                             return true;
                         }
@@ -938,8 +938,8 @@ namespace Comet.Game.Packets
                             {
                                 await Log.GmLogAsync("macrojail", $"{user.Identity} {user.Name} macrojailed {target.Identity} {target.Name} by: {myParams[1]}");
                                 await target.SendAsync(Language.StrMacrojail);
-                                await target.FlyMapAsync(6010, 28, 74);
-                                await target.SaveAsync();
+                                _ = await target.FlyMapAsync(6010, 28, 74);
+                                _ = await target.SaveAsync();
                             }
                             return true;
                         }
@@ -1011,23 +1011,23 @@ namespace Comet.Game.Packets
                         {
                             case "tc":
                                 if (user.VipLevel >= 2 && user.IsVipTeleportEnable())
-                                    await user.FlyMapAsync(1002, 430, 378);
+                                    _ = await user.FlyMapAsync(1002, 430, 378);
                                 break;
                             case "pc":
                                 if (user.VipLevel >= 2 && user.IsVipTeleportEnable())
-                                    await user.FlyMapAsync(1011, 188, 264);
+                                    _ = await user.FlyMapAsync(1011, 188, 264);
                                 break;
                             case "ac":
                                 if (user.VipLevel >= 2 && user.IsVipTeleportEnable())
-                                    await user.FlyMapAsync(1020, 565, 562);
+                                    _ = await user.FlyMapAsync(1020, 565, 562);
                                 break;
                             case "dc":
                                 if (user.VipLevel >= 2 && user.IsVipTeleportEnable())
-                                    await user.FlyMapAsync(1000, 500, 650);
+                                    _ = await user.FlyMapAsync(1000, 500, 650);
                                 break;
                             case "bi":
                                 if (user.VipLevel >= 2 && user.IsVipTeleportEnable())
-                                    await user.FlyMapAsync(1015, 717, 571);
+                                    _ = await user.FlyMapAsync(1015, 717, 571);
                                 break;
                         }
                         return true;

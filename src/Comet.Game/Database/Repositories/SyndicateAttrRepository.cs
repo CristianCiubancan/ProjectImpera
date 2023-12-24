@@ -46,10 +46,10 @@ namespace Comet.Game.Database.Repositories
             {
                 await using var db = new ServerDbContext();
                 if (entity.Id == 0)
-                    await db.AddAsync(entity);
+                    _ = await db.AddAsync(entity);
                 else
-                    db.Update(entity);
-                await db.SaveChangesAsync();
+                    _ = db.Update(entity);
+                _ = await db.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
@@ -67,8 +67,8 @@ namespace Comet.Game.Database.Repositories
                 await using var db = new ServerDbContext();
                 if (entity.Id == 0)
                     return false;
-                db.Remove(entity);
-                await db.SaveChangesAsync();
+                _ = db.Remove(entity);
+                _ = await db.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)

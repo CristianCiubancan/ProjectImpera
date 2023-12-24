@@ -73,7 +73,7 @@ namespace Comet.Game.Packets
             writer.Write(ConditionMetempsychosis); // 52
             writer.Write(ConditionProfession); // 56
             writer.Write(Level); // 60
-            writer.BaseStream.Seek(2, SeekOrigin.Current); // 61
+            _ = writer.BaseStream.Seek(2, SeekOrigin.Current); // 61
             writer.Write(PositionExpiration); // 63
             writer.Write(0); // 67
             writer.Write(EnrollmentDate);

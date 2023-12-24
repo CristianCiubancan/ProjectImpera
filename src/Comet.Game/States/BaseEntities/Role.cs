@@ -173,7 +173,7 @@ namespace Comet.Game.States.BaseEntities
                         await user.KickbackAsync();
                         return false;
                     }
-                    await AddAttributesAsync(ClientUpdateType.Vigor, vigorConsume);
+                    _ = await AddAttributesAsync(ClientUpdateType.Vigor, vigorConsume);
                     user.UpdateVigorTimer();
                 }
             }
@@ -255,7 +255,7 @@ namespace Comet.Game.States.BaseEntities
 
             if (vigor > 0)
             {
-                await AddAttributesAsync(ClientUpdateType.Vigor, vigor);
+                _ = await AddAttributesAsync(ClientUpdateType.Vigor, vigor);
                 user.UpdateVigorTimer();
             }
 
@@ -285,12 +285,12 @@ namespace Comet.Game.States.BaseEntities
             BattleSystem.ResetBattle();
             
             if (MagicData.State == MagicData.MagicState.Intone || MagicData.IsAutoAttack())
-                await MagicData.AbortMagicAsync(true);
+                _ = await MagicData.AbortMagicAsync(true);
 
-            await DetachStatusAsync(StatusSet.INTENSIFY);
+            _ = await DetachStatusAsync(StatusSet.INTENSIFY);
 
-            await DetachStatusAsync(StatusSet.LUCKY_DIFFUSE);
-            await DetachStatusAsync(StatusSet.LUCKY_ABSORB);
+            _ = await DetachStatusAsync(StatusSet.LUCKY_DIFFUSE);
+            _ = await DetachStatusAsync(StatusSet.LUCKY_ABSORB);
         }
 
         public virtual async Task ProcessAfterMoveAsync()
@@ -307,10 +307,10 @@ namespace Comet.Game.States.BaseEntities
         public virtual async Task ProcessOnAttackAsync()
         {
             Action = EntityAction.Stand;
-            await DetachStatusAsync(StatusSet.INTENSIFY);
+            _ = await DetachStatusAsync(StatusSet.INTENSIFY);
 
-            await DetachStatusAsync(StatusSet.LUCKY_DIFFUSE);
-            await DetachStatusAsync(StatusSet.LUCKY_ABSORB);
+            _ = await DetachStatusAsync(StatusSet.LUCKY_DIFFUSE);
+            _ = await DetachStatusAsync(StatusSet.LUCKY_ABSORB);
         }
 
         #endregion
@@ -540,7 +540,7 @@ namespace Comet.Game.States.BaseEntities
             {
                 if (StatusSet[i] != null)
                     if (IsWellStatus(i))
-                        await DetachStatusAsync(i);
+                        _ = await DetachStatusAsync(i);
             }
             return true;
         }
@@ -551,15 +551,15 @@ namespace Comet.Game.States.BaseEntities
             {
                 if (StatusSet[i] != null)
                     if (IsBadlyStatus(i))
-                        await DetachStatusAsync(i);
+                        _ = await DetachStatusAsync(i);
             }
             return true;
         }
 
         public virtual async Task<bool> DetachAllStatusAsync()
         {
-            await DetachBadlyStatusAsync();
-            await DetachWellStatusAsync();
+            _ = await DetachBadlyStatusAsync();
+            _ = await DetachWellStatusAsync();
             return true;
         }
 
@@ -629,7 +629,7 @@ namespace Comet.Game.States.BaseEntities
                 };
                 if (await pNewStatus.CreateAsync(this, (int) status.Status, status.Power, (int) status.RemainTime, (int) status.LeaveTimes))
                 {
-                    await StatusSet.AddObjAsync(pNewStatus);
+                    _ = await StatusSet.AddObjAsync(pNewStatus);
                     return true;
                 }
             }
@@ -641,7 +641,7 @@ namespace Comet.Game.States.BaseEntities
                 };
                 if (await pNewStatus.CreateAsync(this, (int) status.Status, status.Power, (int) status.RemainTime, 0))
                 {
-                    await StatusSet.AddObjAsync(pNewStatus);
+                    _ = await StatusSet.AddObjAsync(pNewStatus);
                     return true;
                 }
             }
@@ -684,7 +684,7 @@ namespace Comet.Game.States.BaseEntities
 
                 if (bChangeData)
                 {
-                    await pStatus.ChangeDataAsync(nPower, nSecs, nTimes, pSender?.Identity ?? 0);
+                    _ = await pStatus.ChangeDataAsync(nPower, nSecs, nTimes, pSender?.Identity ?? 0);
                 }
                 return true;
             }
@@ -695,7 +695,7 @@ namespace Comet.Game.States.BaseEntities
                     var pNewStatus = new StatusMore();
                     if (await pNewStatus.CreateAsync(this, nStatus, nPower, nSecs, nTimes, pSender?.Identity ?? 0, pLevel, save))
                     {
-                        await StatusSet.AddObjAsync(pNewStatus);
+                        _ = await StatusSet.AddObjAsync(pNewStatus);
                         return true;
                     }
                 }
@@ -704,7 +704,7 @@ namespace Comet.Game.States.BaseEntities
                     var pNewStatus = new StatusOnce();
                     if (await pNewStatus.CreateAsync(this, nStatus, nPower, nSecs, 0, pSender?.Identity ?? 0, pLevel, save))
                     {
-                        await StatusSet.AddObjAsync(pNewStatus);
+                        _ = await StatusSet.AddObjAsync(pNewStatus);
                         return true;
                     }
                 }
@@ -739,7 +739,7 @@ namespace Comet.Game.States.BaseEntities
 
         public async Task SetCrimeStatusAsync(int nSecs)
         {
-            await AttachStatusAsync(this, StatusSet.BLUE_NAME, 0, nSecs, 0, 0);
+            _ = await AttachStatusAsync(this, StatusSet.BLUE_NAME, 0, nSecs, 0, 0);
         }
 
         public virtual bool IsWing => QueryStatus(StatusSet.FLY) != null;

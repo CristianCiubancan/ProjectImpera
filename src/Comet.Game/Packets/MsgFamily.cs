@@ -170,8 +170,8 @@ namespace Comet.Game.Packets
                     if (leader.QueryRequest(RequestType.Family) != user.Identity)
                         return;
 
-                    leader.PopRequest(RequestType.Family);
-                    await family.AppendMemberAsync(leader, user);
+                        _ = leader.PopRequest(RequestType.Family);
+                        _ = await family.AppendMemberAsync(leader, user);
                     break;
                 }
 
@@ -216,8 +216,8 @@ namespace Comet.Game.Packets
                     if (requester.QueryRequest(RequestType.Family) != user.Identity)
                         return;
 
-                    requester.PopRequest(RequestType.Family);
-                    await user.Family.AppendMemberAsync(user, requester);
+                        _ = requester.PopRequest(RequestType.Family);
+                        _ = await user.Family.AppendMemberAsync(user, requester);
                     break;
                 }
 
@@ -237,7 +237,7 @@ namespace Comet.Game.Packets
                     if (user.Family.IsEnemy(target.Identity) || user.Family.IsAlly(target.Identity))
                         return;
                     user.Family.SetEnemy(target);
-                    await user.Family.SaveAsync();
+                        _ = await user.Family.SaveAsync();
                     await user.Family.SendRelationsAsync();
                     break;
                 }
@@ -256,7 +256,7 @@ namespace Comet.Game.Packets
                     if (!user.Family.IsEnemy(target.Identity))
                         return;
                     user.Family.UnsetEnemy(target.Identity);
-                    await user.Family.SaveAsync();
+                        _ = await user.Family.SaveAsync();
 
                     Identity = target.Identity;
                     await user.Family.SendAsync(this);
@@ -323,10 +323,10 @@ namespace Comet.Game.Packets
                         return;
 
                     user.Family.SetAlly(target);
-                    await user.Family.SaveAsync();
+                        _ = await user.Family.SaveAsync();
 
                     target.SetAlly(user.Family);
-                    await target.SaveAsync();
+                        _ = await target.SaveAsync();
 
                     await user.Family.SendRelationsAsync();
                     await target.SendRelationsAsync();
@@ -347,10 +347,10 @@ namespace Comet.Game.Packets
                     if (!user.Family.IsAlly(target.Identity))
                         return;
                     user.Family.UnsetAlly(target.Identity);
-                    await user.Family.SaveAsync();
+                        _ = await user.Family.SaveAsync();
 
                     target.UnsetAlly(user.FamilyIdentity);
-                    await target.SaveAsync();
+                        _ = await target.SaveAsync();
 
                     Identity = target.Identity;
                     await user.Family.SendAsync(this);
@@ -376,7 +376,7 @@ namespace Comet.Game.Packets
                         return;
                     if (target.FamilyPosition != Family.FamilyRank.Member)
                         return;
-                    await user.Family.AbdicateAsync(user, Strings[0]);
+                        _ = await user.Family.AbdicateAsync(user, Strings[0]);
                     break;
                 }
 
@@ -395,7 +395,7 @@ namespace Comet.Game.Packets
                         return;
                     if (target.Rank != Family.FamilyRank.Member)
                         return;
-                    await user.Family.KickOutAsync(user, target.Identity);
+                        _ = await user.Family.KickOutAsync(user, target.Identity);
                     break;
                 }
 
@@ -408,7 +408,7 @@ namespace Comet.Game.Packets
                     if (user.FamilyPosition == Family.FamilyRank.Spouse)
                         return;
 
-                    await user.Family.LeaveAsync(user);
+                        _ = await user.Family.LeaveAsync(user);
                     break;
                 }
 
@@ -433,7 +433,7 @@ namespace Comet.Game.Packets
                         return;
 
                     user.Family.Announcement = Strings[0].Substring(0, Math.Min(127, Strings[0].Length));
-                    await user.Family.SaveAsync();
+                        _ = await user.Family.SaveAsync();
 
                     Action = FamilyAction.Announce;
                     await user.Family.SendAsync(this);
@@ -450,8 +450,8 @@ namespace Comet.Game.Packets
 
                     user.Family.Money += Identity;
                     user.FamilyMember.Proffer += Identity;
-                    await user.Family.SaveAsync();
-                    await user.FamilyMember.SaveAsync();
+                        _ = await user.Family.SaveAsync();
+                        _ = await user.FamilyMember.SaveAsync();
                     await user.SendFamilyAsync();
                     break;
                 }

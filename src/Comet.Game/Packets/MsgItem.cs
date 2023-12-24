@@ -209,7 +209,7 @@ namespace Comet.Game.Packets
                         if (!await item.CreateAsync(dbItem))
                             return;
 
-                        await user.UserPackage.AddItemAsync(item);
+                        _ = await user.UserPackage.AddItemAsync(item);
                     }
 
                     break;
@@ -243,11 +243,11 @@ namespace Comet.Game.Packets
 
                 case ItemActionType.InventoryDropItem:
                 case ItemActionType.InventoryRemove:
-                    await user.DropItemAsync(Identity, user.MapX, user.MapY);
+                    _ = await user.DropItemAsync(Identity, user.MapX, user.MapY);
                     break;
 
                 case ItemActionType.InventoryDropSilver:
-                    await user.DropSilverAsync(Identity);
+                    _ = await user.DropSilverAsync(Identity);
                     break;
 
                 case ItemActionType.InventoryEquip:
@@ -265,7 +265,7 @@ namespace Comet.Game.Packets
                     {
                         item = user.UserPackage[Identity];
                         Item target = user.UserPackage[Command];
-                        await user.UserPackage.CombineArrowAsync(item, target);
+                        _ = await user.UserPackage.CombineArrowAsync(item, target);
                         break;
                     }
 
@@ -292,7 +292,7 @@ namespace Comet.Game.Packets
                     Action = ItemActionType.BankQuery;
                     Command = user.StorageMoney;
                     await user.SendAsync(this);
-                    await user.SaveAsync();
+                    _ = await user.SaveAsync();
                     break;
 
                 case ItemActionType.BankWithdraw:
@@ -312,7 +312,7 @@ namespace Comet.Game.Packets
                     Action = ItemActionType.BankQuery;
                     Command = user.StorageMoney;
                     await user.SendAsync(this);
-                    await user.SaveAsync();
+                    _ = await user.SaveAsync();
                     break;
 
                 case ItemActionType.EquipmentRepair:
@@ -385,7 +385,7 @@ namespace Comet.Game.Packets
 
                         if (await Kernel.ChanceCalcAsync(nChance))
                         {
-                            await item.ChangeTypeAsync(idNewType);
+                            _ = await item.ChangeTypeAsync(idNewType);
                         }
                         else
                         {
@@ -406,7 +406,7 @@ namespace Comet.Game.Packets
                             await user.SendAsync(Language.StrUpgradeAwardSocket);
                         }
 
-                        await item.SaveAsync();
+                        _ = await item.SaveAsync();
                         await user.SendAsync(new MsgItemInfo(item, MsgItemInfo.ItemMode.Update));
                         await Log.GmLogAsync("improve",
                             $"{user.Identity},{user.Name};{item.Identity};{item.Type};{Item.TYPE_DRAGONBALL}");
@@ -464,7 +464,7 @@ namespace Comet.Game.Packets
 
                         if (await Kernel.ChanceCalcAsync(nChance))
                         {
-                            await item.ChangeTypeAsync((uint)idNewType);
+                            _ = await item.ChangeTypeAsync((uint)idNewType);
                         }
                         else
                         {
@@ -483,10 +483,10 @@ namespace Comet.Game.Packets
                         {
                             item.SocketOne = Item.SocketGem.EmptySocket;
                             await user.SendAsync(Language.StrUpgradeAwardSocket);
-                            await item.SaveAsync();
+                            _ = await item.SaveAsync();
                         }
 
-                        await item.SaveAsync();
+                        _ = await item.SaveAsync();
                         await user.SendAsync(new MsgItemInfo(item, MsgItemInfo.ItemMode.Update));
                         await Log.GmLogAsync("uplev",
                             $"{user.Identity},{user.Name};{item.Identity};{item.Type};{Item.TYPE_METEOR}");
@@ -571,7 +571,7 @@ namespace Comet.Game.Packets
                         if (!gem.IsGem())
                             return;
 
-                        await user.UserPackage.SpendItemAsync(gem);
+                        _ = await user.UserPackage.SpendItemAsync(gem);
 
                         byte min, max;
                         switch ((Item.SocketGem)(gem.Type % 1000))
@@ -637,7 +637,7 @@ namespace Comet.Game.Packets
                         if (enchant > item.Enchantment)
                         {
                             item.Enchantment = enchant;
-                            await item.SaveAsync();
+                            _ = await item.SaveAsync();
                             await Log.GmLogAsync("enchant",
                                 $"User[{user.Identity}] Enchant[Gem: {gem.Type}|{gem.Identity}][Target: {item.Type}|{item.Identity}] with {enchant} points.");
                         }
@@ -705,8 +705,8 @@ namespace Comet.Game.Packets
                             item.SocketTwo = Item.SocketGem.EmptySocket;
                         }
 
-                        await user.UserPackage.RemoveFromInventoryAsync(target, UserPackage.RemovalType.Delete);
-                        await item.SaveAsync();
+                        _ = await user.UserPackage.RemoveFromInventoryAsync(target, UserPackage.RemovalType.Delete);
+                        _ = await item.SaveAsync();
                         await user.SendAsync(new MsgItemInfo(item, MsgItemInfo.ItemMode.Update));
                         await user.SendAsync(this);
                         break;
@@ -742,7 +742,7 @@ namespace Comet.Game.Packets
                             item.SocketTwo = Item.SocketGem.EmptySocket;
                         }
 
-                        await item.SaveAsync();
+                        _ = await item.SaveAsync();
                         await user.SendAsync(new MsgItemInfo(item, MsgItemInfo.ItemMode.Update));
                         await user.SendAsync(this);
                         break;

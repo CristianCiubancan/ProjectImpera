@@ -65,7 +65,7 @@ namespace Comet.Game.States.NPCs
                 m_dbNpc.Mapid = idMap;
                 m_dbNpc.Celly = y;
                 m_dbNpc.Cellx = x;
-                await SaveAsync();
+                _ = await SaveAsync();
                 return true;
             }
             return false;

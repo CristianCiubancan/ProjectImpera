@@ -96,7 +96,7 @@ namespace Comet.Game.World.Managers
                 NextIdentity = 0
             };
 
-            await BaseRepository.SaveAsync(pigeon);
+            _ = await BaseRepository.SaveAsync(pigeon);
 
             m_queue.Add(pigeon);
 
@@ -176,7 +176,7 @@ namespace Comet.Game.World.Managers
 
             m_next.Startup(PIGEON_STAND_SECS);
 
-            await BaseRepository.SaveAsync(m_current = new DbPigeon
+            _ = await BaseRepository.SaveAsync(m_current = new DbPigeon
             {
                 UserIdentity = m_queue[0].UserIdentity,
                 UserName = m_queue[0].UserName,
@@ -184,7 +184,7 @@ namespace Comet.Game.World.Managers
                 Message = m_queue[0].Message,
                 Time = DateTime.Now
             });
-            await BaseRepository.DeleteAsync(m_queue[0]);
+            _ = await BaseRepository.DeleteAsync(m_queue[0]);
 
             m_queue.RemoveAt(0);
             m_past.Add(m_current);

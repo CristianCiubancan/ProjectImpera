@@ -66,7 +66,7 @@ namespace Comet.Game.Packets
             Type = (PacketType)reader.ReadUInt16();
             Action = (DataArrayMode) reader.ReadByte();
             Count = reader.ReadByte();
-            reader.ReadUInt16();
+            _ = reader.ReadUInt16();
             for (int i = 0; i < Count; i++)
             {
                 Items.Add(reader.ReadUInt32());

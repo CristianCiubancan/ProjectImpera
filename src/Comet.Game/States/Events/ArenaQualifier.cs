@@ -93,7 +93,7 @@ namespace Comet.Game.States.Events
                     string[] row = rows[i].Split('=');
                     if (i == 0)
                     {
-                        int.TryParse(row[1], out count);
+                        _ = int.TryParse(row[1], out count);
                         continue;
                     }
 
@@ -105,14 +105,14 @@ namespace Comet.Game.States.Events
 
                     string[] values = row[1].Split('/');
 
-                    int.TryParse(values[0], out var honor);
-                    int.TryParse(values[1], out var monthlyHonor);
+                    _ = int.TryParse(values[0], out var honor);
+                    _ = int.TryParse(values[1], out var monthlyHonor);
 
-                    m_rewards.TryAdd(rank, new HonorRewards
+                    _ = m_rewards.TryAdd(rank, new HonorRewards
                     {
                         MonthlyHonor = monthlyHonor,
                         Honor = honor,
-                        Rank = rank                        
+                        Rank = rank
                     });
                 }
             }
@@ -192,7 +192,7 @@ namespace Comet.Game.States.Events
                 Character player = Kernel.RoleManager.GetUser(queueUser.Identity);
                 if (player == null)
                 {
-                    await UnsubscribeAsync(queueUser.Identity);
+                    _ = await UnsubscribeAsync(queueUser.Identity);
                     continue;
                 }
 
@@ -203,32 +203,32 @@ namespace Comet.Game.States.Events
                 Character targetPlayer = Kernel.RoleManager.GetUser(target.Identity);
                 if (targetPlayer == null)
                 {
-                    await UnsubscribeAsync(target.Identity);
+                    _ = await UnsubscribeAsync(target.Identity);
                     continue;
                 }
 
                 if (!IsAllowedToJoin(player))
                 {
-                    await UnsubscribeAsync(player.Identity);
+                    _ = await UnsubscribeAsync(player.Identity);
                     continue;
                 }
 
                 if (!IsAllowedToJoin(targetPlayer))
                 {
-                    await UnsubscribeAsync(player.Identity);
+                    _ = await UnsubscribeAsync(player.Identity);
                     continue;
                 }
 
                 QualifierMatch match = new QualifierMatch();
                 if (!await match.CreateAsync(player, queueUser, targetPlayer, target) || !m_matches.TryAdd(match.MapIdentity, match))
                 {
-                    await UnsubscribeAsync(queueUser.Identity);
-                    await UnsubscribeAsync(target.Identity);
+                    _ = await UnsubscribeAsync(queueUser.Identity);
+                    _ = await UnsubscribeAsync(target.Identity);
                     continue;
                 }
 
-                m_awaitingQueue.TryRemove(player.Identity, out _);
-                m_awaitingQueue.TryRemove(target.Identity, out _);
+                _ = m_awaitingQueue.TryRemove(player.Identity, out _);
+                _ = m_awaitingQueue.TryRemove(target.Identity, out _);
 
                 player.QualifierStatus = MsgQualifyingDetailInfo.ArenaStatus.WaitingInactive;
                 targetPlayer.QualifierStatus = MsgQualifyingDetailInfo.ArenaStatus.WaitingInactive;
@@ -241,7 +241,7 @@ namespace Comet.Game.States.Events
             {
                 if (match.Status == QualifierMatch.MatchStatus.ReadyToDispose)
                 {
-                    m_matches.TryRemove(match.MapIdentity, out _);
+                    _ = m_matches.TryRemove(match.MapIdentity, out _);
                     continue;
                 }
 
@@ -262,7 +262,7 @@ namespace Comet.Game.States.Events
                 return false;
 
             if (EnterQueue(user) != null)
-                await user.SignInEventAsync(this);
+                _ = await user.SignInEventAsync(this);
             return true;
         }
         
@@ -270,11 +270,11 @@ namespace Comet.Game.States.Events
         {
             Character user = Kernel.RoleManager.GetUser(idUser);
 
-            LeaveQueue(idUser);
+            _ = LeaveQueue(idUser);
             if (user != null)
             {
                 user.QualifierStatus = MsgQualifyingDetailInfo.ArenaStatus.NotSignedUp;
-                await user.SignOutEventAsync();
+                _ = await user.SignOutEventAsync();
             }
             return true;
         }
@@ -306,8 +306,8 @@ namespace Comet.Game.States.Events
             if (!m_arenics.TryGetValue(match.Player1.Identity, out var arenic) 
                 || arenic.Date.Date != DateTime.Now.Date)
             {
-                m_arenics.TryRemove(match.Player1.Identity, out _);
-                m_arenics.TryAdd(match.Player1.Identity, arenic = new DbArenic
+                _ = m_arenics.TryRemove(match.Player1.Identity, out _);
+                _ = m_arenics.TryAdd(match.Player1.Identity, arenic = new DbArenic
                 {
                     UserId = match.Player1.Identity,
                     Date = DateTime.Now.Date
@@ -320,13 +320,13 @@ namespace Comet.Game.States.Events
             arenic.CurrentHonor = match.Player1.HonorPoints;
             arenic.HistoryHonor = match.Player1.HistoryHonorPoints;
 
-            await BaseRepository.SaveAsync(arenic);
+            _ = await BaseRepository.SaveAsync(arenic);
 
             if (!m_arenics.TryGetValue(match.Player2.Identity, out arenic)
                 || arenic.Date.Date != DateTime.Now.Date)
             {
-                m_arenics.TryRemove(match.Player2.Identity, out _);
-                m_arenics.TryAdd(match.Player2.Identity, arenic = new DbArenic
+                _ = m_arenics.TryRemove(match.Player2.Identity, out _);
+                _ = m_arenics.TryAdd(match.Player2.Identity, arenic = new DbArenic
                 {
                     UserId = match.Player2.Identity,
                     Date = DateTime.Now.Date
@@ -339,7 +339,7 @@ namespace Comet.Game.States.Events
             arenic.CurrentHonor = match.Player2.HonorPoints;
             arenic.HistoryHonor = match.Player2.HistoryHonorPoints;
 
-            await BaseRepository.SaveAsync(arenic);
+            _ = await BaseRepository.SaveAsync(arenic);
         }
 
         public async Task<QualifierUser> FindTargetAsync(QualifierUser request)
@@ -563,7 +563,7 @@ namespace Comet.Game.States.Events
 
             public async Task<bool> StartAsync()
             {
-                m_confirmation.Clear();
+                _ = m_confirmation.Clear();
 
                 ArenaQualifier qualifier = Kernel.EventThread.GetEvent<ArenaQualifier>();
                 if (qualifier == null)
@@ -589,7 +589,7 @@ namespace Comet.Game.States.Events
                     return false;
                 }
 
-                Kernel.MapManager.AddMap(Map);
+                _ = Kernel.MapManager.AddMap(Map);
                 
                 if (!await PrepareAsync(Player1, Object1, Player2, Object2))
                 {
@@ -620,7 +620,7 @@ namespace Comet.Game.States.Events
                 if (!qualifier.IsAllowedToJoin(sender))
                     return false;
 
-                await sender.DetachAllStatusAsync();
+                _ = await sender.DetachAllStatusAsync();
 
                 if (!sender.IsAlive)
                     await sender.RebornAsync(false, true);
@@ -639,7 +639,7 @@ namespace Comet.Game.States.Events
                 int x = 32 + await Kernel.NextAsync(37);
                 int y = 32 + await Kernel.NextAsync(37);
 
-                await sender.FlyMapAsync(MapIdentity, x, y);
+                _ = await sender.FlyMapAsync(MapIdentity, x, y);
 
                 await sender.SendAsync(new MsgQualifyingInteractive
                 {
@@ -669,9 +669,9 @@ namespace Comet.Game.States.Events
                     Option = 5
                 });
 
-                await sender.SetAttributesAsync(ClientUpdateType.Hitpoints, sender.MaxLife);
-                await sender.SetAttributesAsync(ClientUpdateType.Mana, sender.MaxMana);
-                await sender.SetAttributesAsync(ClientUpdateType.Stamina, sender.MaxEnergy);
+                _ = await sender.SetAttributesAsync(ClientUpdateType.Hitpoints, sender.MaxLife);
+                _ = await sender.SetAttributesAsync(ClientUpdateType.Mana, sender.MaxMana);
+                _ = await sender.SetAttributesAsync(ClientUpdateType.Stamina, sender.MaxEnergy);
                 await sender.ClsXpValAsync();
             }
 
@@ -683,7 +683,7 @@ namespace Comet.Game.States.Events
                     if (!notStarted)
                     {
                         if (Player1 != null && Player1.MapIdentity == Map.Identity)
-                            await Player1.FlyMapAsync(Player1.RecordMapIdentity, Player1.RecordMapX,
+                            _ = await Player1.FlyMapAsync(Player1.RecordMapIdentity, Player1.RecordMapX,
                                 Player1.RecordMapY);
 
                         if (!Player1.IsAlive)
@@ -692,8 +692,8 @@ namespace Comet.Game.States.Events
                         }
                         else
                         {
-                            await Player1.SetAttributesAsync(ClientUpdateType.Hitpoints, Player1.MaxLife);
-                            await Player1.SetAttributesAsync(ClientUpdateType.Mana, Player1.MaxMana);
+                            _ = await Player1.SetAttributesAsync(ClientUpdateType.Hitpoints, Player1.MaxLife);
+                            _ = await Player1.SetAttributesAsync(ClientUpdateType.Mana, Player1.MaxMana);
                         }
 
                         await Player1.SetPkModeAsync();
@@ -712,7 +712,7 @@ namespace Comet.Game.States.Events
                     if (!notStarted)
                     {
                         if (Player2 != null && Player2.MapIdentity == Map.Identity)
-                            await Player2.FlyMapAsync(Player2.RecordMapIdentity, Player2.RecordMapX,
+                            _ = await Player2.FlyMapAsync(Player2.RecordMapIdentity, Player2.RecordMapX,
                                 Player2.RecordMapY);
 
                         if (!Player2.IsAlive)
@@ -721,8 +721,8 @@ namespace Comet.Game.States.Events
                         }
                         else
                         {
-                            await Player2.SetAttributesAsync(ClientUpdateType.Hitpoints, Player2.MaxLife);
-                            await Player2.SetAttributesAsync(ClientUpdateType.Mana, Player2.MaxMana);
+                            _ = await Player2.SetAttributesAsync(ClientUpdateType.Hitpoints, Player2.MaxLife);
+                            _ = await Player2.SetAttributesAsync(ClientUpdateType.Mana, Player2.MaxMana);
                         }
 
                         await Player2.SetPkModeAsync();
@@ -737,7 +737,7 @@ namespace Comet.Game.States.Events
 
                 if (Map != null)
                 {
-                    Kernel.MapManager.RemoveMap(Map.Identity);
+                    _ = Kernel.MapManager.RemoveMap(Map.Identity);
                 }
 
                 MapIdentityGenerator.ReturnIdentity(MapIdentity);
@@ -771,14 +771,14 @@ namespace Comet.Game.States.Events
                 {
                     winner.HonorPoints += TRIUMPH_HONOR_REWARD;
                     winner.HistoryHonorPoints += TRIUMPH_HONOR_REWARD;
-                    await winner.UserPackage.AwardItemAsync(723912);
+                    _ = await winner.UserPackage.AwardItemAsync(723912);
                 }
 
                 if (winner.QualifierDayGames == 20)
                 {
                     winner.HonorPoints += TRIUMPH_HONOR_REWARD;
                     winner.HistoryHonorPoints += TRIUMPH_HONOR_REWARD;
-                    await winner.UserPackage.AwardItemAsync(723912);
+                    _ = await winner.UserPackage.AwardItemAsync(723912);
                 }
 
                 //await winner.SendAsync(new MsgQualifyingInteractive
@@ -802,7 +802,7 @@ namespace Comet.Game.States.Events
                     loser.HonorPoints += TRIUMPH_HONOR_REWARD;
                     loser.HistoryHonorPoints += TRIUMPH_HONOR_REWARD;
 
-                    await loser.UserPackage.AwardItemAsync(723912);
+                    _ = await loser.UserPackage.AwardItemAsync(723912);
                 }
 
                 //await loser.SendAsync(new MsgQualifyingInteractive
@@ -853,7 +853,7 @@ namespace Comet.Game.States.Events
                 {
                     Player1.HonorPoints += TRIUMPH_HONOR_REWARD;
                     Player1.HistoryHonorPoints += TRIUMPH_HONOR_REWARD;
-                    await Player1.UserPackage.AwardItemAsync(723912);
+                    _ = await Player1.UserPackage.AwardItemAsync(723912);
                 }
 
                 await Player1.SendAsync(new MsgQualifyingInteractive
@@ -870,7 +870,7 @@ namespace Comet.Game.States.Events
                 {
                     Player2.HonorPoints += TRIUMPH_HONOR_REWARD;
                     Player2.HistoryHonorPoints += TRIUMPH_HONOR_REWARD;
-                    await Player2.UserPackage.AwardItemAsync(723912);
+                    _ = await Player2.UserPackage.AwardItemAsync(723912);
                 }
 
                 await Player2.SendAsync(new MsgQualifyingInteractive

@@ -274,8 +274,8 @@ namespace Comet.Game.Packets
 
                         if (user.QueryRequest(RequestType.Guide) == Identity)
                         {
-                            user.PopRequest(RequestType.Guide);
-                            await Character.CreateTutorRelationAsync(user, target);
+                            _ = user.PopRequest(RequestType.Guide);
+                            _ = await Character.CreateTutorRelationAsync(user, target);
                             return;
                         }
 
@@ -296,8 +296,8 @@ namespace Comet.Game.Packets
 
                         if (user.QueryRequest(RequestType.Guide) == Identity)
                         {
-                            user.PopRequest(RequestType.Guide);
-                            await Character.CreateTutorRelationAsync(target, user);
+                            _ = user.PopRequest(RequestType.Guide);
+                            _ = await Character.CreateTutorRelationAsync(target, user);
                             return;
                         }
 

@@ -271,7 +271,7 @@ namespace Comet.Game.World.Maps
                     if (nType == WeatherType.WeatherCloudy)
                         nKeepSecs *= 5;
 
-                    await SetNewWeatherAsync(nType, nIntensity, nDir, m_nDefaultColor, nKeepSecs, m_nDefaultSpeedSecs);
+                    _ = await SetNewWeatherAsync(nType, nIntensity, nDir, m_nDefaultColor, nKeepSecs, m_nDefaultSpeedSecs);
 
                     return;
                 }

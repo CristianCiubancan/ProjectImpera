@@ -98,7 +98,7 @@ namespace Comet.Game.States.Events
 
             if (!mSyndicateData.TryGetValue(player.SyndicateIdentity, out var synData))
             {
-                mSyndicateData.TryAdd(player.SyndicateIdentity, synData = new SyndicateData
+                _ = mSyndicateData.TryAdd(player.SyndicateIdentity, synData = new SyndicateData
                 {
                     Identity = player.SyndicateIdentity,
                     Name = player.SyndicateName,
@@ -108,7 +108,7 @@ namespace Comet.Game.States.Events
 
             if (!synData.PlayerData.TryGetValue(player.Identity, out var userData))
             {
-                synData.PlayerData.TryAdd(player.Identity, userData = new ContestPlayerData
+                _ = synData.PlayerData.TryAdd(player.Identity, userData = new ContestPlayerData
                 {
                     Identity = player.Identity,
                     Name = player.Name,
@@ -123,12 +123,12 @@ namespace Comet.Game.States.Events
         public void RemoveUserFromEvent(uint idUser, uint idSyndicate)
         {
             if (mSyndicateData.TryGetValue(idSyndicate, out var synData))
-                synData.PlayerData.TryRemove(idUser, out _);
+                _ = synData.PlayerData.TryRemove(idUser, out _);
         }
 
         public void RemoveFromEvent(uint idSyndicate)
         {
-            mSyndicateData.TryRemove(idSyndicate, out _);
+            _ = mSyndicateData.TryRemove(idSyndicate, out _);
         }
 
         #region Override
@@ -269,7 +269,7 @@ namespace Comet.Game.States.Events
 
                     if (data.Deaths > MAX_DEATHS_PER_PLAYER)
                     {
-                        await sender.FlyMapAsync(sender.RecordMapIdentity, sender.RecordMapX, sender.RecordMapY);
+                        _ = await sender.FlyMapAsync(sender.RecordMapIdentity, sender.RecordMapX, sender.RecordMapY);
                         await Kernel.RoleManager.BroadcastMsgAsync(string.Format(Language.StrSyndicateContestElimination, 
                             sender.Name, sender.SyndicateName, data.Deaths));
                     }
@@ -284,14 +284,14 @@ namespace Comet.Game.States.Events
             {
                 mSyndicateData.Clear();
 
-                mUpdateScreen.Update();
+                _ = mUpdateScreen.Update();
             }
             else if (mNpc.Data0 == 2) // running
             {
                 foreach (var data in Kernel.RoleManager.QueryRoleByMap<Character>(MAP_ID))
                 {
                     if (data.SyndicateIdentity == 0)
-                        await data.FlyMapAsync(data.RecordMapIdentity, data.RecordMapX, data.RecordMapY);
+                        _ = await data.FlyMapAsync(data.RecordMapIdentity, data.RecordMapX, data.RecordMapY);
                 }
 
                 if (mUpdateScreen.ToNextTime())
@@ -344,7 +344,7 @@ namespace Comet.Game.States.Events
                             await user.SendAsync(string.Format(Language.StrSyndicateContestRewardNotify,
                                 userRank, userMoneyReward, userEmoneyReward, rank + 1), MsgTalk.TalkChannel.Talk);
 
-                            await user.FlyMapAsync(user.RecordMapIdentity, user.RecordMapX, user.RecordMapY);
+                            _ = await user.FlyMapAsync(user.RecordMapIdentity, user.RecordMapX, user.RecordMapY);
                         }
                         else
                         {
@@ -353,7 +353,7 @@ namespace Comet.Game.States.Events
                             {
                                 dbUser.Silver = (uint)Math.Max(0, Math.Min(int.MaxValue, dbUser.Silver + userMoneyReward));
                                 dbUser.ConquerPoints = (uint)Math.Max(0, Math.Min(int.MaxValue, dbUser.ConquerPoints + userEmoneyReward));
-                                await BaseRepository.SaveAsync(dbUser);
+                                _ = await BaseRepository.SaveAsync(dbUser);
                             }
                         }
                         userRank++;

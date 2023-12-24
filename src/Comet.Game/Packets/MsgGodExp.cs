@@ -79,9 +79,9 @@ namespace Comet.Game.Packets
                     {
                         if (user.OnlineTrainingExp > 0)
                         {
-                            await user.AwardExperienceAsync(user.CalculateExpBall((int)user.OnlineTrainingExp), true);
+                            _ = await user.AwardExperienceAsync(user.CalculateExpBall((int)user.OnlineTrainingExp), true);
                             user.OnlineTrainingExp = 0;
-                            await user.SaveAsync();
+                            _ = await user.SaveAsync();
 
                             await client.SendAsync(new MsgGodExp
                             {
@@ -98,9 +98,9 @@ namespace Comet.Game.Packets
                     {
                         if (user.GodTimeExp > 0)
                         {
-                            await user.AwardExperienceAsync(user.CalculateExpBall((int)user.GodTimeExp), true);
+                            _ = await user.AwardExperienceAsync(user.CalculateExpBall((int)user.GodTimeExp), true);
                             user.GodTimeExp = 0;
-                            await user.SaveAsync();
+                            _ = await user.SaveAsync();
 
                             await client.SendAsync(new MsgGodExp
                             {

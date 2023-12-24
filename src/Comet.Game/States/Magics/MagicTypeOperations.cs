@@ -53,125 +53,125 @@ namespace Comet.Game.States.Magics
             Operation = (MagictypeOperation) dbOp.MagictypeOp;
 
             if (dbOp.Skill1 != 0)
-                AppendMagic(dbOp.Skill1);
+                _ = AppendMagic(dbOp.Skill1);
             if (dbOp.Skill2 != 0)
-                AppendMagic(dbOp.Skill2);
+                _ = AppendMagic(dbOp.Skill2);
             if (dbOp.Skill3 != 0)
-                AppendMagic(dbOp.Skill3);
+                _ = AppendMagic(dbOp.Skill3);
             if (dbOp.Skill4 != 0)
-                AppendMagic(dbOp.Skill4);
+                _ = AppendMagic(dbOp.Skill4);
             if (dbOp.Skill5 != 0)
-                AppendMagic(dbOp.Skill5);
+                _ = AppendMagic(dbOp.Skill5);
             if (dbOp.Skill6 != 0)
-                AppendMagic(dbOp.Skill6);
+                _ = AppendMagic(dbOp.Skill6);
             if (dbOp.Skill7 != 0)
-                AppendMagic(dbOp.Skill7);
+                _ = AppendMagic(dbOp.Skill7);
             if (dbOp.Skill8 != 0)
-                AppendMagic(dbOp.Skill8);
+                _ = AppendMagic(dbOp.Skill8);
             if (dbOp.Skill9 != 0)
-                AppendMagic(dbOp.Skill9);
+                _ = AppendMagic(dbOp.Skill9);
             if (dbOp.Skill10 != 0)
-                AppendMagic(dbOp.Skill10);
+                _ = AppendMagic(dbOp.Skill10);
             if (dbOp.Skill11 != 0)
-                AppendMagic(dbOp.Skill11);
+                _ = AppendMagic(dbOp.Skill11);
             if (dbOp.Skill12 != 0)
-                AppendMagic(dbOp.Skill12);
+                _ = AppendMagic(dbOp.Skill12);
             if (dbOp.Skill13 != 0)
-                AppendMagic(dbOp.Skill13);
+                _ = AppendMagic(dbOp.Skill13);
             if (dbOp.Skill14 != 0)
-                AppendMagic(dbOp.Skill14);
+                _ = AppendMagic(dbOp.Skill14);
             if (dbOp.Skill15 != 0)
-                AppendMagic(dbOp.Skill15);
+                _ = AppendMagic(dbOp.Skill15);
             if (dbOp.Skill16 != 0)
-                AppendMagic(dbOp.Skill16);
+                _ = AppendMagic(dbOp.Skill16);
             if (dbOp.Skill17 != 0)
-                AppendMagic(dbOp.Skill17);
+                _ = AppendMagic(dbOp.Skill17);
             if (dbOp.Skill18 != 0)
-                AppendMagic(dbOp.Skill18);
+                _ = AppendMagic(dbOp.Skill18);
             if (dbOp.Skill19 != 0)
-                AppendMagic(dbOp.Skill19);
+                _ = AppendMagic(dbOp.Skill19);
             if (dbOp.Skill20 != 0)
-                AppendMagic(dbOp.Skill20);
+                _ = AppendMagic(dbOp.Skill20);
             if (dbOp.Skill21 != 0)
-                AppendMagic(dbOp.Skill21);
+                _ = AppendMagic(dbOp.Skill21);
             if (dbOp.Skill22 != 0)
-                AppendMagic(dbOp.Skill22);
+                _ = AppendMagic(dbOp.Skill22);
             if (dbOp.Skill23 != 0)
-                AppendMagic(dbOp.Skill23);
+                _ = AppendMagic(dbOp.Skill23);
             if (dbOp.Skill24 != 0)
-                AppendMagic(dbOp.Skill24);
+                _ = AppendMagic(dbOp.Skill24);
             if (dbOp.Skill25 != 0)
-                AppendMagic(dbOp.Skill25);
+                _ = AppendMagic(dbOp.Skill25);
             if (dbOp.Skill26 != 0)
-                AppendMagic(dbOp.Skill26);
+                _ = AppendMagic(dbOp.Skill26);
             if (dbOp.Skill27 != 0)
-                AppendMagic(dbOp.Skill27);
+                _ = AppendMagic(dbOp.Skill27);
             if (dbOp.Skill28 != 0)
-                AppendMagic(dbOp.Skill28);
+                _ = AppendMagic(dbOp.Skill28);
             if (dbOp.Skill29 != 0)
-                AppendMagic(dbOp.Skill29);
+                _ = AppendMagic(dbOp.Skill29);
             if (dbOp.Skill30 != 0)
-                AppendMagic(dbOp.Skill30);
+                _ = AppendMagic(dbOp.Skill30);
             if (dbOp.Skill31 != 0)
-                AppendMagic(dbOp.Skill31);
+                _ = AppendMagic(dbOp.Skill31);
             if (dbOp.Skill32 != 0)
-                AppendMagic(dbOp.Skill32);
+                _ = AppendMagic(dbOp.Skill32);
             if (dbOp.Skill33 != 0)
-                AppendMagic(dbOp.Skill33);
+                _ = AppendMagic(dbOp.Skill33);
             if (dbOp.Skill34 != 0)
-                AppendMagic(dbOp.Skill34);
+                _ = AppendMagic(dbOp.Skill34);
             if (dbOp.Skill35 != 0)
-                AppendMagic(dbOp.Skill35);
+                _ = AppendMagic(dbOp.Skill35);
             if (dbOp.Skill36 != 0)
-                AppendMagic(dbOp.Skill36);
+                _ = AppendMagic(dbOp.Skill36);
             if (dbOp.Skill37 != 0)
-                AppendMagic(dbOp.Skill37);
+                _ = AppendMagic(dbOp.Skill37);
             if (dbOp.Skill38 != 0)
-                AppendMagic(dbOp.Skill38);
+                _ = AppendMagic(dbOp.Skill38);
             if (dbOp.Skill39 != 0)
-                AppendMagic(dbOp.Skill39);
+                _ = AppendMagic(dbOp.Skill39);
             if (dbOp.Skill40 != 0)
-                AppendMagic(dbOp.Skill40);
+                _ = AppendMagic(dbOp.Skill40);
             if (dbOp.Skill41 != 0)
-                AppendMagic(dbOp.Skill41);
+                _ = AppendMagic(dbOp.Skill41);
             if (dbOp.Skill42 != 0)
-                AppendMagic(dbOp.Skill42);
+                _ = AppendMagic(dbOp.Skill42);
             if (dbOp.Skill43 != 0)
-                AppendMagic(dbOp.Skill43);
+                _ = AppendMagic(dbOp.Skill43);
             if (dbOp.Skill44 != 0)
-                AppendMagic(dbOp.Skill44);
+                _ = AppendMagic(dbOp.Skill44);
             if (dbOp.Skill45 != 0)
-                AppendMagic(dbOp.Skill45);
+                _ = AppendMagic(dbOp.Skill45);
             if (dbOp.Skill46 != 0)
-                AppendMagic(dbOp.Skill46);
+                _ = AppendMagic(dbOp.Skill46);
             if (dbOp.Skill47 != 0)
-                AppendMagic(dbOp.Skill47);
+                _ = AppendMagic(dbOp.Skill47);
             if (dbOp.Skill48 != 0)
-                AppendMagic(dbOp.Skill48);
+                _ = AppendMagic(dbOp.Skill48);
             if (dbOp.Skill49 != 0)
-                AppendMagic(dbOp.Skill49);
+                _ = AppendMagic(dbOp.Skill49);
             if (dbOp.Skill50 != 0)
-                AppendMagic(dbOp.Skill50);
+                _ = AppendMagic(dbOp.Skill50);
             if (dbOp.Skill51 != 0)
-                AppendMagic(dbOp.Skill51);
+                _ = AppendMagic(dbOp.Skill51);
             if (dbOp.Skill52 != 0)
-                AppendMagic(dbOp.Skill52);
+                _ = AppendMagic(dbOp.Skill52);
             if (dbOp.Skill53 != 0)
-                AppendMagic(dbOp.Skill53);
+                _ = AppendMagic(dbOp.Skill53);
             if (dbOp.Skill54 != 0)
-                AppendMagic(dbOp.Skill54);
+                _ = AppendMagic(dbOp.Skill54);
             if (dbOp.Skill55 != 0)
-                AppendMagic(dbOp.Skill55);
+                _ = AppendMagic(dbOp.Skill55);
             if (dbOp.Skill56 != 0)
-                AppendMagic(dbOp.Skill56);
+                _ = AppendMagic(dbOp.Skill56);
             if (dbOp.Skill57 != 0)
-                AppendMagic(dbOp.Skill57);
+                _ = AppendMagic(dbOp.Skill57);
             if (dbOp.Skill58 != 0)
-                AppendMagic(dbOp.Skill58);
+                _ = AppendMagic(dbOp.Skill58);
             if (dbOp.Skill59 != 0)
-                AppendMagic(dbOp.Skill59);
+                _ = AppendMagic(dbOp.Skill59);
             if (dbOp.Skill60 != 0)
-                AppendMagic(dbOp.Skill60);
+                _ = AppendMagic(dbOp.Skill60);
         }
 
         public bool AppendMagic(ushort nMagicId)

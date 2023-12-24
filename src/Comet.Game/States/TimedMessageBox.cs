@@ -31,7 +31,7 @@ namespace Comet.Game.States
             ushort x = TargetMapX[idx],
                    y = TargetMapY[idx];
 
-            await m_owner.FlyMapAsync(TargetMapIdentity, x, y);
+            _ = await m_owner.FlyMapAsync(TargetMapIdentity, x, y);
         }
 
         public override Task OnTimerAsync()

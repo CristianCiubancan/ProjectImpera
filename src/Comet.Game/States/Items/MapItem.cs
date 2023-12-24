@@ -99,7 +99,7 @@ namespace Comet.Game.States.Items
                 m_idOwner = idOwner;
                 m_tProtection = new TimeOut(_MAPITEM_PRIV_SECS);
                 m_tProtection.Startup(_MAPITEM_PRIV_SECS);
-                m_tProtection.Update();
+                _ = m_tProtection.Update();
             }
 
             return true;
@@ -117,7 +117,7 @@ namespace Comet.Game.States.Items
                 nAliveSecs = _MAPITEM_USERMAX_ALIVESECS;
 
             m_tAlive = new TimeOut(nAliveSecs);
-            m_tAlive.Update();
+            _ = m_tAlive.Update();
 
             m_idMap = map.Identity;
             Map = map;
@@ -148,7 +148,7 @@ namespace Comet.Game.States.Items
             }
 
             m_tAlive = new TimeOut(nAliveSecs);
-            m_tAlive.Update();
+            _ = m_tAlive.Update();
 
             m_idMap = map.Identity;
             Map = map;
@@ -178,7 +178,7 @@ namespace Comet.Game.States.Items
                 m_idOwner = idOwner;
                 m_tProtection = new TimeOut(_MAPITEM_PRIV_SECS);
                 m_tProtection.Startup(_MAPITEM_PRIV_SECS);
-                m_tProtection.Update();
+                _ = m_tProtection.Update();
             }
 
             return true;
@@ -309,11 +309,11 @@ namespace Comet.Game.States.Items
             {
                 m_itemInfo = new Item(owner);
 
-                await m_itemInfo.CreateAsync(m_itemtype);
+                _ = await m_itemInfo.CreateAsync(m_itemtype);
 
                 m_itemInfo.Color = m_info.Color;
 
-                m_itemInfo.ChangeAddition(m_info.Addition);
+                _ = m_itemInfo.ChangeAddition(m_info.Addition);
                 m_itemInfo.ReduceDamage = m_info.ReduceDamage;
 
                 if (m_info.SocketNum > 0)
@@ -328,7 +328,7 @@ namespace Comet.Game.States.Items
 
             m_itemInfo.Position = Item.ItemPosition.Inventory;
             await m_itemInfo.ChangeOwnerAsync(owner.Identity, Item.ChangeOwnerType.PickupItem);
-            await m_itemInfo.SaveAsync();
+            _ = await m_itemInfo.SaveAsync();
             return m_itemInfo;
         }
 
@@ -358,7 +358,7 @@ namespace Comet.Game.States.Items
         public async Task DisappearAsync()
         {
             if (m_itemInfo != null)
-                await m_itemInfo.DeleteAsync(Item.ChangeOwnerType.DeleteDroppedItem);
+                _ = await m_itemInfo.DeleteAsync(Item.ChangeOwnerType.DeleteDroppedItem);
 
             await LeaveMapAsync();
         }
@@ -367,7 +367,7 @@ namespace Comet.Game.States.Items
         {
             Map = Kernel.MapManager.GetMap(MapIdentity);
             if (Map != null)
-                await Map.AddAsync(this);
+                _ = await Map.AddAsync(this);
         }
 
         public override async Task LeaveMapAsync()
@@ -384,8 +384,8 @@ namespace Comet.Game.States.Items
                     Mode = DropType.DisappearItem
                 };
                 await Map.BroadcastRoomMsgAsync(MapX, MapY, msg);
-                await Map.RemoveAsync(Identity);
-                Kernel.RoleManager.RemoveRole(Identity);
+                _ = await Map.RemoveAsync(Identity);
+                _ = Kernel.RoleManager.RemoveRole(Identity);
             }
             Map = null;
         }

@@ -55,9 +55,9 @@ namespace Comet.Game.Packets
             Identity = reader.ReadUInt32(); // 4
             Action = (MsgFriendAction) reader.ReadByte(); // 8
             Online = reader.ReadBoolean(); // 9
-            reader.ReadInt16(); // 10
-            reader.ReadInt32(); // 12
-            reader.ReadInt32(); // 16
+            _ = reader.ReadInt16(); // 10
+            _ = reader.ReadInt32(); // 12
+            _ = reader.ReadInt32(); // 16
             Name = reader.ReadString(16); // 20
         }
 
@@ -111,8 +111,8 @@ namespace Comet.Game.Packets
                     uint request = target.QueryRequest(RequestType.Friend);
                     if (request == user.Identity)
                     {
-                        target.PopRequest(RequestType.Friend);
-                        await target.CreateFriendAsync(user);
+                        _ = target.PopRequest(RequestType.Friend);
+                        _ = await target.CreateFriendAsync(user);
                     }
                     else
                     {
@@ -128,11 +128,11 @@ namespace Comet.Game.Packets
                     break;
 
                 case MsgFriendAction.RemoveFriend:
-                    await user.DeleteFriendAsync(Identity, true);
+                    _ = await user.DeleteFriendAsync(Identity, true);
                     break;
 
                 case MsgFriendAction.RemoveEnemy:
-                    await user.DeleteEnemyAsync(Identity);
+                    _ = await user.DeleteEnemyAsync(Identity);
                     break;
             }
         }

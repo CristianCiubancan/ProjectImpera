@@ -108,7 +108,7 @@ namespace Comet.Game.Packets
                             uint idTask = user.GetTaskId(OptionIndex);
 
                             user.ClearTaskId();
-                            await GameAction.ExecuteActionAsync(idTask, user,
+                            _ = await GameAction.ExecuteActionAsync(idTask, user,
                                 Kernel.RoleManager.GetRole(user.InteractingNpc), user.UserPackage[user.InteractingItem], Text);
                         }
 
@@ -160,7 +160,7 @@ namespace Comet.Game.Packets
                         }
 
                         user.ClearTaskId();
-                        await GameAction.ExecuteActionAsync(await user.TestTaskAsync(task) ? task.IdNext : task.IdNextfail, user,
+                        _ = await GameAction.ExecuteActionAsync(await user.TestTaskAsync(task) ? task.IdNext : task.IdNextfail, user,
                             targetRole, user.UserPackage[user.InteractingItem], Text);
                         break;
                     }
@@ -172,7 +172,7 @@ namespace Comet.Game.Packets
                                 user.SyndicateRank < SyndicateMember.SyndicateRank.DeputyLeader)
                                 return;
 
-                            await user.Syndicate.KickOutMemberAsync(user, Text);
+                            _ = await user.Syndicate.KickOutMemberAsync(user, Text);
                             await user.Syndicate.SendMembersAsync(0, user);
                             return;
                         }

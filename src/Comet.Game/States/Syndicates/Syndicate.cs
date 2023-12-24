@@ -228,15 +228,15 @@ namespace Comet.Game.States.Syndicates
                         if (!m_dicMembers.TryGetValue(item.PlayerId, out var member))
                         {
                             item.Syndicate = 0;
-                            await BaseRepository.SaveAsync(item);
+                            _ = await BaseRepository.SaveAsync(item);
                             continue;
                         }
 
-                        pole.Totems.TryAdd(item.Id, new Totem(item, member.UserName));
+                        _ = pole.Totems.TryAdd(item.Id, new Totem(item, member.UserName));
                     }
                 }
 
-                m_totemPoles.TryAdd(totemPole, pole);
+                _ = m_totemPoles.TryAdd(totemPole, pole);
 
                 if (pole.Donation >= 5000000)
                     Level += 1;
@@ -250,7 +250,7 @@ namespace Comet.Game.States.Syndicates
                     && member.Rank != SyndicateMember.SyndicateRank.LeaderSpouse)
                 {
                     member.Rank = SyndicateMember.SyndicateRank.LeaderSpouse;
-                    await member.SaveAsync();
+                    _ = await member.SaveAsync();
                     continue;
                 }
 
@@ -270,7 +270,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.Manager;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -288,7 +288,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.RoseSupervisor;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -305,7 +305,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.LilySupervisor;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -322,7 +322,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.OrchidSupervisor;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -339,7 +339,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.TulipSupervisor;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -356,7 +356,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.PkSupervisor;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -373,7 +373,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.GuideSupervisor;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -390,7 +390,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.SilverSupervisor;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -407,7 +407,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.CpSupervisor;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -424,7 +424,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.ArsenalSupervisor;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -441,7 +441,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.Supervisor;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -459,7 +459,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.Steward;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -470,7 +470,7 @@ namespace Comet.Game.States.Syndicates
                 .Where(x => x.Rank == SyndicateMember.SyndicateRank.Member && x.UsableDonation >= 170000))
             {
                 member.Rank = SyndicateMember.SyndicateRank.DeputySteward;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -488,7 +488,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.RoseAgent;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -505,7 +505,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.LilyAgent;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -522,7 +522,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.OrchidAgent;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -539,7 +539,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.TulipAgent;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -556,7 +556,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.PkAgent;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -573,7 +573,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.GuideAgent;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -590,7 +590,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.SilverAgent;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -607,7 +607,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.CpAgent;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -624,7 +624,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.ArsenalAgent;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -641,7 +641,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.Agent;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -659,7 +659,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.RoseFollower;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -676,7 +676,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.LilyFollower;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -693,7 +693,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.OrchidFollower;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -710,7 +710,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.TulipFollower;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -727,7 +727,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.PkFollower;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -744,7 +744,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.GuideFollower;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -761,7 +761,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.SilverFollower;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -778,7 +778,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.CpFollower;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -795,7 +795,7 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.ArsenalFollower;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
@@ -812,12 +812,12 @@ namespace Comet.Game.States.Syndicates
                 if (amount++ >= maxAmount)
                     break;
                 member.Rank = SyndicateMember.SyndicateRank.Follower;
-                await member.SaveAsync();
+                _ = await member.SaveAsync();
             }
 
             #endregion
 
-            await SaveAsync();
+            _ = await SaveAsync();
             UpdateBattlePower();
             return true;
         }
@@ -853,18 +853,18 @@ namespace Comet.Game.States.Syndicates
             m_leader = new SyndicateMember();
             if (!await m_leader.CreateAsync(leader, this, SyndicateMember.SyndicateRank.GuildLeader))
             {
-                await DeleteAsync();
+                _ = await DeleteAsync();
                 return false;
             }
 
             m_leader.Silvers = investment / 2;
-            await m_leader.SaveAsync();
+            _ = await m_leader.SaveAsync();
 
-            m_dicMembers.TryAdd(m_leader.UserIdentity, m_leader);
+            _ = m_dicMembers.TryAdd(m_leader.UserIdentity, m_leader);
 
             for (TotemPoleType totemPole = TotemPoleType.Headgear; totemPole < TotemPoleType.None; totemPole++)
             {
-                m_totemPoles.TryAdd(totemPole, new TotemPole(totemPole));
+                _ = m_totemPoles.TryAdd(totemPole, new TotemPole(totemPole));
             }
 
             return true;
@@ -878,7 +878,7 @@ namespace Comet.Game.States.Syndicates
                 // validate alliance
                 if ((await SyndicateAllyRepository.GetAsync(ally.AllyIdentity)).All(x => x.AllyIdentity != ally.SyndicateIdentity))
                 {
-                    await BaseRepository.DeleteAsync(ally);
+                    _ = await BaseRepository.DeleteAsync(ally);
                     continue;
                 }
 
@@ -886,11 +886,11 @@ namespace Comet.Game.States.Syndicates
                 if (syndicate == null || syndicate.Deleted)
                 {
                     // invalid ally
-                    await BaseRepository.DeleteAsync(ally);
+                    _ = await BaseRepository.DeleteAsync(ally);
                     continue;
                 }
 
-                m_dicAllies.TryAdd(syndicate.Identity, syndicate);
+                _ = m_dicAllies.TryAdd(syndicate.Identity, syndicate);
             }
 
             var dbEnemies = await SyndicateEnemyRepository.GetAsync(Identity);
@@ -900,11 +900,11 @@ namespace Comet.Game.States.Syndicates
                 if (syndicate == null || syndicate.Deleted)
                 {
                     // invalid ally
-                    await BaseRepository.DeleteAsync(enemy);
+                    _ = await BaseRepository.DeleteAsync(enemy);
                     continue;
                 }
 
-                m_dicEnemies.TryAdd(syndicate.Identity, syndicate);
+                _ = m_dicEnemies.TryAdd(syndicate.Identity, syndicate);
             }
         }
 
@@ -929,7 +929,7 @@ namespace Comet.Game.States.Syndicates
 
             if (m_dicMembers.TryRemove(user.Identity, out var member))
             {
-                await member.DeleteAsync();
+                _ = await member.DeleteAsync();
             }
 
             ExitFromEvents();
@@ -937,7 +937,7 @@ namespace Comet.Game.States.Syndicates
             await UnsubscribeAllAsync(user.Identity);
 
             // additional clean up
-            await new ServerDbContext().Database.ExecuteSqlRawAsync($"DELETE FROM `cq_synattr` WHERE `syn_id`={Identity}");
+            _ = await new ServerDbContext().Database.ExecuteSqlRawAsync($"DELETE FROM `cq_synattr` WHERE `syn_id`={Identity}");
 
             foreach (var ally in m_dicAllies.Values)
             {
@@ -946,7 +946,7 @@ namespace Comet.Game.States.Syndicates
 
             foreach (var enemy in m_dicEnemies.Values)
             {
-                await PeaceAsync(user, enemy);
+                _ = await PeaceAsync(user, enemy);
             }
 
             await user.SendAsync(new MsgSyndicate
@@ -1027,7 +1027,7 @@ namespace Comet.Game.States.Syndicates
 
             if (!m_dicMembers.TryAdd(newMember.UserIdentity, newMember))
             {
-                await newMember.DeleteAsync();
+                _ = await newMember.DeleteAsync();
                 return false;
             }
 
@@ -1039,7 +1039,7 @@ namespace Comet.Game.States.Syndicates
             await target.Screen.SynchroScreenAsync();
 
             m_syndicate.Amount = (uint) MemberCount;
-            await SaveAsync();
+            _ = await SaveAsync();
 
             switch (mode)
             {
@@ -1080,7 +1080,7 @@ namespace Comet.Game.States.Syndicates
                 return false;
             }
 
-            m_dicMembers.TryRemove(target.Identity, out _);
+            _ = m_dicMembers.TryRemove(target.Identity, out _);
 
             target.Syndicate = null;
 
@@ -1091,11 +1091,11 @@ namespace Comet.Game.States.Syndicates
             });
 
             m_syndicate.Amount = (uint) MemberCount;
-            await SaveAsync();
+            _ = await SaveAsync();
 
             await target.Screen.SynchroScreenAsync();
 
-            await BaseRepository.SaveAsync(new DbSyndicateMemberHistory
+            _ = await BaseRepository.SaveAsync(new DbSyndicateMemberHistory
             {
                 UserIdentity = member.UserIdentity,
                 JoinDate = member.JoinDate,
@@ -1110,7 +1110,7 @@ namespace Comet.Game.States.Syndicates
 
             RemoveUserFromEvents(target.Identity);
 
-            await member.DeleteAsync();
+            _ = await member.DeleteAsync();
             await SendAsync(string.Format(Language.StrSynMemberExit, target.Name));
 
             await UnsubscribeAllAsync(target.Identity);
@@ -1160,13 +1160,13 @@ namespace Comet.Game.States.Syndicates
 
             RemoveUserFromEvents(member.UserIdentity);
 
-            await BaseRepository.SaveAsync(new DbSyndicateMemberHistory
+            _ = await BaseRepository.SaveAsync(new DbSyndicateMemberHistory
             {
                 UserIdentity = member.UserIdentity,
                 JoinDate = member.JoinDate,
                 LeaveDate = DateTime.Now,
                 SyndicateIdentity = Identity,
-                Rank = (ushort) member.Rank,
+                Rank = (ushort)member.Rank,
                 Silver = member.Silvers,
                 ConquerPoints = 0,
                 Guide = 0,
@@ -1174,8 +1174,8 @@ namespace Comet.Game.States.Syndicates
             });
 
             m_syndicate.Amount = (uint)MemberCount;
-            await SaveAsync();
-            await member.DeleteAsync();
+            _ = await SaveAsync();
+            _ = await member.DeleteAsync();
             await SendAsync(string.Format(Language.StrSynMemberKickout, sender.SyndicateMember.RankName, sender.Name, member.UserName));
 
             await UnsubscribeAllAsync(member.UserIdentity);
@@ -1319,7 +1319,7 @@ namespace Comet.Game.States.Syndicates
                     return false;
 
                 ConquerPoints -= cost;
-                await SaveAsync();
+                _ = await SaveAsync();
             }
 
             if (position == SyndicateMember.SyndicateRank.GuildLeader) // abdicate
@@ -1327,7 +1327,7 @@ namespace Comet.Game.States.Syndicates
                 sender.SyndicateMember.Rank = SyndicateMember.SyndicateRank.Member;
                 await sender.SendSyndicateAsync();
                 await sender.Screen.SynchroScreenAsync();
-                await sender.SyndicateMember.SaveAsync();
+                _ = await sender.SyndicateMember.SaveAsync();
 
                 await SendAsync(string.Format(Language.StrSynAbdicate, sender.Name, target.Name));
             }
@@ -1344,7 +1344,7 @@ namespace Comet.Game.States.Syndicates
 
             await target.SendSyndicateAsync();
             await target.Screen.SynchroScreenAsync();
-            await target.SyndicateMember.SaveAsync();
+            _ = await target.SyndicateMember.SaveAsync();
 
             if (m_dicMembers.TryGetValue(target.MateIdentity, out var mate))
             {
@@ -1410,7 +1410,7 @@ namespace Comet.Game.States.Syndicates
                 await member.User.SendSyndicateAsync();
                 await member.User.Screen.SynchroScreenAsync();
             }
-            await member.SaveAsync();
+            _ = await member.SaveAsync();
 
             if (m_dicMembers.TryGetValue(member.MateIdentity, out var mate))
             {
@@ -1429,7 +1429,7 @@ namespace Comet.Game.States.Syndicates
                 await member.User.SendSyndicateAsync();
                 await member.User.Screen.SynchroScreenAsync();
             }
-            await member.SaveAsync();
+            _ = await member.SaveAsync();
         }
 
         public Task SendPromotionListAsync(Character target)
@@ -2081,7 +2081,7 @@ namespace Comet.Game.States.Syndicates
                 return false;
             }
 
-            await BaseRepository.SaveAsync(new DbSyndicateAllies
+            _ = await BaseRepository.SaveAsync(new DbSyndicateAllies
             {
                 AllyIdentity = Identity,
                 AllyName = Name,
@@ -2090,7 +2090,7 @@ namespace Comet.Game.States.Syndicates
                 EstabilishDate = DateTime.Now
             });
 
-            await BaseRepository.SaveAsync(new DbSyndicateAllies
+            _ = await BaseRepository.SaveAsync(new DbSyndicateAllies
             {
                 SyndicateIdentity = Identity,
                 SyndicateName = Name,
@@ -2140,7 +2140,7 @@ namespace Comet.Game.States.Syndicates
 
         public async Task AddAllyAsync(Syndicate target)
         {
-            m_dicAllies.TryAdd(target.Identity, target);
+            _ = m_dicAllies.TryAdd(target.Identity, target);
             await SendAsync(new MsgSyndicate
             {
                 Identity = target.Identity,
@@ -2159,7 +2159,7 @@ namespace Comet.Game.States.Syndicates
 
         public async Task RemoveAllyAsync(uint idAlly)
         {
-            m_dicAllies.TryRemove((ushort) idAlly, out _);
+            _ = m_dicAllies.TryRemove((ushort)idAlly, out _);
             await SendAsync(new MsgSyndicate
             {
                 Identity = idAlly,
@@ -2226,7 +2226,7 @@ namespace Comet.Game.States.Syndicates
             }))
                 return false;
 
-            m_dicEnemies.TryAdd(target.Identity, target);
+            _ = m_dicEnemies.TryAdd(target.Identity, target);
 
             await SendAsync(new MsgSyndicate
             {
@@ -2268,8 +2268,8 @@ namespace Comet.Game.States.Syndicates
                 return false;
             }
 
-            m_dicEnemies.TryRemove(target.Identity, out _);
-            await SyndicateEnemyRepository.DeleteAsync(Identity, target.Identity);
+            _ = m_dicEnemies.TryRemove(target.Identity, out _);
+            _ = await SyndicateEnemyRepository.DeleteAsync(Identity, target.Identity);
 
             await SendAsync(new MsgSyndicate
             {
@@ -2462,7 +2462,7 @@ namespace Comet.Game.States.Syndicates
             if (pole == null)
             {
                 pole = new TotemPole(type);
-                m_totemPoles.TryAdd(type, pole);
+                _ = m_totemPoles.TryAdd(type, pole);
             }
 
             LastOpenTotem = DateTime.Now;
@@ -2516,7 +2516,7 @@ namespace Comet.Game.States.Syndicates
                 return false;
 
             item.SyndicateIdentity = Identity;
-            await item.SaveAsync();
+            _ = await item.SaveAsync();
 
             int battlePower = TotemSharedBattlePower;
             UpdateBattlePower();
@@ -2538,7 +2538,7 @@ namespace Comet.Game.States.Syndicates
             if (user == null && !isSystem)
                 return false;
 
-            m_dicMembers.TryGetValue(idUser, out var member);
+            _ = m_dicMembers.TryGetValue(idUser, out var member);
 
             DbItem dbItem = null;
             Item item = null;
@@ -2570,17 +2570,17 @@ namespace Comet.Game.States.Syndicates
             if (!pole.Totems.TryGetValue(idItem, out var totem) || totem.PlayerIdentity != idUser)
                 return false;
 
-            pole.Totems.TryRemove(idItem, out _);
+            _ = pole.Totems.TryRemove(idItem, out _);
 
             if (item != null)
             {
                 item.SyndicateIdentity = 0;
-                await item.SaveAsync();
+                _ = await item.SaveAsync();
             }
             else
             {
                 dbItem.Syndicate = 0;
-                await BaseRepository.SaveAsync(dbItem);
+                _ = await BaseRepository.SaveAsync(dbItem);
             }
 
             if (synchro)
@@ -2619,7 +2619,7 @@ namespace Comet.Game.States.Syndicates
             int battlePower = TotemSharedBattlePower;
 
             foreach (var totem in totems)
-                await UnsubscribeItemAsync(totem.ItemIdentity, totem.PlayerIdentity, false, isSystem);
+                _ = await UnsubscribeItemAsync(totem.ItemIdentity, totem.PlayerIdentity, false, isSystem);
 
             UpdateBattlePower();
             if (battlePower != TotemSharedBattlePower)
@@ -2633,7 +2633,7 @@ namespace Comet.Game.States.Syndicates
             {
                 member.ArsenalDonation += (uint)pole.Totems.Values.Where(x => x.PlayerIdentity == member.UserIdentity).Sum(x => x.Points);
             }
-            await member.SaveAsync();
+            _ = await member.SaveAsync();
         }
 
         public async Task<bool> EnhanceTotemPoleAsync(TotemPoleType type, byte power)
@@ -2661,7 +2661,7 @@ namespace Comet.Game.States.Syndicates
                 return false;
 
             if (pole.Enhancement > 0)
-                await pole.RemoveEnhancementAsync();
+                _ = await pole.RemoveEnhancementAsync();
 
             if (!await pole.SetEnhancementAsync(new DbTotemAdd
             {

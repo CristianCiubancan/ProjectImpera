@@ -115,8 +115,8 @@ namespace Comet.Game.Packets
 
                     if (user.QueryRequest(RequestType.Syndicate) == Identity)
                     {
-                        user.PopRequest(RequestType.Syndicate);
-                        await leader.Syndicate.AppendMemberAsync(user, leader, Syndicate.JoinMode.Invite);
+                            _ = user.PopRequest(RequestType.Syndicate);
+                            _ = await leader.Syndicate.AppendMemberAsync(user, leader, Syndicate.JoinMode.Invite);
                     }
                     else
                     {
@@ -144,8 +144,8 @@ namespace Comet.Game.Packets
 
                     if (user.QueryRequest(RequestType.Syndicate) == Identity)
                     {
-                        user.PopRequest(RequestType.Syndicate);
-                        await user.Syndicate.AppendMemberAsync(target, user, Syndicate.JoinMode.Request);
+                            _ = user.PopRequest(RequestType.Syndicate);
+                            _ = await user.Syndicate.AppendMemberAsync(target, user, Syndicate.JoinMode.Request);
                     }
                     else
                     {
@@ -166,7 +166,7 @@ namespace Comet.Game.Packets
                     if (user.SyndicateIdentity == 0)
                         return;
 
-                    await user.Syndicate.QuitSyndicateAsync(user);
+                        _ = await user.Syndicate.QuitSyndicateAsync(user);
                     break;
                 }
 
@@ -193,10 +193,10 @@ namespace Comet.Game.Packets
                     }
 
                     user.Syndicate.Money += amount;
-                    await user.Syndicate.SaveAsync();
+                        _ = await user.Syndicate.SaveAsync();
                     user.SyndicateMember.Silvers += (int) Identity;
                     user.SyndicateMember.SilversTotal += Identity;
-                    await user.SyndicateMember.SaveAsync();
+                        _ = await user.SyndicateMember.SaveAsync();
                     await user.SendSyndicateAsync();
 
                     await user.Syndicate.SendAsync(string.Format(Language.StrSynDonateMoney, user.SyndicateRank,
@@ -228,10 +228,10 @@ namespace Comet.Game.Packets
                     }
 
                     user.Syndicate.ConquerPoints += Identity;
-                    await user.Syndicate.SaveAsync();
+                        _ = await user.Syndicate.SaveAsync();
                     user.SyndicateMember.ConquerPointsDonation += Identity;
                     user.SyndicateMember.ConquerPointsTotalDonation += Identity;
-                    await user.SyndicateMember.SaveAsync();
+                        _ = await user.SyndicateMember.SaveAsync();
                     await user.SendSyndicateAsync();
 
                     await user.Syndicate.SendAsync(string.Format(Language.StrSynDonateEmoney, user.SyndicateRank, user.Name, Identity));
@@ -256,7 +256,7 @@ namespace Comet.Game.Packets
 
                     user.Syndicate.Announce = message;
                     user.Syndicate.AnnounceDate = DateTime.Now;
-                    await user.Syndicate.SaveAsync();
+                        _ = await user.Syndicate.SaveAsync();
 
                     await user.SendSyndicateAsync();
                     break;
@@ -271,7 +271,7 @@ namespace Comet.Game.Packets
                     if (user?.Syndicate == null)
                         return;
 
-                    await user.Syndicate.PromoteAsync(user, Strings[0], (SyndicateMember.SyndicateRank) Identity);
+                        _ = await user.Syndicate.PromoteAsync(user, Strings[0], (SyndicateMember.SyndicateRank)Identity);
                     break;
                 }
 
@@ -288,7 +288,7 @@ namespace Comet.Game.Packets
                     if (user.Syndicate == null || Strings.Count == 0)
                         return;
 
-                    await user.Syndicate.DemoteAsync(user, Strings[0]);
+                        _ = await user.Syndicate.DemoteAsync(user, Strings[0]);
                     break;
                 }
 
@@ -339,7 +339,7 @@ namespace Comet.Game.Packets
                     if (target == null)
                         return;
 
-                    await user.Syndicate.DisbandAllianceAsync(user, target);
+                        _ = await user.Syndicate.DisbandAllianceAsync(user, target);
                     break;
                 }
 
@@ -361,7 +361,7 @@ namespace Comet.Game.Packets
                     if (target == null || target.Deleted)
                         return;
 
-                    await user.Syndicate.AntagonizeAsync(user, target);
+                        _ = await user.Syndicate.AntagonizeAsync(user, target);
                     break;
                 }
 
@@ -375,7 +375,7 @@ namespace Comet.Game.Packets
                     if (target == null)
                         return;
 
-                    await user.Syndicate.PeaceAsync(user, target);
+                        _ = await user.Syndicate.PeaceAsync(user, target);
                     break;
                 }
 
@@ -389,7 +389,7 @@ namespace Comet.Game.Packets
                     user.Syndicate.LevelRequirement = (byte) Math.Min(Role.MAX_UPLEV, Math.Max(1, ConditionLevel));
                     user.Syndicate.ProfessionRequirement = (uint) Math.Min((uint) Syndicate.ProfessionPermission.All, Math.Max(0, ConditionProfession));
                     user.Syndicate.MetempsychosisRequirement = (byte) Math.Min(2, Math.Max(0, ConditionMetempsychosis));
-                    await user.Syndicate.SaveAsync();
+                        _ = await user.Syndicate.SaveAsync();
                     break;
                 }
 

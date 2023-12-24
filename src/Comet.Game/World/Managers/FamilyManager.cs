@@ -45,7 +45,7 @@ namespace Comet.Game.World.Managers
             {
                 var family = await Family.CreateAsync(dbFamily);
                 if (family != null)
-                    m_dicFamilies.TryAdd(family.Identity, family);
+                    _ = m_dicFamilies.TryAdd(family.Identity, family);
             }
 
             foreach (var family in m_dicFamilies.Values)
@@ -56,7 +56,7 @@ namespace Comet.Game.World.Managers
             foreach (var limit in await DbFamilyBattleEffectShareLimit.GetAsync())
             {
                 if (!m_familyBpLimit.ContainsKey(limit.Identity))
-                    m_familyBpLimit.TryAdd(limit.Identity, limit);
+                    _ = m_familyBpLimit.TryAdd(limit.Identity, limit);
             }
             return true;
         }

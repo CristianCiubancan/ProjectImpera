@@ -240,13 +240,13 @@ namespace Comet.Game.Packets
             writer.Write(MapY); // 66
             writer.Write(Direction); // 68
             writer.Write(Pose); // 69
-            writer.BaseStream.Seek(4, SeekOrigin.Current);
+            _ = writer.BaseStream.Seek(4, SeekOrigin.Current);
             writer.Write((byte) Metempsychosis); // 73
             writer.Write(Level); // 74
             writer.Write(WindowSpawn); // 76
             writer.Write(Away); // 77
             writer.Write(SharedBattlePower); // 78
-            writer.BaseStream.Seek(8, SeekOrigin.Current); // 82
+            _ = writer.BaseStream.Seek(8, SeekOrigin.Current); // 82
             writer.Write(FlowerRanking); // 91
             writer.Write(NobilityRank); // 95
             writer.Write(ArmorColor); // 99
@@ -258,12 +258,12 @@ namespace Comet.Game.Packets
             writer.Write(MountColor); // 112
             writer.Write((byte) 0); // 116
             writer.Write(EnlightenPoints); // 117
-            writer.BaseStream.Seek(10, SeekOrigin.Current); // 119
+            _ = writer.BaseStream.Seek(10, SeekOrigin.Current); // 119
             writer.Write(FamilyIdentity); // 129
             writer.Write(FamilyRank); // 133
             writer.Write(FamilyBattlePower); // 137
             writer.Write(UserTitle); // 141
-            writer.BaseStream.Seek(8, SeekOrigin.Current); // 145
+            _ = writer.BaseStream.Seek(8, SeekOrigin.Current); // 145
             writer.Write(new List<string> // 95
             {
                 Name,

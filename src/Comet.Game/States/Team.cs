@@ -63,7 +63,7 @@ namespace Comet.Game.States
             if (m_leader.Team != null)
                 return false;
 
-            m_dicPlayers.TryAdd(m_leader.Identity, m_leader);
+            _ = m_dicPlayers.TryAdd(m_leader.Identity, m_leader);
             m_leader.Team = this;
             return true;
         }
@@ -120,7 +120,7 @@ namespace Comet.Game.States
                 Action = MsgTeam.TeamAction.Kick
             });
 
-            m_dicPlayers.TryRemove(idTarget, out _);
+            _ = m_dicPlayers.TryRemove(idTarget, out _);
             target.Team = null;
 
             await SyncFamilyBattlePowerAsync();

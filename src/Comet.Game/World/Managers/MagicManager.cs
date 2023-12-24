@@ -39,7 +39,7 @@ namespace Comet.Game.World.Managers
         {
             foreach (var magicType in await MagictypeRepository.GetAsync())
             {
-                m_magicType.TryAdd(magicType.Id, magicType);
+                _ = m_magicType.TryAdd(magicType.Id, magicType);
             }
         }
 

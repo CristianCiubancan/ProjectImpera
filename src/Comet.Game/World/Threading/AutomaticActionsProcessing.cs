@@ -57,7 +57,7 @@ namespace Comet.Game.World.Threading
             {
                 DbAction action = Kernel.EventManager.GetAction((uint)(_ACTION_SYSTEM_EVENT + a));
                 if (action != null)
-                    m_dicActions.TryAdd(action.Identity, action);
+                    _ = m_dicActions.TryAdd(action.Identity, action);
             }
 
             m_interval = CalculateInterval();
@@ -70,7 +70,7 @@ namespace Comet.Game.World.Threading
             {
                 try
                 {
-                    await GameAction.ExecuteActionAsync(action.Identity, null, null, null, "");
+                    _ = await GameAction.ExecuteActionAsync(action.Identity, null, null, null, "");
                 }
                 catch (Exception ex)
                 {
@@ -121,7 +121,7 @@ namespace Comet.Game.World.Threading
 
                     player.DayResetDate = today;
 
-                    await player.SaveAsync();
+                    _ = await player.SaveAsync();
                     Console.WriteLine($"Daily Reset [{dbUser.Name:-16}] done.");
                 }
                 catch (Exception ex)
@@ -134,7 +134,7 @@ namespace Comet.Game.World.Threading
             await Kernel.FlowerManager.DailyResetAsync().ConfigureAwait(false);
 
             sw.Stop();
-            await BaseRepository.ScalarAsync($"INSERT INTO `daily_reset` (run_time, ms) VALUES (NOW(), {sw.ElapsedMilliseconds});");
+            _ = await BaseRepository.ScalarAsync($"INSERT INTO `daily_reset` (run_time, ms) VALUES (NOW(), {sw.ElapsedMilliseconds});");
             Console.WriteLine($"Daily reset has run in {sw.ElapsedMilliseconds}ms.");
 
             m_dailyReset = int.Parse(DateTime.Now.ToString("yyyyMMdd"));

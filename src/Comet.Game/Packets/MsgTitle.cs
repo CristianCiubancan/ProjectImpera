@@ -85,7 +85,7 @@ namespace Comet.Game.Packets
 
                     user.UserTitle = Title;
                     await user.BroadcastRoomMsgAsync(this, true);
-                    await user.SaveAsync();
+                        _ = await user.SaveAsync();
                     break;
                 }
             }

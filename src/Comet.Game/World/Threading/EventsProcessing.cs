@@ -49,7 +49,7 @@ namespace Comet.Game.World.Threading
         public EventsProcessing()
             : base(500, "EventsProcessing")
         {
-            m_rankingBroadcast.Update();
+            _ = m_rankingBroadcast.Update();
         }
 
         protected override async Task<bool> OnElapseAsync()
@@ -101,7 +101,7 @@ namespace Comet.Game.World.Threading
                         role = Kernel.RoleManager.GetRole(user.InteractingNpc);
                     }
 
-                    await GameAction.ExecuteActionAsync(action.Action, user, role, item, "");
+                    _ = await GameAction.ExecuteActionAsync(action.Action, user, role, item, "");
                     m_queuedActions.RemoveAt(i);
                 }
             }
@@ -111,12 +111,12 @@ namespace Comet.Game.World.Threading
 
         protected override async Task OnStartAsync()
         {
-            await RegisterEventAsync(new TimedGuildWar());
-            await RegisterEventAsync(new LineSkillPk());
-            await RegisterEventAsync(new ArenaQualifier());
-            await RegisterEventAsync(new QuizShow());
-            await RegisterEventAsync(new FamilyWar());
-            await RegisterEventAsync(new GuildContest());
+            _ = await RegisterEventAsync(new TimedGuildWar());
+            _ = await RegisterEventAsync(new LineSkillPk());
+            _ = await RegisterEventAsync(new ArenaQualifier());
+            _ = await RegisterEventAsync(new QuizShow());
+            _ = await RegisterEventAsync(new FamilyWar());
+            _ = await RegisterEventAsync(new GuildContest());
 
             await base.OnStartAsync();
         }
@@ -128,7 +128,7 @@ namespace Comet.Game.World.Threading
 
             if (await @event.CreateAsync())
             {
-                m_events.TryAdd(@event.Identity, @event);
+                _ = m_events.TryAdd(@event.Identity, @event);
                 return true;
             }
             return false;
@@ -136,7 +136,7 @@ namespace Comet.Game.World.Threading
 
         public void RemoveEvent(GameEvent.EventType type)
         {
-            m_events.TryRemove(type, out _);
+            _ = m_events.TryRemove(type, out _);
         }
 
         public T GetEvent<T>() where T : GameEvent

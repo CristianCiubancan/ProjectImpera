@@ -635,9 +635,9 @@ namespace Comet.Game.States
             int align = 0;
             string[] parsed = param.Split(' ');
             if (parsed.Length > 1)
-                uint.TryParse(parsed[1], out task);
+                _ = uint.TryParse(parsed[1], out task);
             if (parsed.Length > 2)
-                int.TryParse(parsed[2], out align);
+                _ = int.TryParse(parsed[2], out align);
 
             await user.SendAsync(new MsgTaskDialog
             {
@@ -953,7 +953,7 @@ namespace Comet.Game.States
                     }
                 }
 
-                await new ServerDbContext().Database.ExecuteSqlRawAsync(param);
+                _ = await new ServerDbContext().Database.ExecuteSqlRawAsync(param);
             }
             catch (Exception ex)
             {
@@ -1100,13 +1100,13 @@ namespace Comet.Game.States
             {
                 if (opt == "=")
                 {
-                    npc.SetData(ope, data);
+                    _ = npc.SetData(ope, data);
                     return await npc.SaveAsync();
                 }
 
                 if (opt == "+=")
                 {
-                    npc.SetData(ope, npc.GetData(ope) + data);
+                    _ = npc.SetData(ope, npc.GetData(ope) + data);
                     return await npc.SaveAsync();
                 }
 
@@ -1196,20 +1196,20 @@ namespace Comet.Game.States
 
                 if (syn != null)
                 {
-                    await npc.SetOwnerAsync(syn.Identity, true);
+                    _ = await npc.SetOwnerAsync(syn.Identity, true);
                 }
 
                 npc.ClearScores();
 
                 if (npc.Map.IsDynamicMap())
-                    await npc.Map.SaveAsync();
+                    _ = await npc.Map.SaveAsync();
 
-                await npc.SaveAsync();
+                _ = await npc.SaveAsync();
             }
 
             foreach (var player in Kernel.RoleManager.QueryRoleByMap<Character>(npc.MapIdentity))
             {
-                player.SetAttackTarget(null);
+                _ = player.SetAttackTarget(null);
             }
 
             if (npc.IsSynFlag())
@@ -1224,7 +1224,7 @@ namespace Comet.Game.States
                     {
                         
                     }*/
-                    await resetNpc.SaveAsync();
+                    _ = await resetNpc.SaveAsync();
                 }
             }
 
@@ -1247,10 +1247,10 @@ namespace Comet.Game.States
             if (npc == null)
                 return false;
 
-            npc.SetData("data0", (int)idMap);
-            npc.SetData("data1", usMapX);
-            npc.SetData("data2", usMapY);
-            await npc.SaveAsync();
+            _ = npc.SetData("data0", (int)idMap);
+            _ = npc.SetData("data1", usMapX);
+            _ = npc.SetData("data2", usMapY);
+            _ = await npc.SaveAsync();
             return true;
         }
 
@@ -1450,7 +1450,7 @@ namespace Comet.Game.States
                 if (szOpt.Equals("="))
                 {
                     map.MapDoc = (uint)data;
-                    await map.SaveAsync();
+                    _ = await map.SaveAsync();
                     return true;
                 }
 
@@ -1461,7 +1461,7 @@ namespace Comet.Game.States
                 if (szOpt.Equals("="))
                 {
                     map.PortalX = (ushort)data;
-                    await map.SaveAsync();
+                    _ = await map.SaveAsync();
                     return true;
                 }
 
@@ -1472,7 +1472,7 @@ namespace Comet.Game.States
                 if (szOpt.Equals("="))
                 {
                     map.PortalY = (ushort)data;
-                    await map.SaveAsync();
+                    _ = await map.SaveAsync();
                     return true;
                 }
 
@@ -1483,7 +1483,7 @@ namespace Comet.Game.States
                 if (szOpt.Equals("="))
                 {
                     map.ResLev = (byte)data;
-                    await map.SaveAsync();
+                    _ = await map.SaveAsync();
                     return true;
                 }
 
@@ -1661,9 +1661,9 @@ namespace Comet.Game.States
             if (map == null)
                 return false;
 
-            await map.Weather.SetNewWeatherAsync((Weather.WeatherType)nType, nIntensity, nDir, (int)dwColor,
+            _ = await map.Weather.SetNewWeatherAsync((Weather.WeatherType)nType, nIntensity, nDir, (int)dwColor,
                 (int)dwKeepSecs, 0);
-            await map.Weather.SendWeatherAsync();
+            _ = await map.Weather.SendWeatherAsync();
             return true;
         }
 
@@ -1764,7 +1764,7 @@ namespace Comet.Game.States
             uint dwRegion = 0;
 
             if (splitParams.Length > 4)
-                uint.TryParse(splitParams[4], out dwRegion);
+                _ = uint.TryParse(splitParams[4], out dwRegion);
 
             if (idNextTask != 0)
                 user.InteractingItem = idNextTask;
@@ -1805,8 +1805,8 @@ namespace Comet.Game.States
             uint pose = 0;
             if (splitParam.Length >= 4)
             {
-                uint.TryParse(splitParam[3], out frame);
-                uint.TryParse(splitParam[4], out pose);
+                _ = uint.TryParse(splitParam[3], out frame);
+                _ = uint.TryParse(splitParam[4], out pose);
             }
 
             if (user.Map.IsSuperPosition(mapX, mapY))
@@ -1959,9 +1959,9 @@ namespace Comet.Game.States
                 npc.SetType(usType);
                 // npc.OwnerIdentity = idOwner;
                 npc.OwnerType = (byte)dwOwnerType;
-                await npc.SetOwnerAsync(idOwner);
+                _ = await npc.SetOwnerAsync(idOwner);
                 npc.Name = szName;
-                await npc.SetAttributesAsync(ClientUpdateType.Mesh, lookface);
+                _ = await npc.SetAttributesAsync(ClientUpdateType.Mesh, lookface);
                 npc.SetSort(usSort);
                 npc.SetTask(0, idTask0);
                 npc.SetTask(1, idTask1);
@@ -1975,13 +1975,13 @@ namespace Comet.Game.States
                 npc.Data1 = idData1;
                 npc.Data2 = idData2;
                 npc.Data3 = idData3;
-                await npc.SetAttributesAsync(ClientUpdateType.MaxHitpoints, dwLife);
+                _ = await npc.SetAttributesAsync(ClientUpdateType.MaxHitpoints, dwLife);
                 npc.MapX = mapX;
                 npc.MapY = mapY;
             }
 
-            await npc.ChangePosAsync(user.MapIdentity, mapX, mapY);
-            await npc.SaveAsync();
+            _ = await npc.ChangePosAsync(user.MapIdentity, mapX, mapY);
+            _ = await npc.SaveAsync();
 
             role = npc;
             user.InteractingNpc = npc.Identity;
@@ -2185,7 +2185,7 @@ namespace Comet.Game.States
                 }
 
                 await user.SendAsync(new MsgItemInfo(target, MsgItemInfo.ItemMode.Update));
-                await target.SaveAsync();
+                _ = await target.SaveAsync();
                 return true;
             }
 
@@ -2429,7 +2429,7 @@ namespace Comet.Game.States
                 return false;
 
             pItem.Color = (Item.ItemColor)byte.Parse(pszParam[1]);
-            await pItem.SaveAsync();
+            _ = await pItem.SaveAsync();
             await user.SendAsync(new MsgItemInfo(pItem, MsgItemInfo.ItemMode.Update));
             return true;
         }
@@ -2722,7 +2722,7 @@ namespace Comet.Game.States
                             else if (value > 12)
                                 value = 12;
 
-                            pItem.ChangeAddition((byte)value);
+                            _ = pItem.ChangeAddition((byte)value);
                         }
                         else if (opt == "==")
                         {
@@ -2881,7 +2881,7 @@ namespace Comet.Game.States
                     return false;
             }
 
-            await pItem.SaveAsync();
+            _ = await pItem.SaveAsync();
             if (update)
                 await user.SendAsync(new MsgItemInfo(pItem, MsgItemInfo.ItemMode.Update));
             return true;
@@ -2897,7 +2897,7 @@ namespace Comet.Game.States
                 return false;
 
             if (user.UserPackage.GetItemByType(Item.TYPE_JAR) != null)
-                await user.UserPackage.SpendItemAsync(user.UserPackage.GetItemByType(Item.TYPE_JAR));
+                _ = await user.UserPackage.SpendItemAsync(user.UserPackage.GetItemByType(Item.TYPE_JAR));
 
             var itemtype = Kernel.ItemManager.GetItemtype(action.Data);
             if (itemtype == null)
@@ -3004,7 +3004,7 @@ namespace Comet.Game.States
             if (!await pItem.CreateAsync(newItem))
                 return false;
 
-            await user.UserPackage.AddItemAsync(pItem);
+            _ = await user.UserPackage.AddItemAsync(pItem);
             return true;
         }
 
@@ -3323,13 +3323,13 @@ namespace Comet.Game.States
                         return user.Strength == forceValue;
                     if (opt.Equals("+="))
                     {
-                        await user.AddAttributesAsync(ClientUpdateType.Strength, forceValue);
+                        _ = await user.AddAttributesAsync(ClientUpdateType.Strength, forceValue);
                         return true;
                     }
 
                     if (opt.Equals("set"))
                     {
-                        await user.SetAttributesAsync(ClientUpdateType.Strength, (ulong)forceValue);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Strength, (ulong)forceValue);
                         return true;
                     }
 
@@ -3354,13 +3354,13 @@ namespace Comet.Game.States
                         return user.Agility == speedValue;
                     if (opt.Equals("+="))
                     {
-                        await user.AddAttributesAsync(ClientUpdateType.Agility, speedValue);
+                        _ = await user.AddAttributesAsync(ClientUpdateType.Agility, speedValue);
                         return true;
                     }
 
                     if (opt.Equals("set"))
                     {
-                        await user.SetAttributesAsync(ClientUpdateType.Agility, (ulong)speedValue);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Agility, (ulong)speedValue);
                         return true;
                     }
 
@@ -3385,13 +3385,13 @@ namespace Comet.Game.States
                         return user.Vitality == healthValue;
                     if (opt.Equals("+="))
                     {
-                        await user.AddAttributesAsync(ClientUpdateType.Vitality, healthValue);
+                        _ = await user.AddAttributesAsync(ClientUpdateType.Vitality, healthValue);
                         return true;
                     }
 
                     if (opt.Equals("set"))
                     {
-                        await user.SetAttributesAsync(ClientUpdateType.Vitality, (ulong)healthValue);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Vitality, (ulong)healthValue);
                         return true;
                     }
 
@@ -3416,13 +3416,13 @@ namespace Comet.Game.States
                         return user.Spirit == soulValue;
                     if (opt.Equals("+="))
                     {
-                        await user.AddAttributesAsync(ClientUpdateType.Spirit, soulValue);
+                        _ = await user.AddAttributesAsync(ClientUpdateType.Spirit, soulValue);
                         return true;
                     }
 
                     if (opt.Equals("set"))
                     {
-                        await user.SetAttributesAsync(ClientUpdateType.Spirit, (ulong)soulValue);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Spirit, (ulong)soulValue);
                         return true;
                     }
 
@@ -3447,13 +3447,13 @@ namespace Comet.Game.States
                         return user.AttributePoints == attrValue;
                     if (opt.Equals("+="))
                     {
-                        await user.AddAttributesAsync(ClientUpdateType.Atributes, attrValue);
+                        _ = await user.AddAttributesAsync(ClientUpdateType.Atributes, attrValue);
                         return true;
                     }
 
                     if (opt.Equals("set"))
                     {
-                        await user.SetAttributesAsync(ClientUpdateType.Atributes, (ulong)attrValue);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Atributes, (ulong)attrValue);
                         return true;
                     }
 
@@ -3477,13 +3477,13 @@ namespace Comet.Game.States
                         return user.Level == levelValue;
                     if (opt.Equals("+="))
                     {
-                        await user.AddAttributesAsync(ClientUpdateType.Level, levelValue);
+                        _ = await user.AddAttributesAsync(ClientUpdateType.Level, levelValue);
                         return true;
                     }
 
                     if (opt.Equals("set"))
                     {
-                        await user.SetAttributesAsync(ClientUpdateType.Level, (ulong)levelValue);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Level, (ulong)levelValue);
                         return true;
                     }
 
@@ -3507,13 +3507,13 @@ namespace Comet.Game.States
                         return user.Metempsychosis == metempsychosisValue;
                     if (opt.Equals("+="))
                     {
-                        await user.AddAttributesAsync(ClientUpdateType.Reborn, metempsychosisValue);
+                        _ = await user.AddAttributesAsync(ClientUpdateType.Reborn, metempsychosisValue);
                         return true;
                     }
 
                     if (opt.Equals("set"))
                     {
-                        await user.SetAttributesAsync(ClientUpdateType.Reborn, (ulong)metempsychosisValue);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Reborn, (ulong)metempsychosisValue);
                         return true;
                     }
 
@@ -3543,7 +3543,7 @@ namespace Comet.Game.States
 
                     if (opt.Equals("set"))
                     {
-                        await user.SetAttributesAsync(ClientUpdateType.Money, (ulong)moneyValue);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Money, (ulong)moneyValue);
                         return true;
                     }
 
@@ -3574,7 +3574,7 @@ namespace Comet.Game.States
 
                     if (opt.Equals("set"))
                     {
-                        await user.SetAttributesAsync(ClientUpdateType.ConquerPoints, (ulong)emoneyValue);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.ConquerPoints, (ulong)emoneyValue);
                         return true;
                     }
 
@@ -3672,7 +3672,7 @@ namespace Comet.Game.States
 
                     if (opt.Equals("set"))
                     {
-                        await user.SetAttributesAsync(ClientUpdateType.Experience, (ulong)expValue);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Experience, (ulong)expValue);
                         return true;
                     }
 
@@ -3703,7 +3703,7 @@ namespace Comet.Game.States
 
                     if (opt.Equals("set"))
                     {
-                        await user.SetAttributesAsync(ClientUpdateType.Stamina, (ulong)energyValue);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Stamina, (ulong)energyValue);
                         return true;
                     }
 
@@ -3730,7 +3730,7 @@ namespace Comet.Game.States
                     {
                         user.QueueAction(async () =>
                         {
-                            await user.AddAttributesAsync(ClientUpdateType.Hitpoints, lifeValue);
+                            _ = await user.AddAttributesAsync(ClientUpdateType.Hitpoints, lifeValue);
                             if (!user.IsAlive)
                                 await user.BeKillAsync(null);
                         });
@@ -3741,7 +3741,7 @@ namespace Comet.Game.States
                     {
                         user.QueueAction(async () =>
                         {
-                            await user.SetAttributesAsync(ClientUpdateType.Hitpoints, (ulong)lifeValue);
+                            _ = await user.SetAttributesAsync(ClientUpdateType.Hitpoints, (ulong)lifeValue);
                             if (!user.IsAlive)
                                 await user.BeKillAsync(null);
                         });
@@ -3774,7 +3774,7 @@ namespace Comet.Game.States
 
                     if (opt.Equals("set"))
                     {
-                        await user.SetAttributesAsync(ClientUpdateType.Mana, (ulong)manaValue);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Mana, (ulong)manaValue);
                         return true;
                     }
 
@@ -3804,7 +3804,7 @@ namespace Comet.Game.States
 
                     if (opt.Equals("set"))
                     {
-                        await user.SetAttributesAsync(ClientUpdateType.PkPoints, (ulong)pkValue);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.PkPoints, (ulong)pkValue);
                         return true;
                     }
 
@@ -3839,7 +3839,7 @@ namespace Comet.Game.States
 
                     if (opt.Equals("set"))
                     {
-                        await user.SetAttributesAsync(ClientUpdateType.Class, (ulong)proValue);
+                        _ = await user.SetAttributesAsync(ClientUpdateType.Class, (ulong)proValue);
                         return true;
                     }
 
@@ -3950,7 +3950,7 @@ namespace Comet.Game.States
                                 user.VipExpiration = DateTime.Now.AddMinutes(minutes);
                             }
 
-                            await user.SetAttributesAsync(ClientUpdateType.VipLevel, vipValue);
+                            _ = await user.SetAttributesAsync(ClientUpdateType.VipLevel, vipValue);
                             return true;
                         }
 
@@ -4033,7 +4033,7 @@ namespace Comet.Game.States
                         }
                         else
                         {
-                            await user.SetMerchantAsync();
+                            _ = await user.SetMerchantAsync();
                         }
 
                         return true;
@@ -4057,7 +4057,7 @@ namespace Comet.Game.States
                                     {
                                         user.Body = (BodyType)(1000 + usVal);
                                         await user.SynchroAttributesAsync(ClientUpdateType.Mesh, user.Mesh, true);
-                                        await user.SaveAsync();
+                                        _ = await user.SaveAsync();
                                         return true;
                                     }
 
@@ -4065,7 +4065,7 @@ namespace Comet.Game.States
                                     {
                                         user.Body = (BodyType)(2000 + usVal);
                                         await user.SynchroAttributesAsync(ClientUpdateType.Mesh, user.Mesh, true);
-                                        await user.SaveAsync();
+                                        _ = await user.SaveAsync();
                                         return true;
                                     }
 
@@ -4100,11 +4100,11 @@ namespace Comet.Game.States
                                     }
 
                                     if (user.UserPackage[Item.ItemPosition.Garment] != null)
-                                        await user.UserPackage.UnEquipAsync(Item.ItemPosition.Garment);
+                                        _ = await user.UserPackage.UnEquipAsync(Item.ItemPosition.Garment);
 
                                     user.Body = (BodyType)usNewBody;
                                     await user.SynchroAttributesAsync(ClientUpdateType.Mesh, user.Mesh, true);
-                                    await user.SaveAsync();
+                                    _ = await user.SaveAsync();
                                     return true;
                                     ;
                                 }
@@ -4140,13 +4140,13 @@ namespace Comet.Game.States
             if (param.Equals("xp", StringComparison.InvariantCultureIgnoreCase))
             {
                 await user.SetXpAsync(100);
-                await user.BurstXpAsync();
+                _ = await user.BurstXpAsync();
                 return true;
             }
 
             if (param.Equals("sp", StringComparison.InvariantCultureIgnoreCase))
             {
-                await user.SetAttributesAsync(ClientUpdateType.Stamina, user.MaxEnergy);
+                _ = await user.SetAttributesAsync(ClientUpdateType.Stamina, user.MaxEnergy);
                 return true;
             }
 
@@ -4253,14 +4253,14 @@ namespace Comet.Game.States
 
             if (cmd.Equals("style", StringComparison.InvariantCultureIgnoreCase))
             {
-                await user.SetAttributesAsync(ClientUpdateType.HairStyle,
+                _ = await user.SetAttributesAsync(ClientUpdateType.HairStyle,
                     (ushort)(value + (user.Hairstyle - (user.Hairstyle % 100))));
                 return true;
             }
 
             if (cmd.Equals("color", StringComparison.InvariantCultureIgnoreCase))
             {
-                await user.SetAttributesAsync(ClientUpdateType.HairStyle,
+                _ = await user.SetAttributesAsync(ClientUpdateType.HairStyle,
                     (ushort)(user.Hairstyle % 100 + value * 100));
                 return true;
             }
@@ -4274,7 +4274,7 @@ namespace Comet.Game.States
             if (user == null)
                 return false;
 
-            await user.FlyMapAsync(user.RecordMapIdentity, user.RecordMapX, user.RecordMapY);
+            _ = await user.FlyMapAsync(user.RecordMapIdentity, user.RecordMapX, user.RecordMapY);
             return true;
         }
 
@@ -4464,23 +4464,23 @@ namespace Comet.Game.States
                 if (dbMate == null)
                     return false;
                 dbMate.Mate = 0;
-                await BaseRepository.SaveAsync(dbMate);
+                _ = await BaseRepository.SaveAsync(dbMate);
             }
 
             if (mate == null)
             {
                 DbItem dbItem = Item.CreateEntity(Item.TYPE_METEORTEAR);
                 dbItem.PlayerId = user.Identity;
-                await BaseRepository.SaveAsync(dbItem);
+                _ = await BaseRepository.SaveAsync(dbItem);
             }
             else
             {
-                await mate.UserPackage.AwardItemAsync(Item.TYPE_METEORTEAR);
+                _ = await mate.UserPackage.AwardItemAsync(Item.TYPE_METEORTEAR);
             }
 
             user.MateIdentity = 0;
             user.MateName = Language.StrNone;
-            await user.SaveAsync();
+            _ = await user.SaveAsync();
             return true;
         }
 
@@ -4670,7 +4670,7 @@ namespace Comet.Game.States
                 return false;
 
             user.HomeIdentity = pMapInfo.Identity;
-            await user.SaveAsync();
+            _ = await user.SaveAsync();
             return Kernel.MapManager.AddMap(map);
         }
 
@@ -4682,7 +4682,7 @@ namespace Comet.Game.States
 
             GameMap target = Kernel.MapManager.GetMap(user.HomeIdentity);
 
-            await user.FlyMapAsync(target.Identity, target.PortalX, target.PortalY);
+            _ = await user.FlyMapAsync(target.Identity, target.PortalX, target.PortalY);
 
             if (user.Team != null)
             {
@@ -4690,7 +4690,7 @@ namespace Comet.Game.States
                 {
                     if (member.Identity == user.Identity || member.GetDistance(user) > 5)
                         continue;
-                    await member.FlyMapAsync(target.Identity, target.PortalX, target.PortalY);
+                    _ = await member.FlyMapAsync(target.Identity, target.PortalX, target.PortalY);
                 }
             }
 
@@ -4722,7 +4722,7 @@ namespace Comet.Game.States
             if (map == null)
                 return false;
 
-            await user.FlyMapAsync(map.Identity, map.PortalX, map.PortalY);
+            _ = await user.FlyMapAsync(map.Identity, map.PortalX, map.PortalY);
             return true;
         }
 
@@ -4739,7 +4739,7 @@ namespace Comet.Game.States
                 ushort idMagic = ushort.Parse(id);
                 if (user.MagicData.CheckType(idMagic))
                 {
-                    await user.MagicData.UnlearnMagicAsync(idMagic, false);
+                    _ = await user.MagicData.UnlearnMagicAsync(idMagic, false);
                 }
             }
 
@@ -4806,7 +4806,7 @@ namespace Comet.Game.States
                 ushort idMagic = ushort.Parse(id);
                 if (user.MagicData.CheckType(idMagic))
                 {
-                    await user.MagicData.UnlearnMagicAsync(idMagic, true);
+                    _ = await user.MagicData.UnlearnMagicAsync(idMagic, true);
                 }
             }
 
@@ -4854,20 +4854,20 @@ namespace Comet.Game.States
             DbPointAllot pointAllot = Kernel.RoleManager.GetPointAllot(profSort, 1);
             if (pointAllot != null)
             {
-                await user.SetAttributesAsync(ClientUpdateType.Strength, pointAllot.Strength);
-                await user.SetAttributesAsync(ClientUpdateType.Agility, pointAllot.Agility);
-                await user.SetAttributesAsync(ClientUpdateType.Vitality, pointAllot.Vitality);
-                await user.SetAttributesAsync(ClientUpdateType.Spirit, pointAllot.Spirit);
+                _ = await user.SetAttributesAsync(ClientUpdateType.Strength, pointAllot.Strength);
+                _ = await user.SetAttributesAsync(ClientUpdateType.Agility, pointAllot.Agility);
+                _ = await user.SetAttributesAsync(ClientUpdateType.Vitality, pointAllot.Vitality);
+                _ = await user.SetAttributesAsync(ClientUpdateType.Spirit, pointAllot.Spirit);
             }
             else
             {
-                await user.SetAttributesAsync(ClientUpdateType.Strength, 5);
-                await user.SetAttributesAsync(ClientUpdateType.Agility, 2);
-                await user.SetAttributesAsync(ClientUpdateType.Vitality, 3);
-                await user.SetAttributesAsync(ClientUpdateType.Spirit, 0);
+                _ = await user.SetAttributesAsync(ClientUpdateType.Strength, 5);
+                _ = await user.SetAttributesAsync(ClientUpdateType.Agility, 2);
+                _ = await user.SetAttributesAsync(ClientUpdateType.Vitality, 3);
+                _ = await user.SetAttributesAsync(ClientUpdateType.Spirit, 0);
             }
 
-            await user.SetAttributesAsync(ClientUpdateType.Atributes, attr);
+            _ = await user.SetAttributesAsync(ClientUpdateType.Atributes, attr);
             return true;
         }
 
@@ -4880,7 +4880,7 @@ namespace Comet.Game.States
 
             uint time = uint.Parse(pszParam[1]);
             float multiply = int.Parse(pszParam[0]) / 100f;
-            await user.SetExperienceMultiplierAsync(time, multiply);
+            _ = await user.SetExperienceMultiplierAsync(time, multiply);
             return true;
         }
 
@@ -4915,7 +4915,7 @@ namespace Comet.Game.States
             if (string.IsNullOrEmpty(input) || (parsed && password == 0))
             {
                 user.SecondaryPassword = 0;
-                await user.SaveAsync();
+                _ = await user.SaveAsync();
                 return true;
             }
 
@@ -4923,7 +4923,7 @@ namespace Comet.Game.States
                 return false;
 
             user.SecondaryPassword = password;
-            await user.SaveAsync();
+            _ = await user.SaveAsync();
             return true;
         }
 
@@ -5274,7 +5274,7 @@ namespace Comet.Game.States
                 || !uint.TryParse(splitParams[1], out var idAction))
                 return false;
 
-            Kernel.EventThread.QueueAction(new QueuedAction(secSpan, idAction, user.Identity));
+            _ = Kernel.EventThread.QueueAction(new QueuedAction(secSpan, idAction, user.Identity));
             return true;
         }
 
@@ -5534,9 +5534,9 @@ namespace Comet.Game.States
             if (target == "self")
             {
                 if (opt == "add")
-                    await user.AttachStatusAsync(user, status, multiply, (int)seconds, times, 0);
+                    _ = await user.AttachStatusAsync(user, status, multiply, (int)seconds, times, 0);
                 else if (opt == "del")
-                    await user.DetachStatusAsync(status);
+                    _ = await user.DetachStatusAsync(status);
                 return true;
             }
 
@@ -5545,9 +5545,9 @@ namespace Comet.Game.States
                 foreach (var member in user.Team.Members)
                 {
                     if (opt == "add")
-                        await member.AttachStatusAsync(member, status, multiply, (int)seconds, times, 0);
+                        _ = await member.AttachStatusAsync(member, status, multiply, (int)seconds, times, 0);
                     else if (opt == "del")
-                        await member.DetachStatusAsync(status);
+                        _ = await member.DetachStatusAsync(status);
                 }
 
                 return true;
@@ -5561,13 +5561,13 @@ namespace Comet.Game.States
 
                 if (opt == "add")
                 {
-                    await user.AttachStatusAsync(user, status, multiply, (int)seconds, times, 0);
-                    await mate.AttachStatusAsync(user, status, multiply, (int)seconds, times, 0);
+                    _ = await user.AttachStatusAsync(user, status, multiply, (int)seconds, times, 0);
+                    _ = await mate.AttachStatusAsync(user, status, multiply, (int)seconds, times, 0);
                 }
                 else if (opt == "del")
                 {
-                    await user.DetachStatusAsync(status);
-                    await mate.DetachStatusAsync(status);
+                    _ = await user.DetachStatusAsync(status);
+                    _ = await mate.DetachStatusAsync(status);
                 }
 
                 return true;
@@ -5643,7 +5643,7 @@ namespace Comet.Game.States
             uint intervalTime = uint.Parse(pszParam[4]);
             bool save = pszParam[5] != "0"; // ??
 
-            await user.AttachStatusAsync(user, (int)action.Data, 0, (int)remainTime, (int)leaveTimes, 0, save);
+            _ = await user.AttachStatusAsync(user, (int)action.Data, 0, (int)remainTime, (int)leaveTimes, 0, save);
             return true;
         }
 
@@ -5666,12 +5666,12 @@ namespace Comet.Game.States
                     foreach (var st in status)
                         if (user.QueryStatus(int.Parse(st)) != null)
                         {
-                            await user.DetachStatusAsync(int.Parse(st));
+                            _ = await user.DetachStatusAsync(int.Parse(st));
                             DbStatus db =
                                 (await StatusRepository.GetAsync(user.Identity)).FirstOrDefault(x =>
                                     x.Status == uint.Parse(st));
                             if (db != null)
-                                await BaseRepository.DeleteAsync(db);
+                                _ = await BaseRepository.DeleteAsync(db);
                         }
 
                     return true;
@@ -5717,7 +5717,7 @@ namespace Comet.Game.States
 
             string cmd = splitParams[0].ToLower();
             string opt = splitParams[1];
-            int.TryParse(splitParams[2], out var value);
+            _ = int.TryParse(splitParams[2], out var value);
 
             if (cmd.Equals("count"))
             {
@@ -5733,7 +5733,7 @@ namespace Comet.Game.States
                 {
                     if (opt.Equals("+="))
                     {
-                        await member.ChangeMoneyAsync(value);
+                        _ = await member.ChangeMoneyAsync(value);
                     }
                     else if (opt.Equals("<"))
                     {
@@ -5752,7 +5752,7 @@ namespace Comet.Game.States
                 {
                     if (opt.Equals("+="))
                     {
-                        await member.ChangeConquerPointsAsync(value);
+                        _ = await member.ChangeConquerPointsAsync(value);
                     }
                     else if (opt.Equals("<"))
                     {
@@ -5871,7 +5871,7 @@ namespace Comet.Game.States
             }
 
             foreach (var member in user.Team.Members)
-                await member.UserPackage.AwardItemAsync(action.Data);
+                _ = await member.UserPackage.AwardItemAsync(action.Data);
             return true;
         }
 
@@ -5886,7 +5886,7 @@ namespace Comet.Game.States
             }
 
             foreach (var member in user.Team.Members)
-                await member.UserPackage.SpendItemAsync(action.Data);
+                _ = await member.UserPackage.SpendItemAsync(action.Data);
 
             return true;
         }
@@ -5939,35 +5939,35 @@ namespace Comet.Game.States
             int lottoChance = await Kernel.NextAsync(10000);
             if (lottoChance > 20)
             {
-                allItems.RemoveAll(x => x.Rank == 1);
+                _ = allItems.RemoveAll(x => x.Rank == 1);
             }
 
             if (lottoChance > 75)
             {
-                allItems.RemoveAll(x => x.Rank == 2);
+                _ = allItems.RemoveAll(x => x.Rank == 2);
             }
 
             if (lottoChance > 200)
             {
-                allItems.RemoveAll(x => x.Rank == 3);
+                _ = allItems.RemoveAll(x => x.Rank == 3);
             }
 
             if (lottoChance > 1000)
             {
-                allItems.RemoveAll(x => x.Rank == 4);
+                _ = allItems.RemoveAll(x => x.Rank == 4);
             }
 
             if (lottoChance > 2000)
             {
-                allItems.RemoveAll(x => x.Rank == 5);
+                _ = allItems.RemoveAll(x => x.Rank == 5);
             }
 
             if (lottoChance > 4000)
             {
-                allItems.RemoveAll(x => x.Rank == 6);
+                _ = allItems.RemoveAll(x => x.Rank == 6);
             }
 
-            allItems.RemoveAll(x => Kernel.ItemManager.GetItemtype(x.ItemIdentity) == null);
+            _ = allItems.RemoveAll(x => Kernel.ItemManager.GetItemtype(x.ItemIdentity) == null);
 
             DbLottery lottery = allItems[await Kernel.NextAsync(allItems.Count) % allItems.Count];
             DbItemtype itemtype = Kernel.ItemManager.GetItemtype(lottery.ItemIdentity);
@@ -5991,7 +5991,7 @@ namespace Comet.Game.States
                 return false;
             }
 
-            await user.UserPackage.AddItemAsync(newItem);
+            _ = await user.UserPackage.AddItemAsync(newItem);
 
             await Log.GmLogAsync("lottery",
                 $"{user.Identity},{user.Name},{lottery.Rank},{lottery.Color},{newItem.Type},{newItem.Plus},{newItem.SocketOne},{newItem.SocketTwo}");
@@ -6041,7 +6041,7 @@ namespace Comet.Game.States
                     break;
             }
 
-            await user.FlyMapAsync(idMap, x, y);
+            _ = await user.FlyMapAsync(idMap, x, y);
             return true;
         }
 
@@ -6205,7 +6205,7 @@ namespace Comet.Game.States
                 return false;
             }
 
-            generator.Add(monster);
+            _ = generator.Add(monster);
             await monster.EnterMapAsync();
             return true;
         }
@@ -6467,7 +6467,7 @@ namespace Comet.Game.States
             foreach (var player in Kernel.RoleManager.QueryRoleByType<Character>()
                 .Where(x => x.MapIdentity == sourceMap.Identity))
             {
-                await player.FlyMapAsync(idTarget, usMapX, usMapY);
+                _ = await player.FlyMapAsync(idTarget, usMapX, usMapY);
             }
 
             return true;
@@ -6496,7 +6496,7 @@ namespace Comet.Game.States
                 if (nAmount-- <= 0)
                     break;
 
-                await ExecuteActionAsync(idAction, player, role, null, input);
+                _ = await ExecuteActionAsync(idAction, player, role, null, input);
             }
 
             return true;
@@ -6544,7 +6544,7 @@ namespace Comet.Game.States
             if (user == null)
                 return false;
 
-            await user.SignOutEventAsync();
+            _ = await user.SignOutEventAsync();
             return true;
         }
 
@@ -6708,13 +6708,13 @@ namespace Comet.Game.States
                     {
                         old.FamilyMap = 0;
                         old.OccupyDate = 0;
-                        await old.SaveAsync();
+                        _ = await old.SaveAsync();
                     }
 
                     winner.FamilyMap = map.Identity;
                     if (winner.OccupyDate == 0)
                         winner.OccupyDate = uint.Parse(DateTime.Now.ToString("yyyyMMdd"));
-                    await winner.SaveAsync();
+                    _ = await winner.SaveAsync();
                 }
             }
             else if (families.Count > 1)
@@ -6739,12 +6739,12 @@ namespace Comet.Game.States
                     {
                         current.FamilyMap = 0;
                         current.OccupyDate = 0;
-                        await current.SaveAsync();
+                        _ = await current.SaveAsync();
                     }
 
                     higherBpPlayer.Family.FamilyMap = map.Identity;
                     higherBpPlayer.Family.OccupyDate = uint.Parse(DateTime.Now.ToString("yyyyMMdd"));
-                    await higherBpPlayer.Family.SaveAsync();
+                    _ = await higherBpPlayer.Family.SaveAsync();
                 } // return true even if false because the winner is the clan whose is already dominating. wont change
 
             }
@@ -6963,8 +6963,8 @@ namespace Comet.Game.States
                         }
                     }
 
-                    uint.TryParse(strEvent, out var stcEvent);
-                    uint.TryParse(strStage, out var stcStage);
+                    _ = uint.TryParse(strEvent, out var stcEvent);
+                    _ = uint.TryParse(strStage, out var stcStage);
 
                     DbStatistic stc = user.Statistic.GetStc(stcEvent, stcStage);
                     result = result.Replace($"%stc({stcEvent},{stcStage})", stc?.Data.ToString() ?? "0");
@@ -7075,7 +7075,7 @@ namespace Comet.Game.States
 
         public void Clear()
         {
-            m_timeOut.Clear();
+            _ = m_timeOut.Clear();
         }
     }
 

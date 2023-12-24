@@ -78,7 +78,17 @@ namespace Comet.Game
         }
         public static Task<int> NextAsync(int maxValue)
         {
-            return NextAsync(0, maxValue);
+            // return NextAsync(0, maxValue);
+            try
+            {
+                return NextAsync(0, maxValue);
+            }
+            catch (Exception ex)
+            {
+                _ = Log.WriteLogAsync(LogLevel.Error, $"NextAsync error!").ConfigureAwait(false);
+                _ = Log.WriteLogAsync(LogLevel.Exception, ex.ToString());
+                return Task.FromResult(0);
+            }
         }
 
         /// <summary>Returns the next random number from the generator.</summary>
@@ -121,32 +131,42 @@ namespace Comet.Game
 
         public static async Task<bool> StartupAsync()
         {
-            await MapManager.LoadDataAsync().ConfigureAwait(true);
-            await MapManager.LoadMapsAsync().ConfigureAwait(true);
+            try
+            {
+                await Services.Processor.StartAsync(CancellationToken.None);
+                await MapManager.LoadDataAsync().ConfigureAwait(true);
+                await MapManager.LoadMapsAsync().ConfigureAwait(true);
 
-            await ItemManager.InitializeAsync();
-            await RoleManager.InitializeAsync();
-            await MagicManager.InitializeAsync();
-            await PeerageManager.InitializeAsync();
-            await SyndicateManager.InitializeAsync();
-            await FamilyManager.InitializeAsync();
-            await EventManager.InitializeAsync();
-            await MineManager.InitializeAsync();
-            await PigeonManager.InitializeAsync();
-            await FlowerManager.InitializeAsync();
-            await QuestInfo.InitializeAsync();
+                await ItemManager.InitializeAsync();
+                await RoleManager.InitializeAsync();
+                await MagicManager.InitializeAsync();
+                await PeerageManager.InitializeAsync();
+                _ = await SyndicateManager.InitializeAsync();
+                _ = await FamilyManager.InitializeAsync();
+                _ = await EventManager.InitializeAsync();
+                _ = await MineManager.InitializeAsync();
+                _ = await PigeonManager.InitializeAsync();
+                _ = await FlowerManager.InitializeAsync();
+                await QuestInfo.InitializeAsync();
 
-            await GeneratorManager.InitializeAsync();
+                _ = await GeneratorManager.InitializeAsync();
 
-            await SystemThread.StartAsync();
-            await UserThread.StartAsync();
-            await AiThread.StartAsync();
-            await AutomaticActions.StartAsync();
-            await AutomaticActions.DailyResetAsync();
-            await EventThread.StartAsync();
-            await GeneratorThread.StartAsync();
+                await SystemThread.StartAsync();
+                await UserThread.StartAsync();
+                await AiThread.StartAsync();
+                await AutomaticActions.StartAsync();
+                await AutomaticActions.DailyResetAsync();
+                await EventThread.StartAsync();
+                await GeneratorThread.StartAsync();
 
-            return true;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Log the exception and handle any necessary cleanup
+                await Log.WriteLogAsync(LogLevel.Error, $"Failed to start Kernel: {ex}");
+                return false;
+            }
         }
 
         public static bool IsValidName(string szName)

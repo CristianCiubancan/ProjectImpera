@@ -93,7 +93,7 @@ namespace Comet.Game.States.Syndicates
         {
             if (m_Enhancement != null)
             {
-                await BaseRepository.DeleteAsync(m_Enhancement);
+                _ = await BaseRepository.DeleteAsync(m_Enhancement);
                 m_Enhancement = null;
                 return true;
             }

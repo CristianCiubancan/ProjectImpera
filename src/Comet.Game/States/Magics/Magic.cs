@@ -74,7 +74,7 @@ namespace Comet.Game.States.Magics
 
             if (m_pOwner is Character)
             {
-                await SaveAsync();
+                _ = await SaveAsync();
                 await SendAsync();
             }
             return true;
@@ -229,9 +229,9 @@ namespace Comet.Game.States.Magics
             {
                 await using ServerDbContext context = new ServerDbContext();
                 if (m_dbMagic.Id == 0)
-                    context.Magic.Add(m_dbMagic);
-                else context.Magic.Update(m_dbMagic);
-                await context.SaveChangesAsync();
+                    _ = context.Magic.Add(m_dbMagic);
+                else _ = context.Magic.Update(m_dbMagic);
+                _ = await context.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)

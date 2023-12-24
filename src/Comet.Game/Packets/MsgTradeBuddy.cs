@@ -59,7 +59,7 @@ namespace Comet.Game.Packets
             Action = (TradeBuddyAction) reader.ReadByte();
             IsOnline = reader.ReadBoolean();
             HoursLeft = reader.ReadInt32();
-            reader.ReadUInt16();
+            _ = reader.ReadUInt16();
             Name = reader.ReadString(16);
         }
 
@@ -91,8 +91,8 @@ namespace Comet.Game.Packets
 
                     if (user.QueryRequest(RequestType.TradePartner) == target.Identity)
                     {
-                        user.PopRequest(RequestType.TradePartner);
-                        await user.CreateTradePartnerAsync(target);
+                        _ = user.PopRequest(RequestType.TradePartner);
+                        _ = await user.CreateTradePartnerAsync(target);
                         return;
                     }
 
@@ -114,7 +114,7 @@ namespace Comet.Game.Packets
                     break;
 
                 case TradeBuddyAction.BreakPartnership:
-                    await user.DeleteTradePartnerAsync(Identity);
+                    _ = await user.DeleteTradePartnerAsync(Identity);
                     break;
             }
         }

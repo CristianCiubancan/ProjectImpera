@@ -99,7 +99,7 @@ namespace Comet.Game.States.Events
                 foreach (var family in Kernel.FamilyManager.QueryFamilies(x => x.ChallengeMap != 0))
                 {
                     family.ChallengeMap = 0;
-                    await family.SaveAsync();
+                    _ = await family.SaveAsync();
                 }
 
                 m_lastUpdate = int.Parse(DateTime.Now.ToString("yyyyMMdd"));
@@ -267,7 +267,7 @@ namespace Comet.Game.States.Events
                     return;
             }
 
-            await user.Statistic.AddOrUpdateAsync(REWARD_STC_U, 0, currStc.Data + 1, true);
+            _ = await user.Statistic.AddOrUpdateAsync(REWARD_STC_U, 0, currStc.Data + 1, true);
         }
 
         public double GetNextExpReward(Character user)
@@ -312,8 +312,8 @@ namespace Comet.Game.States.Events
             }
 
             npc.DataStr = DateTime.Now.ToString("O");
-            await npc.SaveAsync();
-            await user.Statistic.AddOrUpdateAsync(REWARD_STC_U, 1, currStc.Data + 1, true);
+            _ = await npc.SaveAsync();
+            _ = await user.Statistic.AddOrUpdateAsync(REWARD_STC_U, 1, currStc.Data + 1, true);
         }
     }
 }

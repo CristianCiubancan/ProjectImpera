@@ -132,7 +132,7 @@ namespace Comet.Game.States
                 return false;
             }
 
-            items.TryAdd(item.Identity, item);
+            _ = items.TryAdd(item.Identity, item);
             await target.SendAsync(new MsgItemInfo(item, MsgItemInfo.ItemMode.Trade));
             return true;
         }
@@ -269,20 +269,20 @@ namespace Comet.Game.States
                 UserY = User1.MapY,
                 Timestamp = DateTime.Now
             };
-            await BaseRepository.SaveAsync(dbTrade);
+            _ = await BaseRepository.SaveAsync(dbTrade);
 
             await SendCloseAsync();
 
-            await User1.SpendMoneyAsync((int) m_money1);
+            _ = await User1.SpendMoneyAsync((int)m_money1);
             await User2.AwardMoneyAsync((int) m_money1);
 
-            await User2.SpendMoneyAsync((int) m_money2);
+            _ = await User2.SpendMoneyAsync((int)m_money2);
             await User1.AwardMoneyAsync((int) m_money2);
 
-            await User1.SpendConquerPointsAsync((int) m_emoney1);
+            _ = await User1.SpendConquerPointsAsync((int)m_emoney1);
             await User2.AwardConquerPointsAsync((int) m_emoney1);
 
-            await User2.SpendConquerPointsAsync((int) m_emoney2);
+            _ = await User2.SpendConquerPointsAsync((int)m_emoney2);
             await User1.AwardConquerPointsAsync((int) m_emoney2);
 
             List<DbTradeItem> dbItemsRecordTrack = new List<DbTradeItem>(41);
@@ -291,9 +291,9 @@ namespace Comet.Game.States
                 if (item.IsMonopoly() || item.IsBound)
                     continue;
 
-                await User1.UserPackage.RemoveFromInventoryAsync(item, UserPackage.RemovalType.RemoveAndDisappear);
+                _ = await User1.UserPackage.RemoveFromInventoryAsync(item, UserPackage.RemovalType.RemoveAndDisappear);
                 await item.ChangeOwnerAsync(User2.Identity, Item.ChangeOwnerType.TradeItem);
-                await User2.UserPackage.AddItemAsync(item);
+                _ = await User2.UserPackage.AddItemAsync(item);
 
                 dbItemsRecordTrack.Add(new DbTradeItem
                 {
@@ -311,9 +311,9 @@ namespace Comet.Game.States
                 if (item.IsMonopoly() || item.IsBound)
                     continue;
 
-                await User2.UserPackage.RemoveFromInventoryAsync(item, UserPackage.RemovalType.RemoveAndDisappear);
+                _ = await User2.UserPackage.RemoveFromInventoryAsync(item, UserPackage.RemovalType.RemoveAndDisappear);
                 await item.ChangeOwnerAsync(User1.Identity, Item.ChangeOwnerType.TradeItem);
-                await User1.UserPackage.AddItemAsync(item);
+                _ = await User1.UserPackage.AddItemAsync(item);
 
                 dbItemsRecordTrack.Add(new DbTradeItem
                 {
@@ -326,7 +326,7 @@ namespace Comet.Game.States
                 });
             }
 
-            await BaseRepository.SaveAsync(dbItemsRecordTrack);
+            _ = await BaseRepository.SaveAsync(dbItemsRecordTrack);
 
             await User1.SendAsync(Language.StrTradeSuccess);
             await User2.SendAsync(Language.StrTradeSuccess);

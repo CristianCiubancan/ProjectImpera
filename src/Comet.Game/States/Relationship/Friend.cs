@@ -99,10 +99,10 @@ namespace Comet.Game.States.Relationship
             {
                 await using ServerDbContext ctx = new ServerDbContext();
                 if (m_dbFriend.Identity == 0)
-                    await ctx.Friends.AddAsync(m_dbFriend);
+                    _ = await ctx.Friends.AddAsync(m_dbFriend);
                 else
-                    ctx.Friends.Update(m_dbFriend);
-                await ctx.SaveChangesAsync();
+                    _ = ctx.Friends.Update(m_dbFriend);
+                _ = await ctx.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
@@ -119,8 +119,8 @@ namespace Comet.Game.States.Relationship
                 await using ServerDbContext ctx = new ServerDbContext();
                 if (m_dbFriend.Identity == 0)
                     return false;
-                ctx.Friends.Remove(m_dbFriend);
-                await ctx.SaveChangesAsync();
+                _ = ctx.Friends.Remove(m_dbFriend);
+                _ = await ctx.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)

@@ -81,7 +81,7 @@ namespace Comet.Game.Packets
                     await Kernel.PigeonManager.SendListAsync(client.Character, Mode);
                     break;
                 case PigeonMode.Send:
-                    await Kernel.PigeonManager.PushAsync(client.Character,Strings.FirstOrDefault());
+                    _ = await Kernel.PigeonManager.PushAsync(client.Character, Strings.FirstOrDefault());
                     await Kernel.PigeonManager.SendListAsync(client.Character, PigeonMode.Query);
                     break;
                 case PigeonMode.SuperUrgent:

@@ -104,10 +104,10 @@ namespace Comet.Game.Packets
                     {
                         if (user.MentorExpTime > 0)
                         {
-                            await user.AwardExperienceAsync(user.CalculateExpBall((int)user.MentorExpTime), true);
+                            _ = await user.AwardExperienceAsync(user.CalculateExpBall((int)user.MentorExpTime), true);
 
                             user.MentorExpTime = 0;
-                            await user.SaveTutorAccessAsync();
+                            _ = await user.SaveTutorAccessAsync();
                         }
                         break;
                     }
@@ -116,9 +116,9 @@ namespace Comet.Game.Packets
                     {
                         if (user.MentorGodTime > 0)
                         {
-                            await user.AddBlessingAsync(user.MentorGodTime);
+                            _ = await user.AddBlessingAsync(user.MentorGodTime);
                             user.MentorGodTime = 0;
-                            await user.SaveTutorAccessAsync();
+                            _ = await user.SaveTutorAccessAsync();
                         }
                         
                         break;
@@ -140,7 +140,7 @@ namespace Comet.Game.Packets
                                 user.MentorAddLevexp -= 100;
                         }
 
-                        await user.SaveTutorAccessAsync();
+                        _ = await user.SaveTutorAccessAsync();
                         break;
                     }
 

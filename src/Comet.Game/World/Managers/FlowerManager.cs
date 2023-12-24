@@ -44,7 +44,7 @@ namespace Comet.Game.World.Managers
             foreach (var flower in await DbFlower.GetAsync())
             {
                 FlowerRankObject obj = new FlowerRankObject(flower);
-                m_dicFlowers.TryAdd(flower.UserId, obj);
+                _ = m_dicFlowers.TryAdd(flower.UserId, obj);
             }
             return true;
         }
@@ -149,7 +149,7 @@ namespace Comet.Game.World.Managers
                 return value;
             if (m_dicFlowers.TryAdd(user.Identity, value = new FlowerRankObject(user)))
             {
-                await BaseRepository.SaveAsync(value.GetDatabaseObject());
+                _ = await BaseRepository.SaveAsync(value.GetDatabaseObject());
                 return value;
             }
             return null;
@@ -157,7 +157,7 @@ namespace Comet.Game.World.Managers
 
         public async Task DailyResetAsync()
         {
-            await BaseRepository.DeleteAsync(m_dicFlowers.Values.Select(x => x.GetDatabaseObject()).ToList());
+            _ = await BaseRepository.DeleteAsync(m_dicFlowers.Values.Select(x => x.GetDatabaseObject()).ToList());
             m_dicFlowers.Clear();
         }
 

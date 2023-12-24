@@ -39,8 +39,8 @@ namespace Comet.Game.Database
             try
             {
                 await using var db = new ServerDbContext();
-                db.Update(entity);
-                await db.SaveChangesAsync();
+                _ = db.Update(entity);
+                _ = await db.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
@@ -56,7 +56,7 @@ namespace Comet.Game.Database
             {
                 await using var db = new ServerDbContext();
                 db.UpdateRange(entity);
-                await db.SaveChangesAsync();
+                _ = await db.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
@@ -71,8 +71,8 @@ namespace Comet.Game.Database
             try
             {
                 await using var db = new ServerDbContext();
-                db.Remove(entity);
-                await db.SaveChangesAsync();
+                _ = db.Remove(entity);
+                _ = await db.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)
@@ -88,7 +88,7 @@ namespace Comet.Game.Database
             {
                 await using var db = new ServerDbContext();
                 db.RemoveRange(entity);
-                await db.SaveChangesAsync();
+                _ = await db.SaveChangesAsync();
                 return true;
             }
             catch (Exception ex)

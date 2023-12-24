@@ -49,7 +49,7 @@ namespace Comet.Game.World.Threading
         protected override Task OnStartAsync()
         {
             m_serverStartTime = DateTime.Now;
-            m_analytics.Update();
+            _ = m_analytics.Update();
 
             return base.OnStartAsync();
         }

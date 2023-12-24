@@ -51,7 +51,7 @@ namespace Comet.Game.States
             foreach (var dbDetail in await TaskDetailRepository.GetAsync(m_user.Identity))
             {
                 if (!m_dicTaskDetail.ContainsKey(dbDetail.TaskIdentity))
-                    m_dicTaskDetail.TryAdd(dbDetail.TaskIdentity, dbDetail);
+                    _ = m_dicTaskDetail.TryAdd(dbDetail.TaskIdentity, dbDetail);
             }
 
             return true;

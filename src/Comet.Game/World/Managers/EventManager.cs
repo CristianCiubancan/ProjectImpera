@@ -37,7 +37,7 @@ namespace Comet.Game.World.Managers
         {
             foreach (var task in await TaskRepository.GetAsync())
             {
-                m_dicTasks.TryAdd(task.Id, task);
+                _ = m_dicTasks.TryAdd(task.Id, task);
             }
 
             foreach (var action in await ActionRepository.GetAsync())
@@ -58,7 +58,7 @@ namespace Comet.Game.World.Managers
                     }
                 }
 
-                m_dicActions.TryAdd(action.Identity, action);
+                _ = m_dicActions.TryAdd(action.Identity, action);
             }
 
             foreach (var dbNpc in await NpcRepository.GetAsync())
@@ -94,7 +94,7 @@ namespace Comet.Game.World.Managers
             m_dicTasks.Clear();
             foreach (var task in await TaskRepository.GetAsync())
             {
-                m_dicTasks.TryAdd(task.Id, task);
+                _ = m_dicTasks.TryAdd(task.Id, task);
             }
             await Log.WriteLogAsync(LogLevel.Debug, $"All Tasks has been reloaded. {m_dicTasks.Count} in the server.");
 
@@ -117,7 +117,7 @@ namespace Comet.Game.World.Managers
                     }
                 }
 
-                m_dicActions.TryAdd(action.Identity, action);
+                _ = m_dicActions.TryAdd(action.Identity, action);
             }
 
             await Log.WriteLogAsync(LogLevel.Debug, $"All Actions has been reloaded. {m_dicActions.Count} in the server.");

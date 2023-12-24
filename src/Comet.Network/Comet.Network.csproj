@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Comet.Core\Comet.Core.csproj" />
+    <ProjectReference Include="..\Comet.Shared\Comet.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -87,7 +87,7 @@ namespace Comet.Game.States.Items
                 if (!await item.CreateAsync(dbItem))
                 {
                     await Log.WriteLogAsync(LogLevel.Error, $"Failed to load item {dbItem.Id} to user {m_user.Identity}");
-                    await item.DeleteAsync(Item.ChangeOwnerType.InvalidItemType);
+                    _ = await item.DeleteAsync(Item.ChangeOwnerType.InvalidItemType);
                     continue;
                 }
 
@@ -100,7 +100,7 @@ namespace Comet.Game.States.Items
                     item.Position <= Item.ItemPosition.EquipmentEnd)
                 {
                     if (!m_dicEquipment.TryAdd(item.Position, item))
-                        m_dicInventory.TryAdd(item.Identity, item);
+                        _ = m_dicInventory.TryAdd(item.Identity, item);
                 }
                 else if (item.Position == Item.ItemPosition.Inventory)
                 {
@@ -110,7 +110,7 @@ namespace Comet.Game.States.Items
                 }
                 else if (item.Position == Item.ItemPosition.Floor)
                 {
-                    await item.DeleteAsync();
+                    _ = await item.DeleteAsync();
                 }
                 else if (item.Position == Item.ItemPosition.Storage || item.Position == Item.ItemPosition.Trunk)
                 {
@@ -121,11 +121,11 @@ namespace Comet.Game.States.Items
                         continue;
                     }
 
-                    await AddToStorageAsync(npc.Identity, item, MsgPackage.StorageType.Storage, false);
+                    _ = await AddToStorageAsync(npc.Identity, item, MsgPackage.StorageType.Storage, false);
                 }
                 else if (item.Position == Item.ItemPosition.Chest)
                 {
-                    await AddToStorageAsync(item.OwnerIdentity, item, MsgPackage.StorageType.Chest, false);
+                    _ = await AddToStorageAsync(item.OwnerIdentity, item, MsgPackage.StorageType.Chest, false);
                 }
                 else
                 {
@@ -168,8 +168,8 @@ namespace Comet.Game.States.Items
                     return false;
 
                 m_user.IncrementExpBall();
-                await m_user.AwardExperienceAsync(m_user.CalculateExpBall());
-                await SpendItemAsync(item);
+                _ = await m_user.AwardExperienceAsync(m_user.CalculateExpBall());
+                _ = await SpendItemAsync(item);
                 return true;
             }
 
@@ -181,8 +181,8 @@ namespace Comet.Game.States.Items
                     return true;
                 }
 
-                await m_user.SetExperienceMultiplierAsync(3600);
-                await SpendItemAsync(item);
+                _ = await m_user.SetExperienceMultiplierAsync(3600);
+                _ = await SpendItemAsync(item);
                 return true;
             }
 
@@ -217,7 +217,7 @@ namespace Comet.Game.States.Items
 
                 // todo validate auto
                 if (item.GetItemSubType() == 106)
-                    await SpendItemAsync(item);
+                    _ = await SpendItemAsync(item);
 
                 return result;
             }
@@ -255,13 +255,13 @@ namespace Comet.Game.States.Items
                               && this[Item.ItemPosition.LeftHand] != null
                               && !IsPackSpare(2)))
                         {
-                            await UnEquipAsync(Item.ItemPosition.RightHand);
+                            _ = await UnEquipAsync(Item.ItemPosition.RightHand);
 
                             if (this[Item.ItemPosition.LeftHand] != null 
                                 && !this[Item.ItemPosition.LeftHand].IsArrowSort() 
                                 && item.IsBow() 
                                 && this[Item.ItemPosition.LeftHand]?.IsShield() == true)
-                                await UnEquipAsync(Item.ItemPosition.LeftHand);
+                                _ = await UnEquipAsync(Item.ItemPosition.LeftHand);
                         }
                     }
                     else if (item.IsWeaponOneHand() || item.IsWeaponProBased())
@@ -269,9 +269,9 @@ namespace Comet.Game.States.Items
                         Item pLeft = this[Item.ItemPosition.LeftHand];
                         if (!(pLeft != null && pLeft.IsArrowSort() && !IsPackSpare(2)))
                         {
-                            await UnEquipAsync(Item.ItemPosition.RightHand);
+                            _ = await UnEquipAsync(Item.ItemPosition.RightHand);
                             if (pLeft != null && pLeft.IsArrowSort())
-                                await UnEquipAsync(Item.ItemPosition.LeftHand);
+                                _ = await UnEquipAsync(Item.ItemPosition.LeftHand);
                         }
                     }
 
@@ -298,7 +298,7 @@ namespace Comet.Game.States.Items
                         (item.IsWeaponOneHand() || item.IsShield())
                         || pRight.IsBow() && item.IsArrowSort())
                     {
-                        await UnEquipAsync(Item.ItemPosition.LeftHand);
+                        _ = await UnEquipAsync(Item.ItemPosition.LeftHand);
                     }
                     else if (pRight.IsWeaponProBased())
                     {
@@ -307,14 +307,14 @@ namespace Comet.Game.States.Items
                             if (item.IsShield())
                                 return false;
 
-                            await UnEquipAsync(Item.ItemPosition.LeftHand);
+                            _ = await UnEquipAsync(Item.ItemPosition.LeftHand);
                         }
                     }
 
                     break;
 
                 default:
-                    await UnEquipAsync(position);
+                    _ = await UnEquipAsync(position);
                     break;
             }
 
@@ -323,14 +323,14 @@ namespace Comet.Game.States.Items
 
             if (!m_dicEquipment.TryAdd(position, item))
             {
-                await AddItemAsync(item);
+                _ = await AddItemAsync(item);
                 return false;
             }
 
             item.Position = position;
             await m_user.SendAsync(new MsgItem(item.Identity, MsgItem.ItemActionType.EquipmentWear, (uint) position));
 
-            await item.SaveAsync();
+            _ = await item.SaveAsync();
 
             switch (position)
             {
@@ -373,7 +373,7 @@ namespace Comet.Game.States.Items
                     return false;
             }
 
-            m_dicEquipment.TryRemove(position, out _);
+            _ = m_dicEquipment.TryRemove(position, out _);
 
             item.Position = Item.ItemPosition.Inventory;
             if (mode != RemovalType.Delete && mode != RemovalType.RemoveAndDisappear)
@@ -389,15 +389,15 @@ namespace Comet.Game.States.Items
             }
 
             if (mode == RemovalType.Delete)
-                await item.DeleteAsync();
+                _ = await item.DeleteAsync();
             else if (mode != RemovalType.RemoveAndDisappear)
             {
-                await AddItemAsync(item);
-                await item.SaveAsync();
+                _ = await AddItemAsync(item);
+                _ = await item.SaveAsync();
             }
             else
             {
-                await item.SaveAsync();
+                _ = await item.SaveAsync();
             }
 
             switch (position)
@@ -502,7 +502,7 @@ namespace Comet.Game.States.Items
             else
             {
                 item.Durability = 0;
-                await RemoveFromInventoryAsync(item.Identity, RemovalType.Delete);
+                _ = await RemoveFromInventoryAsync(item.Identity, RemovalType.Delete);
                 other.Durability = nNewNum;
                 await m_user.SendAsync(new MsgItemInfo(item, MsgItemInfo.ItemMode.Update));
             }
@@ -525,13 +525,13 @@ namespace Comet.Game.States.Items
                 {
                     do
                     {
-                        await CombineItemAsync(item, combine);
+                        _ = await CombineItemAsync(item, combine);
                     } while (item.AccumulateNum > 1 && item.AccumulateNum > item.MaxAccumulateNum &&
                              (combine = FindCombineItem(item)) != null);
 
                     if (item.AccumulateNum == 0)
                     {
-                        await RemoveFromInventoryAsync(item, RemovalType.Delete);
+                        _ = await RemoveFromInventoryAsync(item, RemovalType.Delete);
                         return false;
                     }
                 }
@@ -554,11 +554,11 @@ namespace Comet.Game.States.Items
 
                 Item newItem = new Item(m_user);
                 if (await newItem.CreateAsync(newDbItem))
-                    await AddItemAsync(newItem);
+                    _ = await AddItemAsync(newItem);
             }
 
-            m_dicInventory.TryAdd(item.Identity, item);
-            await item.SaveAsync();
+            _ = m_dicInventory.TryAdd(item.Identity, item);
+            _ = await item.SaveAsync();
             await m_user.SendAsync(new MsgItemInfo(item));
             return true;
         }
@@ -582,7 +582,7 @@ namespace Comet.Game.States.Items
                 case RemovalType.Delete:
                     await Log.GmLogAsync("delete_item",
                         $"{item.Identity}, {item.Name}, {item.PlayerIdentity}\r\n\t{item.ToJson()}");
-                    await item.DeleteAsync();
+                    _ = await item.DeleteAsync();
                     break;
             }
 
@@ -628,7 +628,7 @@ namespace Comet.Game.States.Items
             else
             {
                 item.AccumulateNum = 0;
-                await RemoveFromInventoryAsync(item, RemovalType.Delete);
+                _ = await RemoveFromInventoryAsync(item, RemovalType.Delete);
                 combine.AccumulateNum = newNum;
                 await m_user.SendAsync(new MsgItemInfo(combine, MsgItemInfo.ItemMode.Update));
             }
@@ -703,8 +703,8 @@ namespace Comet.Game.States.Items
                 {
                     if (item.Type == Item.TYPE_METEOR || item.Type == Item.TYPE_METEORTEAR)
                     {
-                        await RemoveFromInventoryAsync(item, RemovalType.Delete);
-                        items.Remove(item);
+                        _ = await RemoveFromInventoryAsync(item, RemovalType.Delete);
+                        _ = items.Remove(item);
                         taken++;
                     }
 
@@ -722,8 +722,8 @@ namespace Comet.Game.States.Items
                 {
                     if (item.Type == Item.TYPE_METEOR || item.Type == Item.TYPE_METEORTEAR)
                     {
-                        await RemoveFromInventoryAsync(item, RemovalType.Delete);
-                        items.Remove(item);
+                        _ = await RemoveFromInventoryAsync(item, RemovalType.Delete);
+                        _ = items.Remove(item);
                         taken++;
                         take--;
                         amount--;
@@ -741,15 +741,15 @@ namespace Comet.Game.States.Items
 
             foreach (var item in items.Where(x => x.Type == Item.TYPE_METEOR_SCROLL).Reverse())
             {
-                await RemoveFromInventoryAsync(item, RemovalType.Delete);
-                items.Remove(item);
+                _ = await RemoveFromInventoryAsync(item, RemovalType.Delete);
+                _ = items.Remove(item);
                 taken += 10;
 
                 if (taken >= amount)
                 {
                     while (returnMeteor > 0)
                     {
-                        await AwardItemAsync(Item.TYPE_METEOR);
+                        _ = await AwardItemAsync(Item.TYPE_METEOR);
                         returnMeteor--;
                     }
 
@@ -780,8 +780,8 @@ namespace Comet.Game.States.Items
 
                     if (item.Type == Item.TYPE_DRAGONBALL)
                     {
-                        await RemoveFromInventoryAsync(item, RemovalType.Delete);
-                        items.Remove(item);
+                        _ = await RemoveFromInventoryAsync(item, RemovalType.Delete);
+                        _ = items.Remove(item);
                         taken++;
                     }
 
@@ -802,8 +802,8 @@ namespace Comet.Game.States.Items
 
                     if (item.Type == Item.TYPE_DRAGONBALL)
                     {
-                        await RemoveFromInventoryAsync(item, RemovalType.Delete);
-                        items.Remove(item);
+                        _ = await RemoveFromInventoryAsync(item, RemovalType.Delete);
+                        _ = items.Remove(item);
                         taken++;
                         take--;
                         amount--;
@@ -828,15 +828,15 @@ namespace Comet.Game.States.Items
                 if (!allowBound && item.IsBound)
                     continue;
 
-                await RemoveFromInventoryAsync(item, RemovalType.Delete);
-                items.Remove(item);
+                _ = await RemoveFromInventoryAsync(item, RemovalType.Delete);
+                _ = items.Remove(item);
                 taken += 10;
 
                 if (taken >= amount)
                 {
                     while (returnDb > 0)
                     {
-                        await AwardItemAsync(Item.TYPE_DRAGONBALL);
+                        _ = await AwardItemAsync(Item.TYPE_DRAGONBALL);
                         returnDb--;
                     }
 
@@ -860,7 +860,7 @@ namespace Comet.Game.States.Items
                     continue;
 
                 nNum--;
-                await RemoveFromInventoryAsync(item, RemovalType.Delete);
+                _ = await RemoveFromInventoryAsync(item, RemovalType.Delete);
             }
 
             if (nNum > 0)
@@ -942,7 +942,7 @@ namespace Comet.Game.States.Items
                         if (await pMapItem.CreateAsync(m_user.Map, pos, item, m_user.Identity))
                         {
                             await pMapItem.EnterMapAsync();
-                            await item.SaveAsync();
+                            _ = await item.SaveAsync();
                             await Log.GmLogAsync("drop_item",
                                 $"{m_user.Name}({m_user.Identity}) drop item:[id={item.Identity}, type={item.Type}], dur={item.Durability}, max_dur={item.MaximumDurability}\n\t{item.ToJson()}");
                         }
@@ -1001,7 +1001,7 @@ namespace Comet.Game.States.Items
                     if (await pMapItem.CreateAsync(m_user.Map, pos, item, m_user.Identity))
                     {
                         await pMapItem.EnterMapAsync();
-                        await item.SaveAsync();
+                        _ = await item.SaveAsync();
                         await Log.GmLogAsync("drop_item",
                             $"{m_user.Name}({m_user.Identity}) drop item:[id={item.Identity}, type={item.Type}], dur={item.Durability}, max_dur={item.MaximumDurability}\n\t{item.ToJson()}");
                     }
@@ -1038,7 +1038,7 @@ namespace Comet.Game.States.Items
             }
             else
             {
-                await attacker.UserPackage.AddItemAsync(item);
+                _ = await attacker.UserPackage.AddItemAsync(item);
             }
             return true;
         }
@@ -1075,7 +1075,7 @@ namespace Comet.Game.States.Items
                 else maxStorage = 40;
 
                 if (!m_dicWarehouses.TryGetValue(idStorage, out items))
-                    m_dicWarehouses.TryAdd(idStorage, items = new List<Item>());
+                    _ = m_dicWarehouses.TryAdd(idStorage, items = new List<Item>());
             }
             else if (mode == MsgPackage.StorageType.Chest)
             {
@@ -1085,7 +1085,7 @@ namespace Comet.Game.States.Items
 
                 maxStorage = (int) (chestItem.Type % 1000);
                 if (!m_dicSashes.TryGetValue(idStorage, out items))
-                    m_dicSashes.TryAdd(idStorage, items = new List<Item>());
+                    _ = m_dicSashes.TryAdd(idStorage, items = new List<Item>());
             }
             else
             {
@@ -1106,7 +1106,7 @@ namespace Comet.Game.States.Items
             item.OwnerIdentity = idStorage;
             item.Position = (Item.ItemPosition)(200 + (byte)mode / 10);
             items.Add(item);
-            await item.SaveAsync();
+            _ = await item.SaveAsync();
 
             if (sync)
             {
@@ -1172,7 +1172,7 @@ namespace Comet.Game.States.Items
                 });
             }
 
-            await m_user.UserPackage.AddItemAsync(item);
+            _ = await m_user.UserPackage.AddItemAsync(item);
             return true;
         }
 
@@ -1246,8 +1246,8 @@ namespace Comet.Game.States.Items
         {
             foreach (var item in m_dicInventory.Values)
             {
-                await RemoveFromInventoryAsync(item, RemovalType.RemoveAndDisappear);
-                await item.DeleteAsync(Item.ChangeOwnerType.ClearInventory);
+                _ = await RemoveFromInventoryAsync(item, RemovalType.RemoveAndDisappear);
+                _ = await item.DeleteAsync(Item.ChangeOwnerType.ClearInventory);
                 await Log.GmLogAsync("clear_inventory", $"User[{m_user.Identity}:{m_user.Name}] deleted item {item.Identity}.\r\n{item.ToJson()}");
             }
         }

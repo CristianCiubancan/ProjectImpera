@@ -44,7 +44,7 @@ namespace Comet.Game.World.Managers
                 MineDictionary dict;
                 if (m_mineDictionary.ContainsKey(db.MapIdentity))
                     dict = m_mineDictionary[db.MapIdentity];
-                else m_mineDictionary.TryAdd(db.MapIdentity, dict = new MineDictionary());
+                else _ = m_mineDictionary.TryAdd(db.MapIdentity, dict = new MineDictionary());
 
                 dict.Add(new MineObject(db));
             }
@@ -142,7 +142,7 @@ namespace Comet.Game.World.Managers
 
             private void Update()
             {
-                m_timeOut.Update();
+                _ = m_timeOut.Update();
             }
         }
     }

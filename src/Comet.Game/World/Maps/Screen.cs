@@ -21,6 +21,7 @@
 
 #region References
 
+using System;
 using System.Collections.Concurrent;
 using System.Linq;
 using System.Threading;
@@ -58,7 +59,7 @@ namespace Comet.Game.World.Maps
 
         public async Task RemoveAsync(uint idRole, bool force = false)
         {
-            Roles.TryRemove(idRole, out var role);
+            _ = Roles.TryRemove(idRole, out var role);
 
             if (role is  Monster mob)
                 mob.PlayerOnSight--;
@@ -91,6 +92,7 @@ namespace Comet.Game.World.Maps
             targets.AddRange(Roles.Values);
             foreach (Role target in targets.Select(x => x).Distinct())
             {
+                Console.WriteLine($"Target: {target.Identity} - {target.MapX}, {target.MapY}");
                 if (target.Identity == m_user.Identity) continue;
 
                 Character targetUser = target as Character;
@@ -102,7 +104,7 @@ namespace Comet.Game.World.Maps
                      */
                     if (Add(target))
                     {
-                        targetUser?.Screen.Add(m_user);
+                        _ = (targetUser?.Screen.Add(m_user));
 
                         await target.SendSpawnToAsync(m_user);
                         if (targetUser != null)

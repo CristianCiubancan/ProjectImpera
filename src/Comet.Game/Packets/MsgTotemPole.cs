@@ -111,7 +111,7 @@ namespace Comet.Game.Packets
                             return;
 
                         user.Syndicate.Money -= price;
-                        await user.Syndicate.SaveAsync();
+                        _ = await user.Syndicate.SaveAsync();
 
                         await user.Syndicate.SendTotemPolesAsync(user);
                         await user.SendSyndicateAsync();
@@ -124,13 +124,13 @@ namespace Comet.Game.Packets
                         if (item == null)
                             return;
 
-                        await user.Syndicate.InscribeItemAsync(user, item);
+                        _ = await user.Syndicate.InscribeItemAsync(user, item);
                         break;
                     }
 
                 case ActionMode.UnsubscribeItem:
                     {
-                        await user.Syndicate.UnsubscribeItemAsync((uint)Data2, user.Identity);
+                        _ = await user.Syndicate.UnsubscribeItemAsync((uint)Data2, user.Identity);
                         break;
                     }
 

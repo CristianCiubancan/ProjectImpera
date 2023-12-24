@@ -50,7 +50,7 @@ namespace Comet.Game.States
         {
             foreach (var skill in await WeaponSkillRepository.GetAsync(m_user.Identity))
             {
-                m_skills.TryAdd((ushort)skill.Type, skill);
+                _ = m_skills.TryAdd((ushort)skill.Type, skill);
             }
         }
 
@@ -87,10 +87,10 @@ namespace Comet.Game.States
                 await using (var db = new ServerDbContext())
                 {
                     if (skill.Identity == 0)
-                        db.Add(skill);
+                        _ = db.Add(skill);
                     else
-                        db.Update(skill);
-                    await db.SaveChangesAsync();
+                        _ = db.Update(skill);
+                    _ = await db.SaveChangesAsync();
                 }
 
                 return true;

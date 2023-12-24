@@ -157,9 +157,9 @@ namespace Comet.Game.States.Events
 
         public override async Task OnEnterAsync(Character sender)
         {
-            await sender.DetachAllStatusAsync();
+            _ = await sender.DetachAllStatusAsync();
             if (sender.UserPackage[Item.ItemPosition.LeftHand]?.IsShield() == true)
-                await sender.UserPackage.UnEquipAsync(Item.ItemPosition.LeftHand);
+                _ = await sender.UserPackage.UnEquipAsync(Item.ItemPosition.LeftHand);
 
             await sender.SetPkModeAsync(PkModeType.FreePk);
 
@@ -224,14 +224,14 @@ namespace Comet.Game.States.Events
 
             if (IsEnded)
             {
-                m_updateScreen.Clear();
+                _ = m_updateScreen.Clear();
                 try
                 {
                     foreach (var player in m_participants.Values)
                     {
                         Character user = Kernel.RoleManager.GetUser(player.Identity);
                         if (user != null)
-                            await user.FlyMapAsync(user.RecordMapIdentity, user.RecordMapX, user.RecordMapY);
+                            _ = await user.FlyMapAsync(user.RecordMapIdentity, user.RecordMapX, user.RecordMapY);
                     }
 
                     await DeliverRewardsAsync();

@@ -92,7 +92,7 @@ namespace Comet.Game.Packets
                             || role.MapIdentity == 5000))
                     {
                         user.InteractingNpc = npc.Identity;
-                        await npc.ActivateNpc(user);
+                        _ = await npc.ActivateNpc(user);
                     }
                     break;
                 case NpcActionType.CancelInteraction:

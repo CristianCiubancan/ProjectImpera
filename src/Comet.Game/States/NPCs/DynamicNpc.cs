@@ -134,7 +134,7 @@ namespace Comet.Game.States.NPCs
                 m_dbNpc.Mapid = idMap;
                 m_dbNpc.Celly = y;
                 m_dbNpc.Cellx = x;
-                await SaveAsync();
+                _ = await SaveAsync();
                 return true;
             }
             return false;
@@ -289,7 +289,7 @@ namespace Comet.Game.States.NPCs
         public override async Task<bool> BeAttackAsync(BattleSystem.MagicType magic, Role attacker, int nPower,
             bool bReflectEnable)
         {
-            await AddAttributesAsync(ClientUpdateType.Hitpoints, nPower * -1);
+            _ = await AddAttributesAsync(ClientUpdateType.Hitpoints, nPower * -1);
 
             Character user = attacker as Character;
             if (IsSynFlag() && user != null)
@@ -303,13 +303,13 @@ namespace Comet.Game.States.NPCs
                     && owner.Money > 0)
                 {
                     owner.Money -= money;
-                    await owner.SaveAsync();
+                    _ = await owner.SaveAsync();
                     await user.AwardMoneyAsync(money);
 
                     if (user.SyndicateIdentity > 0)
                     {
                         user.Syndicate.Money += proffer;
-                        await user.Syndicate.SaveAsync();
+                        _ = await user.Syndicate.SaveAsync();
                     }
                 }
                 else if (money > 0
@@ -318,7 +318,7 @@ namespace Comet.Game.States.NPCs
                          && owner.Money <= 0)
                 {
                     owner.Money -= money;
-                    await owner.SaveAsync();
+                    _ = await owner.SaveAsync();
                 }
             }
 
@@ -331,13 +331,13 @@ namespace Comet.Game.States.NPCs
         public override async Task BeKillAsync(Role attacker)
         {
             if (m_dbNpc.Linkid != 0)
-                await GameAction.ExecuteActionAsync(m_dbNpc.Linkid, attacker as Character, this, null, "");
+                _ = await GameAction.ExecuteActionAsync(m_dbNpc.Linkid, attacker as Character, this, null, "");
         }
 
         public override async Task DelNpcAsync()
         {
-            await SetAttributesAsync(ClientUpdateType.Hitpoints, 0);
-            m_Death.Update();
+            _ = await SetAttributesAsync(ClientUpdateType.Hitpoints, 0);
+            _ = m_Death.Update();
 
             if (IsSynFlag() || IsCtfFlag())
             {
@@ -345,7 +345,7 @@ namespace Comet.Game.States.NPCs
             }
             else if (!IsGoal())
             {
-                await DeleteAsync();
+                _ = await DeleteAsync();
             }
 
             await LeaveMapAsync();
@@ -359,7 +359,7 @@ namespace Comet.Game.States.NPCs
                 Name = "";
 
                 await BroadcastRoomMsgAsync(new MsgNpcInfoEx(this), false);
-                await SaveAsync();
+                _ = await SaveAsync();
                 return true;
             }
 
@@ -387,7 +387,7 @@ namespace Comet.Game.States.NPCs
                 }
             }*/
 
-            await SaveAsync();
+            _ = await SaveAsync();
             await BroadcastRoomMsgAsync(new MsgNpcInfoEx(this) { Lookface = m_dbNpc.Lookface }, false);
             return true;
         }
@@ -452,7 +452,7 @@ namespace Comet.Game.States.NPCs
                 return;
 
             if (!m_dicScores.ContainsKey(syn.Identity))
-                m_dicScores.TryAdd(syn.Identity, new Score(syn.Identity, syn.Name));
+                _ = m_dicScores.TryAdd(syn.Identity, new Score(syn.Identity, syn.Name));
 
             m_dicScores[syn.Identity].Points += score;
         }

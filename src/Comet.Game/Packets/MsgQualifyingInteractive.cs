@@ -96,7 +96,7 @@ namespace Comet.Game.Packets
                     {
                         if (user.CurrentEvent is ArenaQualifier check && !check.IsInsideMatch(user.Identity))
                         {
-                            await check.UnsubscribeAsync(user.Identity);
+                                _ = await check.UnsubscribeAsync(user.Identity);
                         }
                         else
                         {
@@ -107,11 +107,11 @@ namespace Comet.Game.Packets
 
                     if (qualifier.HasUser(user.Identity) && !qualifier.IsInsideMatch(user.Identity))
                     {
-                        await qualifier.UnsubscribeAsync(user.Identity);
+                            _ = await qualifier.UnsubscribeAsync(user.Identity);
                         return;
                     }
 
-                    await qualifier.InscribeAsync(user);
+                        _ = await qualifier.InscribeAsync(user);
                     await ArenaQualifier.SendArenaInformationAsync(user);
                     await user.SendAsync(MsgQualifyingFightersList.CreateMsg());
                     return;
@@ -119,7 +119,7 @@ namespace Comet.Game.Packets
 
                 case InteractionType.Unsubscribe:
                 {
-                    await qualifier.UnsubscribeAsync(user.Identity); // no checks because user may be for some reason out of the event...
+                        _ = await qualifier.UnsubscribeAsync(user.Identity); // no checks because user may be for some reason out of the event...
                     await ArenaQualifier.SendArenaInformationAsync(user);
                     await user.SendAsync(MsgQualifyingFightersList.CreateMsg());
                     return;
@@ -130,7 +130,7 @@ namespace Comet.Game.Packets
                     ArenaQualifier.QualifierMatch match = qualifier.FindMatch(user.Identity);
                     if (match == null)
                     {
-                        await qualifier.UnsubscribeAsync(user.Identity);
+                            _ = await qualifier.UnsubscribeAsync(user.Identity);
                         return;
                     }
 
@@ -159,7 +159,7 @@ namespace Comet.Game.Packets
 
                         if (match.Accepted1 && match.Accepted2)
                         {
-                            await match.StartAsync();
+                                _ = await match.StartAsync();
                         }
                     }
                     else
@@ -175,7 +175,7 @@ namespace Comet.Game.Packets
                     ArenaQualifier.QualifierMatch match = qualifier.FindMatchByMap(user.MapIdentity);
                     if (match == null || !match.IsRunning) // check if running, because if other player gave up first it may not happen twice
                     {
-                        await qualifier.UnsubscribeAsync(user.Identity);
+                            _ = await qualifier.UnsubscribeAsync(user.Identity);
                         return;
                     }
 
@@ -201,8 +201,8 @@ namespace Comet.Game.Packets
 
                 case InteractionType.ReJoin:
                 {
-                    await qualifier.UnsubscribeAsync(user.Identity);
-                    await qualifier.InscribeAsync(user);
+                        _ = await qualifier.UnsubscribeAsync(user.Identity);
+                        _ = await qualifier.InscribeAsync(user);
                     await ArenaQualifier.SendArenaInformationAsync(user);
                     await user.SendAsync(MsgQualifyingFightersList.CreateMsg());
                     return;

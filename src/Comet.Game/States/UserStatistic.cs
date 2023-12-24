@@ -53,7 +53,7 @@ namespace Comet.Game.States
                 {
                     foreach (var st in list)
                     {
-                        m_dicStc.TryAdd(GetKey(st.EventType, st.DataType), st);
+                        _ = m_dicStc.TryAdd(GetKey(st.EventType, st.DataType), st);
                     }
                 }
 
@@ -84,7 +84,7 @@ namespace Comet.Game.States
                     PlayerIdentity = m_pOwner.Identity,
                     Timestamp = DateTime.Now
                 };
-                m_dicStc.TryAdd(key, stc);
+                _ = m_dicStc.TryAdd(key, stc);
             }
 
             return await BaseRepository.SaveAsync(stc);
@@ -95,7 +95,7 @@ namespace Comet.Game.States
             DbStatistic stc = GetStc(idEvent, idType);
             if (stc == null)
             {
-                await AddOrUpdateAsync(idEvent, idType, 0, true);
+                _ = await AddOrUpdateAsync(idEvent, idType, 0, true);
                 stc = GetStc(idEvent, idType);
 
                 if (stc == null)

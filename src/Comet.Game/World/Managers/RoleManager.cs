@@ -84,17 +84,19 @@ namespace Comet.Game.World.Managers
         {
             foreach (var auto in await PointAllotRepository.GetAsync())
             {
-                m_dicPointAllot.TryAdd(AllotIndex(auto.Profession, auto.Level), auto);
+                _ = m_dicPointAllot.TryAdd(AllotIndex(auto.Profession, auto.Level), auto);
             }
 
             foreach (var mob in await MonsterypeRepository.GetAsync())
             {
-                m_dicMonstertype.TryAdd(mob.Id, mob);
+                _ = Log.WriteLogAsync(LogLevel.Debug, $"Loaded monster {mob.Id} {mob.Name}");
+                _ = m_dicMonstertype.TryAdd(mob.Id, mob);
+                
             }
 
             foreach (var lev in await LevelExperienceRepository.GetAsync())
             {
-                m_dicLevExp.TryAdd(lev.Level, lev);
+                _ = m_dicLevExp.TryAdd(lev.Level, lev);
             }
 
             m_dicRebirths.AddRange(await RebirthRepository.GetAsync());
@@ -107,7 +109,7 @@ namespace Comet.Game.World.Managers
             foreach (var magic in await DbMonsterMagic.GetAsync())
             {
                 if (!m_dicMonsterMagics.ContainsKey(magic.OwnerIdentity))
-                    m_dicMonsterMagics.TryAdd(magic.OwnerIdentity, new List<DbMonsterMagic>());
+                    _ = m_dicMonsterMagics.TryAdd(magic.OwnerIdentity, new List<DbMonsterMagic>());
                 m_dicMonsterMagics[magic.OwnerIdentity].Add(magic);
             }
 
@@ -119,7 +121,7 @@ namespace Comet.Game.World.Managers
 
             m_tutorBattleLimitTypes.AddRange(await DbTutorBattleLimitType.GetAsync());
 
-            m_userUpdate.Update();
+            _ = m_userUpdate.Update();
         }
 
         public async Task<bool> LoginUserAsync(Client user)
@@ -160,8 +162,8 @@ namespace Comet.Game.World.Managers
             //     return false;
             // }
 
-            m_userSet.TryAdd(user.Character.Identity, user.Character);
-            m_roleSet.TryAdd(user.Character.Identity, user.Character);
+            _ = m_userSet.TryAdd(user.Character.Identity, user.Character);
+            _ = m_roleSet.TryAdd(user.Character.Identity, user.Character);
 
             await user.Character.SetLoginAsync();
             
@@ -192,8 +194,8 @@ namespace Comet.Game.World.Managers
 
         public void ForceLogoutUser(uint idUser)
         {
-            m_userSet.TryRemove(idUser, out _);
-            m_roleSet.TryRemove(idUser, out _);
+            _ = m_userSet.TryRemove(idUser, out _);
+            _ = m_roleSet.TryRemove(idUser, out _);
         }
 
         public async Task KickOutAsync(uint idUser, string reason = "")
@@ -251,7 +253,7 @@ namespace Comet.Game.World.Managers
         public bool AddRole(Role role)
         {
             if (role is MapItem item)
-                m_mapItemSet.TryAdd(role.Identity, item);
+                _ = m_mapItemSet.TryAdd(role.Identity, item);
             return m_roleSet.TryAdd(role.Identity, role);
         }
 
@@ -300,7 +302,7 @@ namespace Comet.Game.World.Managers
         /// </summary>
         public bool RemoveRole(uint idRole)
         {
-            m_mapItemSet.TryRemove(idRole, out _);
+            _ = m_mapItemSet.TryRemove(idRole, out _);
             return m_roleSet.TryRemove(idRole, out _);
         }
         
@@ -334,7 +336,7 @@ namespace Comet.Game.World.Managers
                     Kernel.Services.Processor.Queue(item.Map.Partition, async () =>
                     {
                         await item.DisappearAsync();
-                        m_mapItemSet.TryRemove(item.Identity, out _);
+                        _ = m_mapItemSet.TryRemove(item.Identity, out _);
                     });
                 }
             }
@@ -360,7 +362,7 @@ namespace Comet.Game.World.Managers
         {
             foreach (var user in m_userSet.Values)
             {
-                user.SendAsync(message, channel, color).ConfigureAwait(false);
+                _ = user.SendAsync(message, channel, color).ConfigureAwait(false);
             }
             return Task.CompletedTask;
         }
@@ -370,7 +372,7 @@ namespace Comet.Game.World.Managers
             foreach (var user in m_userSet.Values)
             {
                 if (user.Identity == ignore) continue;
-                    user.SendAsync(msg).ConfigureAwait(false);
+                _ = user.SendAsync(msg).ConfigureAwait(false);
             }
             return Task.CompletedTask;
         }

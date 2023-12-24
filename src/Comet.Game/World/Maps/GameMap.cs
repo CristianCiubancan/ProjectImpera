@@ -271,16 +271,16 @@ namespace Comet.Game.World.Maps
 
                 if (role is Character character)
                 {
-                    m_users.TryAdd(character.Identity, character);
+                    _ = m_users.TryAdd(character.Identity, character);
                     await character.Screen.UpdateAsync();
                 }
                 else
                 {
-                    Kernel.RoleManager.AddRole(role);
+                    _ = Kernel.RoleManager.AddRole(role);
                     foreach (var user in m_users.Values.Where(x =>
                         ScreenCalculations.GetDistance(x.MapX, x.MapY, role.MapX, role.MapY) <= Screen.VIEW_SIZE))
                     {
-                        await user.Screen.SpawnAsync(role);
+                        _ = await user.Screen.SpawnAsync(role);
                     }
                 }
 
@@ -294,11 +294,11 @@ namespace Comet.Game.World.Maps
         {
             if (m_roles.TryRemove(idRole, out var role))
             {
-                m_users.TryRemove(idRole, out _);
+                _ = m_users.TryRemove(idRole, out _);
                 LeaveBlock(role);
 
                 if (!(role is Character))
-                    Kernel.RoleManager.RemoveRole(idRole);
+                    _ = Kernel.RoleManager.RemoveRole(idRole);
 
                 foreach (var user in m_users.Values)
                 {
@@ -329,9 +329,9 @@ namespace Comet.Game.World.Maps
             await user.SendAsync(new MsgMapInfo(Identity, MapDoc, Type));
 
             if (Weather.GetType() != Weather.WeatherType.WeatherNone)
-                await Weather.SendWeatherAsync(user);
+                _ = await Weather.SendWeatherAsync(user);
             else
-                await Weather.SendNoWeatherAsync(user);
+                _ = await Weather.SendNoWeatherAsync(user);
         }
 
         public async Task BroadcastMsgAsync(IPacket msg, uint exclude = 0)
@@ -382,13 +382,13 @@ namespace Comet.Game.World.Maps
                 if (GetBlock(oldBlockX, oldBlockY)?.RoleSet.ContainsKey(role.Identity) == true)
                     LeaveBlock(role);
 
-                GetBlock(currentBlockX, currentBlockY)?.Add(role);
+                _ = (GetBlock(currentBlockX, currentBlockY)?.Add(role));
             }
         }
 
         public void LeaveBlock(Role role)
         {
-            GetBlock(GetBlockX(role.MapX), GetBlockY(role.MapY))?.Remove(role);
+            _ = (GetBlock(GetBlockX(role.MapX), GetBlockY(role.MapY))?.Remove(role));
         }
 
 
@@ -696,7 +696,7 @@ namespace Comet.Game.World.Maps
             GameMap targetMap = Kernel.MapManager.GetMap(idMap);
             if (targetMap == null)
             {
-                Log.WriteLogAsync(LogLevel.Error, $"Could not get reborn map [{Identity}]!").ConfigureAwait(false);
+                _ = Log.WriteLogAsync(LogLevel.Error, $"Could not get reborn map [{Identity}]!").ConfigureAwait(false);
                 return false;
             }
 

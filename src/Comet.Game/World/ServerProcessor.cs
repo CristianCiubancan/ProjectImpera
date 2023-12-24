@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Channels;
 using System.Threading.Tasks;
+using Comet.Shared;
 using Microsoft.Extensions.Hosting;
 
 namespace Comet.Game.World
@@ -19,6 +20,7 @@ namespace Comet.Game.World
 
         public ServerProcessor(int processorCount)
         {
+            _ = Log.WriteLogAsync(LogLevel.Debug, $"ServerProcessor created with {processorCount} partitions").ConfigureAwait(false);
             Count = Math.Max(1, processorCount);
 
             m_BackgroundTasks = new Task[Count];
@@ -34,40 +36,78 @@ namespace Comet.Game.World
             }
         }
 
-        protected override Task ExecuteAsync(CancellationToken token)
+        protected override async Task ExecuteAsync(CancellationToken token)
         {
-            for (int i = 0; i < Count; i++)
+            try
             {
-                m_BackgroundTasks[i] = DequeueAsync(i, m_Channels[i], token);
+                await Log.WriteLogAsync(LogLevel.Debug, $"Starting {Count} background tasks");
+                for (int i = 0; i < Count; i++)
+                {
+                    int taskIndex = i; // Capture the current loop index
+                    await Log.WriteLogAsync(LogLevel.Debug, $"Starting background task {taskIndex}");
+                    m_BackgroundTasks[i] = DequeueAsync(taskIndex, m_Channels[i], token);
+                }
+                await Log.WriteLogAsync(LogLevel.Debug, $"All background tasks started");
+                await Task.WhenAll(m_BackgroundTasks);
             }
-
-            return Task.WhenAll(m_BackgroundTasks);
+            catch (Exception ex)
+            {
+                await Log.WriteLogAsync(LogLevel.Exception, $"Exception in ServerProcessor: {ex.Message}\r\n\t{ex}");
+            }
         }
 
         public void Queue(int partition, Func<Task> task)
         {
+            if (task == null)
+            {
+                _ = Log.WriteLogAsync(LogLevel.Warning, "Attempted to queue a null task.").ConfigureAwait(false);
+                return;
+            }
+            if (partition < 0 || partition >= Count)
+            {
+                _ = Log.WriteLogAsync(LogLevel.Warning, $"Attempted to queue a task to partition {partition} which is out of range.").ConfigureAwait(false);
+                return;
+            }
+
             if (!m_CancelWrites.Token.IsCancellationRequested)
             {
-                m_Channels[partition].Writer.TryWrite(task);
+                _ = m_Channels[partition].Writer.TryWrite(task);
+            }
+            else
+            {
+                _ = Log.WriteLogAsync(LogLevel.Warning, $"Write operation cancelled. Task not queued to partition {partition}.").ConfigureAwait(false);
             }
         }
 
-        protected virtual async Task DequeueAsync(int partition, Channel<Func<Task>> channel, CancellationToken cancellationToken)
+
+        protected async Task DequeueAsync(int partition, Channel<Func<Task>> channel, CancellationToken cancellationToken)
         {
+            await Log.WriteLogAsync(LogLevel.Debug, $"Starting dequeue task for partition {partition}");
             while (!cancellationToken.IsCancellationRequested)
             {
-                var action = await channel.Reader.ReadAsync(cancellationToken).ConfigureAwait(false);
-                if (action != null)
+                try
                 {
-                    try
+                    await Log.WriteLogAsync(LogLevel.Debug, $"Waiting for task in partition {partition}");
+                    var action = await channel.Reader.ReadAsync(cancellationToken).ConfigureAwait(false);
+
+                    if (action != null)
                     {
-                        await action.Invoke().ConfigureAwait(false);
+                        await Log.WriteLogAsync(LogLevel.Debug, $"Task received in partition {partition}");
+                        await action().ConfigureAwait(false);
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        // Assuming Log.WriteLogAsync is a valid method in your project
-                        // await Log.WriteLogAsync(LogLevel.Exception, $"{ex.Message}\r\n\t{ex}").ConfigureAwait(false);
+                        await Log.WriteLogAsync(LogLevel.Warning, $"Received null task in partition {partition}");
                     }
+                }
+                catch (OperationCanceledException)
+                {
+                    await Log.WriteLogAsync(LogLevel.Info, $"Operation canceled in partition {partition}");
+                    break;
+                }
+                catch (Exception ex)
+                {
+                    await Log.WriteLogAsync(LogLevel.Exception, $"Exception in partition {partition}: {ex.Message}\r\n\t{ex}");
                 }
             }
         }
@@ -83,7 +123,6 @@ namespace Comet.Game.World
 
             await base.StopAsync(cancellationToken);
         }
-
         public uint SelectPartition()
         {
             return m_Partitions.MinBy(p => p.Weight).ID;
@@ -91,9 +130,8 @@ namespace Comet.Game.World
 
         public void DeselectPartition(uint partition)
         {
-            Interlocked.Decrement(ref m_Partitions[partition].Weight);
+            _ = Interlocked.Decrement(ref m_Partitions[partition].Weight);
         }
-
         protected class Partition
         {
             public uint ID;

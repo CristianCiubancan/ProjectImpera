@@ -67,7 +67,7 @@ namespace Comet.Game.States
             }
 
             if (board.ContainsKey(user.Identity))
-                board.Remove(user.Identity);
+                _ = board.Remove(user.Identity);
 
             // todo verify silence
             // todo filter words

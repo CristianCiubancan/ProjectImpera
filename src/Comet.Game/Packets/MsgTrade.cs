@@ -108,7 +108,7 @@ namespace Comet.Game.Packets
 
                     if (target.QueryRequest(RequestType.Trade) == user.Identity)
                     {
-                        target.PopRequest(RequestType.Trade);
+                        _ = target.PopRequest(RequestType.Trade);
                         user.Trade = target.Trade = new Trade(target, user);
                         await user.SendAsync(new MsgTrade { Action = TradeAction.Open, Data = target.Identity });
                         await target.SendAsync(new MsgTrade { Action = TradeAction.Open, Data = user.Identity });
@@ -129,12 +129,12 @@ namespace Comet.Game.Packets
 
                 case TradeAction.AddItem:
                     if (user.Trade != null)
-                        await user.Trade.AddItemAsync(Data, user);
+                        _ = await user.Trade.AddItemAsync(Data, user);
                     break;
 
                 case TradeAction.AddMoney:
                     if (user.Trade != null)
-                        await user.Trade.AddMoneyAsync(Data, user);
+                        _ = await user.Trade.AddMoneyAsync(Data, user);
                     break;
 
                 case TradeAction.Accept:
@@ -144,7 +144,7 @@ namespace Comet.Game.Packets
 
                 case TradeAction.AddConquerPoints:
                     if (user.Trade != null)
-                        await user.Trade.AddEmoneyAsync(Data, user);
+                        _ = await user.Trade.AddEmoneyAsync(Data, user);
                     break;
             }
         }

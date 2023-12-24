@@ -113,7 +113,7 @@ namespace Comet.Game.Packets
             await user.SendAsync(new MsgUserAttrib(client.Identity, ClientUpdateType.Spirit, client.Character.Spirit));
             await user.SendAsync(new MsgUserAttrib(client.Identity, ClientUpdateType.Atributes, client.Character.AttributePoints));
 
-            await user.SaveAsync();
+            _ = await user.SaveAsync();
         }
     }
 }

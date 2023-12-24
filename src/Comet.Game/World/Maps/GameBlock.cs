@@ -54,7 +54,7 @@ namespace Comet.Game.World.Maps
         {
             if (role is Character)
             {
-                Interlocked.Increment(ref m_userCount);
+                _ = Interlocked.Increment(ref m_userCount);
                 //foreach (var mob in RoleSet.Values.Where(x => x is Monster).Cast<Monster>())
                 //{
                 //    mob.PlayerOnSight++;
@@ -68,7 +68,7 @@ namespace Comet.Game.World.Maps
             bool remove = RoleSet.TryRemove(role.Identity, out _);
             if (role is Character && remove)
             {
-                Interlocked.Decrement(ref m_userCount);
+                _ = Interlocked.Decrement(ref m_userCount);
                 //foreach (var mob in RoleSet.Values.Where(x => x is Monster).Cast<Monster>())
                 //{
                 //    mob.PlayerOnSight--;
@@ -82,7 +82,7 @@ namespace Comet.Game.World.Maps
             bool remove = RoleSet.TryRemove(role, out var target);
             if (target is Character && remove)
             {
-                Interlocked.Decrement(ref m_userCount);
+                _ = Interlocked.Decrement(ref m_userCount);
                 //foreach (var mob in RoleSet.Values.Where(x => x is Monster).Cast<Monster>())
                 //{
                 //    mob.PlayerOnSight--;

@@ -20,7 +20,7 @@ namespace Comet.Game.Internal
             : base("8a653a5d1e92b4e1db79".Length)
         {
             Processor = new PacketProcessor<AccountServer>(ProcessAsync);
-            Processor.StartAsync(CancellationToken.None).ConfigureAwait(false);
+            _ = Processor.StartAsync(CancellationToken.None).ConfigureAwait(false);
         }
 
         protected override async Task<AccountServer> ConnectedAsync(Socket socket, Memory<byte> buffer)
@@ -100,7 +100,7 @@ namespace Comet.Game.Internal
 
         protected override void Disconnected(AccountServer actor)
         {
-            Log.WriteLogAsync(LogLevel.Info, "Disconnected from the account server!").ConfigureAwait(false);
+            _ = Log.WriteLogAsync(LogLevel.Info, "Disconnected from the account server!").ConfigureAwait(false);
 
             Kernel.AccountClient = null;
             Kernel.AccountServer = null;

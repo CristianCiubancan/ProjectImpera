@@ -110,7 +110,7 @@ namespace Comet.Game.States.Events
                     {
                         if (!m_users.TryGetValue(user.Identity, out var res))
                         {
-                            Enter(user);
+                            _ = Enter(user);
                         }
                         else
                         {
@@ -220,7 +220,7 @@ namespace Comet.Game.States.Events
                             await user.SendAsync(msg);
 
                             if (user.Level < Role.MAX_UPLEV)
-                                await user.AwardExperienceAsync(user.CalculateExpBall(expBallReward));
+                                _ = await user.AwardExperienceAsync(user.CalculateExpBall(expBallReward));
                         }
                         else
                         {
@@ -229,7 +229,7 @@ namespace Comet.Game.States.Events
                             {
                                 user = new Character(dbUser, null);
                                 dbUser.Experience += (ulong) user.CalculateExpBall(expBallReward);
-                                await BaseRepository.SaveAsync(dbUser);
+                                _ = await BaseRepository.SaveAsync(dbUser);
                             }
                         }
                     }
@@ -246,11 +246,11 @@ namespace Comet.Game.States.Events
 
             if (!m_users.TryGetValue(user.Identity, out var player))
             {
-                m_users.TryAdd(user.Identity, player = new QuizUser
+                _ = m_users.TryAdd(user.Identity, player = new QuizUser
                 {
                     Identity = user.Identity,
                     Name = user.Name,
-                    TimeTaken = (ushort) (Math.Max(0, m_questionIdx - 1) * TIME_PER_QUESTION),
+                    TimeTaken = (ushort)(Math.Max(0, m_questionIdx - 1) * TIME_PER_QUESTION),
                     CurrentQuestion = m_questionIdx
                 });
             }
@@ -276,7 +276,7 @@ namespace Comet.Game.States.Events
 
             user.QuizPoints += points;
             player.Experience += (ushort) expBallAmount;
-            await user.AwardExperienceAsync(user.CalculateExpBall(expBallAmount));
+            _ = await user.AwardExperienceAsync(user.CalculateExpBall(expBallAmount));
 
             MsgQuiz msg = new MsgQuiz
             {

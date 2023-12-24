@@ -90,9 +90,9 @@ namespace Comet.Game.Packets
         public override void Decode(byte[] bytes)
         {
             var reader = new PacketReader(bytes);
-            reader.BaseStream.Seek(7, SeekOrigin.Begin);
+            _ = reader.BaseStream.Seek(7, SeekOrigin.Begin);
             Length = (ushort) reader.ReadUInt32();
-            reader.BaseStream.Seek(reader.ReadUInt32(), SeekOrigin.Current);
+            _ = reader.BaseStream.Seek(reader.ReadUInt32(), SeekOrigin.Current);
             ClientKey = Encoding.ASCII.GetString(reader.ReadBytes(reader.ReadInt32()));
         }
 

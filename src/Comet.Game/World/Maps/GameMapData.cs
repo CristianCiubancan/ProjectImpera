@@ -101,13 +101,14 @@ namespace Comet.Game.World.Maps
 
         public bool Load(string path)
         {
+            Log.WriteLogAsync(LogLevel.Debug, $"Loading map data for file {m_idDoc} '{path}'...").Forget();
             if (FileExists(path))
             {
                 string realPath = GetRealPath(path);
 
                 if (string.IsNullOrEmpty(realPath))
                 {
-                    Log.WriteLogAsync(LogLevel.Warning, $"Map data for file {m_idDoc} '{path}' (realPath:{realPath}) has not been found.").Forget();
+                    // Log.WriteLogAsync(LogLevel.Warning, $"Map data for file {m_idDoc} '{path}' (realPath:{realPath}) has not been found.").Forget();
                     return false;
                 }
 
@@ -139,7 +140,7 @@ namespace Comet.Game.World.Maps
         {
             uint version = reader.ReadUInt32();
             uint data = reader.ReadUInt32();
-            reader.ReadBytes(260); // jump ??? why
+            _ = reader.ReadBytes(260); // jump ??? why
             Width = reader.ReadInt32();
             Height = reader.ReadInt32();
 

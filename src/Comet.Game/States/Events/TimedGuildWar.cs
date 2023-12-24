@@ -162,8 +162,8 @@ namespace Comet.Game.States.Events
             if (m_stage == EventStage.Idle) // cleanup and startup
             {
                 m_synData.Clear();
-                m_updateScreens.Update();
-                m_updatePoints.Update();
+                _ = m_updateScreens.Update();
+                _ = m_updatePoints.Update();
                 m_stage = EventStage.Running;
                 return;
             }
@@ -213,7 +213,7 @@ namespace Comet.Game.States.Events
 
         public void UnsubscribeSyndicate(uint idSyn)
         {
-            m_synData.TryRemove(idSyn, out _);
+            _ = m_synData.TryRemove(idSyn, out _);
         }
 
         public void LeaveSyndicate(uint sender, uint idSyn)
@@ -223,7 +223,7 @@ namespace Comet.Game.States.Events
                 return;
 
             if (syndicateData.Players.ContainsKey(sender))
-                syndicateData.Players.Remove(sender);
+                _ = syndicateData.Players.Remove(sender);
         }
 
         public void AddPoints(int amount, uint synId)
@@ -239,7 +239,7 @@ namespace Comet.Game.States.Events
                     Identity = syn.Identity,
                     Name = syn.Name
                 };
-                m_synData.TryAdd(syn.Identity, synData);
+                _ = m_synData.TryAdd(syn.Identity, synData);
             }
 
             synData.Points = Math.Max(0, synData.Points + amount);
@@ -306,7 +306,7 @@ namespace Comet.Game.States.Events
                 }
                 else
                 {
-                    await BaseRepository.ScalarAsync($"UPDATE `cq_user` SET `money`=`money`+{money}, `emoney`=`emoney`+{emoney} WHERE `id`={userData.Identity} LIMIT 1");
+                    _ = await BaseRepository.ScalarAsync($"UPDATE `cq_user` SET `money`=`money`+{money}, `emoney`=`emoney`+{emoney} WHERE `id`={userData.Identity} LIMIT 1");
                 }
 
                 await Log.GmLogAsync($"TimedGuildWarRewards",
@@ -326,7 +326,7 @@ namespace Comet.Game.States.Events
                 Name = syn.Name
             };
 
-            m_synData.TryAdd(syn.Identity, data);
+            _ = m_synData.TryAdd(syn.Identity, data);
             return data;
         }
 
@@ -351,7 +351,7 @@ namespace Comet.Game.States.Events
                 Points = 0,
                 IpAddress = sender.Client.IPAddress
             };
-            synData.Players.TryAdd(data.Identity, data);
+            _ = synData.Players.TryAdd(data.Identity, data);
             return data;
         }
 

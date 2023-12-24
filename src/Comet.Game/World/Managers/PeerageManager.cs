@@ -42,7 +42,7 @@ namespace Comet.Game.World.Managers
             List<DbPeerage> dbPeerages = await PeerageRepository.GetAsync();
             foreach (var peerage in dbPeerages)
             {
-                PeerageSet.TryAdd(peerage.UserIdentity, peerage);
+                _ = PeerageSet.TryAdd(peerage.UserIdentity, peerage);
             }
         }
 
@@ -62,7 +62,7 @@ namespace Comet.Game.World.Managers
                 };
                 await SaveAsync(peerage);
 
-                PeerageSet.TryAdd(user.Identity, peerage);
+                _ = PeerageSet.TryAdd(user.Identity, peerage);
             }
             else
             {
@@ -277,9 +277,9 @@ namespace Comet.Game.World.Managers
         {
             await using ServerDbContext context = new ServerDbContext();
             if (peerage.Identity == 0)
-                context.Peerage.Add(peerage);
-            else context.Peerage.Update(peerage);
-            await context.SaveChangesAsync();
+                _ = context.Peerage.Add(peerage);
+            else _ = context.Peerage.Update(peerage);
+            _ = await context.SaveChangesAsync();
         }
     }
 }

@@ -162,7 +162,7 @@ namespace Comet.Game.Packets
                     PosY = Convert.ToUInt16(yy);
 
                     if (client.Character.IsAlive)
-                        await client.Character.ProcessMagicAttackAsync(magicType, TargetIdentity, PosX, PosY);
+                        _ = await client.Character.ProcessMagicAttackAsync(magicType, TargetIdentity, PosX, PosY);
 
                     break;
 
@@ -227,7 +227,7 @@ namespace Comet.Game.Packets
                         return;
                     }
 
-                    user.PopRequest(RequestType.Marriage);
+                        _ = user.PopRequest(RequestType.Marriage);
 
                     if (targetUser.MapIdentity != user.MapIdentity || user.GetDistance(targetUser) > Screen.VIEW_SIZE)
                     {
@@ -255,10 +255,10 @@ namespace Comet.Game.Packets
 
                     user.MateIdentity = targetUser.Identity;
                     user.MateName = targetUser.Name;
-                    await user.SaveAsync();
+                        _ = await user.SaveAsync();
                     targetUser.MateIdentity = user.Identity;
                     targetUser.MateName = user.Name;
-                    await targetUser.SaveAsync();
+                        _ = await targetUser.SaveAsync();
 
                     await user.SendAsync(new MsgName
                     {
@@ -281,8 +281,8 @@ namespace Comet.Game.Packets
                 case MsgInteractType.InitialMerchant:
                 case MsgInteractType.AcceptMerchant:
                 {
-                    // ON ACCEPT: Sender = 1 Target = 1
-                    await user.SetMerchantAsync();
+                        // ON ACCEPT: Sender = 1 Target = 1
+                        _ = await user.SetMerchantAsync();
                     break;
                 }
 
@@ -299,7 +299,7 @@ namespace Comet.Game.Packets
 
                 case MsgInteractType.PresentEmoney:
                 {
-                    await user.DoCardsAsync();
+                        _ = await user.DoCardsAsync();
                     break;
                 }
 

@@ -154,7 +154,7 @@ namespace Comet.Game.Packets
                         }
 
                         main.SocketOne = gem;
-                        await main.SaveAsync();
+                        _ = await main.SaveAsync();
                         break;
                     }
 
@@ -182,7 +182,7 @@ namespace Comet.Game.Packets
                         }
 
                         main.SocketTwo = gem;
-                        await main.SaveAsync();
+                        _ = await main.SaveAsync();
                         break;
                     }
 
@@ -204,7 +204,7 @@ namespace Comet.Game.Packets
                             main.SocketTwo = Item.SocketGem.EmptySocket;
                         }
 
-                        await main.SaveAsync();
+                        _ = await main.SaveAsync();
                         break;
                     }
 
@@ -216,7 +216,7 @@ namespace Comet.Game.Packets
                             return;
 
                         main.SocketTwo = Item.SocketGem.EmptySocket;
-                        await main.SaveAsync();
+                        _ = await main.SaveAsync();
                         break;
                     }
 

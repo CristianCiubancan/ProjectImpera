@@ -40,7 +40,7 @@ namespace Comet.Game.World.Managers
                 Syndicate syn = new Syndicate();
                 if (!await syn.CreateAsync(dbSyn))
                     continue;
-                m_dicSyndicates.TryAdd(syn.Identity, syn);
+                _ = m_dicSyndicates.TryAdd(syn.Identity, syn);
             }
 
             foreach (var syndicate in m_dicSyndicates.Values)

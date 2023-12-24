@@ -51,9 +51,9 @@ namespace Comet.Game.States
             MapY = trap.PosY;
 
             m_tLifePeriod = new TimeOut();
-            m_tLifePeriod.Clear();
+            _ = m_tLifePeriod.Clear();
             m_tFight = new TimeOutMS();
-            m_tFight.Clear();
+            _ = m_tFight.Clear();
         }
 
         public uint Type => m_dbTrap.TypeId;
@@ -140,7 +140,7 @@ namespace Comet.Game.States
             {
                 Kernel.Services.Processor.Queue(Map.Partition, async () =>
                 {
-                    await Map.RemoveAsync(Identity);
+                    _ = await Map.RemoveAsync(Identity);
                 });
             }
 
@@ -188,11 +188,11 @@ namespace Comet.Game.States
             if (IdAction > 0)
             {
                 if ((AttackMode & (int) TargetType.User) != 0)
-                    await GameAction.ExecuteActionAsync(IdAction, target as Character, this, null, "");
+                    _ = await GameAction.ExecuteActionAsync(IdAction, target as Character, this, null, "");
                 else if ((AttackMode & (int)TargetType.Monster) != 0)
-                    await GameAction.ExecuteActionAsync(IdAction, null, target, null, "");
+                    _ = await GameAction.ExecuteActionAsync(IdAction, null, target, null, "");
                 else
-                    await GameAction.ExecuteActionAsync(IdAction, null, null, null, "");
+                    _ = await GameAction.ExecuteActionAsync(IdAction, null, null, null, "");
             }
 
             if (ActiveTimes > 0 && RemainingActiveTimes <= 0)
@@ -237,7 +237,7 @@ namespace Comet.Game.States
                 if (m_tLifePeriod.ToNextTime())
                 {
                     await LeaveMapAsync();
-                    m_tLifePeriod.Clear();
+                    _ = m_tLifePeriod.Clear();
                 }
             }
 

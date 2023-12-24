@@ -59,7 +59,7 @@ namespace Comet.Game.Packets
             Identity = reader.ReadUInt32();
             Action = (LockMode) reader.ReadByte();
             Mode = reader.ReadByte();
-            reader.ReadUInt16();
+            _ = reader.ReadUInt16();
             Param = reader.ReadUInt32();
         }
 
@@ -121,7 +121,7 @@ namespace Comet.Game.Packets
 
                     await item.SetUnlockAsync();
                     await client.SendAsync(new MsgItemInfo(item, MsgItemInfo.ItemMode.Update));
-                    await item.TryUnlockAsync();
+                    _ = await item.TryUnlockAsync();
                     break;
             }
         }

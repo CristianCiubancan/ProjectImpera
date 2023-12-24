@@ -107,14 +107,14 @@ namespace Comet.Game.States
             {
                 Power = nPower;
                 m_tKeep.SetInterval((int) Math.Min(int.MaxValue, (long) nSecs * 1000));
-                m_tKeep.Update();
+                _ = m_tKeep.Update();
 
                 if (Model != null)
                 {
                     Model.Power = nPower;
                     Model.IntervalTime = (uint) nSecs;
                     Model.EndTime = DateTime.Now.AddSeconds(nSecs);
-                    await BaseRepository.SaveAsync(Model);
+                    _ = await BaseRepository.SaveAsync(Model);
                 }
 
                 if (wCaster != 0)
@@ -183,7 +183,7 @@ namespace Comet.Game.States
                         Role sender = user.QueryRole(CasterId);
                         if (sender == null || sender.GetDistance(user) > 3)
                         {
-                            m_tKeep.Clear(); // cancel
+                                _ = m_tKeep.Clear(); // cancel
                             return;
                         }
 
@@ -207,9 +207,9 @@ namespace Comet.Game.States
             Power = nPower;
             m_tKeep = new TimeOutMS(Math.Min(int.MaxValue, nSecs * 1000));
             m_tKeep.Startup((int) Math.Min((long) nSecs * 1000, int.MaxValue));
-            m_tKeep.Update();
+            _ = m_tKeep.Update();
             m_tInterval = new TimeOutMS(1000);
-            m_tInterval.Update();
+            _ = m_tInterval.Update();
             Level = level;
 
             if (save && m_pOwner is Character)
@@ -225,7 +225,7 @@ namespace Comet.Game.States
                     OwnerId = m_pOwner.Identity,
                     Sort = 0
                 };
-                await BaseRepository.SaveAsync(Model);
+                _ = await BaseRepository.SaveAsync(Model);
             }
 
             return true;
@@ -283,7 +283,7 @@ namespace Comet.Game.States
             {
                 Power = nPower;
                 m_tKeep.SetInterval(nSecs);
-                m_tKeep.Update();
+                _ = m_tKeep.Update();
                 CasterId = wCaster;
 
                 if (nTimes > 0)
@@ -295,7 +295,7 @@ namespace Comet.Game.States
                     Model.LeaveTimes = (uint) nTimes;
                     Model.IntervalTime = (uint)nSecs;
                     Model.EndTime = DateTime.Now.AddSeconds(nSecs);
-                    await BaseRepository.SaveAsync(Model);
+                    _ = await BaseRepository.SaveAsync(Model);
                 }
 
                 return true;
@@ -349,7 +349,7 @@ namespace Comet.Game.States
                                 return;
 
                             loseLife = (int) Calculations.CutOverflow(Power, m_pOwner.Life - 1);
-                            await m_pOwner.AddAttributesAsync(ClientUpdateType.Hitpoints, -1 * loseLife);
+                                _ = await m_pOwner.AddAttributesAsync(ClientUpdateType.Hitpoints, -1 * loseLife);
 
                             var msg2 = new MsgMagicEffect
                             {
@@ -377,7 +377,7 @@ namespace Comet.Game.States
                                 loseLife = 0;
 
 
-                            await m_pOwner.BeAttackAsync(BattleSystem.MagicType.Normal, m_pOwner, loseLife, false);
+                                _ = await m_pOwner.BeAttackAsync(BattleSystem.MagicType.Normal, m_pOwner, loseLife, false);
 
                             var msg = new MsgMagicEffect
                             {
@@ -397,7 +397,7 @@ namespace Comet.Game.States
                                 break;
                             }
 
-                            await m_pOwner.ProcessMagicAttackAsync(6010, 0, m_pOwner.MapX, m_pOwner.MapY);
+                                _ = await m_pOwner.ProcessMagicAttackAsync(6010, 0, m_pOwner.MapX, m_pOwner.MapY);
                             break;
                         }
                     }
@@ -423,7 +423,7 @@ namespace Comet.Game.States
             Identity = nStatus;
             Power = nPower;
             m_tKeep = new TimeOut(nSecs);
-            m_tKeep.Update(); // no instant start
+            _ = m_tKeep.Update(); // no instant start
             m_nTimes = nTimes;
             CasterId = wCaster;
             Level = level;
@@ -638,15 +638,15 @@ namespace Comet.Game.States
         public async Task<bool> AddObjAsync(IStatus pStatus)
         {
             var pInfo = new StatusInfoStruct();
-            pStatus.GetInfo(ref pInfo);
+            _ = pStatus.GetInfo(ref pInfo);
             if (Status.ContainsKey(pInfo.Status))
                 return false; // status already exists
 
             ulong flag = 1UL << (pInfo.Status - 1);
-            Status.TryAdd(pInfo.Status, pStatus);
+            _ = Status.TryAdd(pInfo.Status, pStatus);
             StatusFlag |= flag;
 
-            await m_pOwner.SetAttributesAsync(ClientUpdateType.StatusFlag, StatusFlag);
+            _ = await m_pOwner.SetAttributesAsync(ClientUpdateType.StatusFlag, StatusFlag);
             return true;
         }
 
@@ -663,10 +663,10 @@ namespace Comet.Game.States
 
             if (status?.Model != null)
             {
-                await BaseRepository.DeleteAsync(status.Model);
+                _ = await BaseRepository.DeleteAsync(status.Model);
             }
 
-            await m_pOwner.SetAttributesAsync(ClientUpdateType.StatusFlag, StatusFlag);
+            _ = await m_pOwner.SetAttributesAsync(ClientUpdateType.StatusFlag, StatusFlag);
             return true;
         }
 

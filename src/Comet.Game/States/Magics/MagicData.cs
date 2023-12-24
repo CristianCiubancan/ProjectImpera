@@ -151,21 +151,21 @@ namespace Comet.Game.States.Magics
 
                     if (magic.Type == 1100 && user != null && user.ProfessionSort != 13)
                     {
-                        await BaseRepository.DeleteAsync(dbMagic);
+                        _ = await BaseRepository.DeleteAsync(dbMagic);
                         continue;
                     }
                     if (magic.Type == 1025 && user != null && user.ProfessionSort != 2 && user.ProfessionSort != 13)
                     {
-                        await BaseRepository.DeleteAsync(dbMagic);
+                        _ = await BaseRepository.DeleteAsync(dbMagic);
                         continue;
                     }
                     if (magic.Type == 1050 && user != null && user.ProfessionSort != 14 && user.ProfessionSort != 13)
                     {
-                        await BaseRepository.DeleteAsync(dbMagic);
+                        _ = await BaseRepository.DeleteAsync(dbMagic);
                         continue;
                     }
 
-                    Magics.TryAdd(magic.Type, magic);
+                    _ = Magics.TryAdd(magic.Type, magic);
                 }
             }
 
@@ -188,7 +188,7 @@ namespace Comet.Game.States.Magics
 
                 if (m_pOwner is Character)
                 {
-                    await old.SaveAsync();
+                    _ = await old.SaveAsync();
                     await old.SendAsync();
                 }
                 return true;
@@ -215,7 +215,7 @@ namespace Comet.Game.States.Magics
             pMagic.Experience = 0;
             pMagic.Level = nNewLevel;
             await pMagic.SendAsync();
-            await pMagic.SaveAsync();
+            _ = await pMagic.SaveAsync();
             return true;
         }
 
@@ -287,7 +287,7 @@ namespace Comet.Game.States.Magics
 
             if (drop)
             {
-                await magic.DeleteAsync();
+                _ = await magic.DeleteAsync();
             }
             else
             {
@@ -295,7 +295,7 @@ namespace Comet.Game.States.Magics
                 magic.Level = 0;
                 magic.Experience = 0;
                 magic.Unlearn = true;
-                await magic.SaveAsync();
+                _ = await magic.SaveAsync();
             }
 
             await m_pOwner.SendAsync(new MsgAction
@@ -317,7 +317,7 @@ namespace Comet.Game.States.Magics
             magic.OldLevel = (byte)magic.Level;
             magic.Level = 0;
             magic.Experience = 0;
-            await magic.SaveAsync();
+            _ = await magic.SaveAsync();
             await magic.SendAsync();
             return true;
         }

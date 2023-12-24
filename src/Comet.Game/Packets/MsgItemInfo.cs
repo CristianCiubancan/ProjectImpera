@@ -127,7 +127,7 @@ namespace Comet.Game.Packets
             writer.Write((byte) 0); // 39
             writer.Write((int) Color); // 40
             writer.Write(CompositionProgress); // 44
-            writer.BaseStream.Seek(2, SeekOrigin.Current);
+            _ = writer.BaseStream.Seek(2, SeekOrigin.Current);
             writer.Write(Inscribed ? 1 : 0);
             return writer.ToArray();
         }

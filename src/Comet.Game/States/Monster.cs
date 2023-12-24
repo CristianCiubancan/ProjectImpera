@@ -79,7 +79,7 @@ namespace Comet.Game.States
 
             m_idMap = generator.MapIdentity;
 
-            m_tStatusCheck.Update();
+            _ = m_tStatusCheck.Update();
 
             m_tMoveMs.Startup(m_dbMonster.MoveSpeed);
             m_tAttackMs.Startup(m_dbMonster.AttackSpeed);
@@ -123,14 +123,14 @@ namespace Comet.Game.States
             {
                 Magic defaultMagic = new Magic(this);
                 if (await defaultMagic.CreateAsync(m_dbMonster.MagicType))
-                    MagicData.Magics.TryAdd(defaultMagic.Type, defaultMagic);
+                    _ = MagicData.Magics.TryAdd(defaultMagic.Type, defaultMagic);
             }
 
             foreach (var dbMagic in m_monsterMagics)
             {
                 Magic magic = new Magic(this);
                 if (await magic.CreateAsync(dbMagic.MagicIdentity, dbMagic.MagicLevel))
-                    MagicData.Magics.TryAdd(magic.Type, magic);
+                    _ = MagicData.Magics.TryAdd(magic.Type, magic);
             }
 
             return true;
@@ -254,7 +254,7 @@ namespace Comet.Game.States
             if (!IsAlive)
                 return false;
 
-            await AddAttributesAsync(ClientUpdateType.Hitpoints, nPower * -1);
+            _ = await AddAttributesAsync(ClientUpdateType.Hitpoints, nPower * -1);
 
             if (!IsAlive)
             {
@@ -277,12 +277,12 @@ namespace Comet.Game.States
                 attacker.BattleSystem.ResetBattle();
 
             if (attacker?.MagicData.QueryMagic != null)
-                await attacker.MagicData.AbortMagicAsync(false);
+                _ = await attacker.MagicData.AbortMagicAsync(false);
 
-            await DetachAllStatusAsync();
-            await AttachStatusAsync(attacker, StatusSet.FADE, 0, int.MaxValue, 0, 0);
-            await AttachStatusAsync(attacker, StatusSet.DEAD, 0, int.MaxValue, 0, 0);
-            await AttachStatusAsync(attacker, StatusSet.GHOST, 0, int.MaxValue, 0, 0);
+            _ = await DetachAllStatusAsync();
+            _ = await AttachStatusAsync(attacker, StatusSet.FADE, 0, int.MaxValue, 0, 0);
+            _ = await AttachStatusAsync(attacker, StatusSet.DEAD, 0, int.MaxValue, 0, 0);
+            _ = await AttachStatusAsync(attacker, StatusSet.GHOST, 0, int.MaxValue, 0, 0);
 
             Character user = attacker as Character;
             int dieType = user?.KoCount * 65541 ?? 1;
@@ -302,7 +302,7 @@ namespace Comet.Game.States
 
             if (m_dbMonster.Action > 0)
             {
-                await GameAction.ExecuteActionAsync(m_dbMonster.Action, user, this, null, "");
+                _ = await GameAction.ExecuteActionAsync(m_dbMonster.Action, user, this, null, "");
             }
 
             if (IsPkKiller() || IsGuard() || IsEvilKiller() || IsDynaNpc() || attacker == null)
@@ -359,7 +359,7 @@ namespace Comet.Game.States
                         attacker?.Map.Name ?? Language.StrNone), MsgTalk.TalkChannel.TopLeft);
 
                 if (user != null)
-                    await user.AddActivityPointsAsync(1);
+                    _ = await user.AddActivityPointsAsync(1);
             }
             else if (await Kernel.ChanceCalcAsync(50, 42500))
             {
@@ -451,7 +451,7 @@ namespace Comet.Game.States
                     await drop.EnterMapAsync();
 
                     if (drop.Info.Addition > 0 && owner?.Guide != null)
-                        await owner.Guide.AwardOpportunityAsync(1);
+                        _ = await owner.Guide.AwardOpportunityAsync(1);
                 }
                 else
                 {
@@ -513,47 +513,47 @@ namespace Comet.Game.States
                 {
                     case 0:
                         if (dropTalisman)
-                            drops.RemoveAll(x => !Item.IsHelmet(x.Type) && !Item.IsTalisman(x.Type));
-                        else 
-                            drops.RemoveAll(x => !Item.IsHelmet(x.Type));
-                        drops.RemoveAll(x => Item.GetItemSubType(x.Type) == 115);
+                            _ = drops.RemoveAll(x => !Item.IsHelmet(x.Type) && !Item.IsTalisman(x.Type));
+                        else
+                            _ = drops.RemoveAll(x => !Item.IsHelmet(x.Type));
+                        _ = drops.RemoveAll(x => Item.GetItemSubType(x.Type) == 115);
                         break;
                     case 1:
                         if (dropTalisman)
-                            drops.RemoveAll(x => !Item.IsNeck(x.Type) && !Item.IsTalisman(x.Type));
+                            _ = drops.RemoveAll(x => !Item.IsNeck(x.Type) && !Item.IsTalisman(x.Type));
                         else
-                            drops.RemoveAll(x => !Item.IsNeck(x.Type));
+                            _ = drops.RemoveAll(x => !Item.IsNeck(x.Type));
                         break;
                     case 2:
                         if (dropTalisman)
-                            drops.RemoveAll(x => !Item.IsArmor(x.Type) && !Item.IsTalisman(x.Type));
+                            _ = drops.RemoveAll(x => !Item.IsArmor(x.Type) && !Item.IsTalisman(x.Type));
                         else
-                            drops.RemoveAll(x => !Item.IsArmor(x.Type));
-                        drops.RemoveAll(x => Item.GetItemSubType(x.Type) == 137);
+                            _ = drops.RemoveAll(x => !Item.IsArmor(x.Type));
+                        _ = drops.RemoveAll(x => Item.GetItemSubType(x.Type) == 137);
                         break;
                     case 3:
                         if (dropTalisman)
-                            drops.RemoveAll(x => !Item.IsRing(x.Type) && !Item.IsBangle(x.Type) && !Item.IsTalisman(x.Type));
+                            _ = drops.RemoveAll(x => !Item.IsRing(x.Type) && !Item.IsBangle(x.Type) && !Item.IsTalisman(x.Type));
                         else
-                            drops.RemoveAll(x => !Item.IsRing(x.Type) && !Item.IsBangle(x.Type));
+                            _ = drops.RemoveAll(x => !Item.IsRing(x.Type) && !Item.IsBangle(x.Type));
                         break;
                     case 4:
                         if (dropTalisman)
-                            drops.RemoveAll(x => !Item.IsWeapon(x.Type) && !Item.IsTalisman(x.Type));
+                            _ = drops.RemoveAll(x => !Item.IsWeapon(x.Type) && !Item.IsTalisman(x.Type));
                         else
-                            drops.RemoveAll(x => !Item.IsWeapon(x.Type));
+                            _ = drops.RemoveAll(x => !Item.IsWeapon(x.Type));
                         break;
                     case 5:
                         if (dropTalisman)
-                            drops.RemoveAll(x => !Item.IsShield(x.Type) && !Item.IsTalisman(x.Type));
+                            _ = drops.RemoveAll(x => !Item.IsShield(x.Type) && !Item.IsTalisman(x.Type));
                         else
-                            drops.RemoveAll(x => !Item.IsShield(x.Type));
+                            _ = drops.RemoveAll(x => !Item.IsShield(x.Type));
                         break;
                     case 6:
                         if (dropTalisman)
-                            drops.RemoveAll(x => !Item.IsShoes(x.Type) && !Item.IsTalisman(x.Type));
+                            _ = drops.RemoveAll(x => !Item.IsShoes(x.Type) && !Item.IsTalisman(x.Type));
                         else
-                            drops.RemoveAll(x => !Item.IsShoes(x.Type));
+                            _ = drops.RemoveAll(x => !Item.IsShoes(x.Type));
                         break;
                     default:
                         drops.Clear();
@@ -577,27 +577,27 @@ namespace Comet.Game.States
 
             if (await Kernel.ChanceCalcAsync(625, 20000000))
             {
-                drops.RemoveAll(x => Item.GetQuality(x.Type) != 9);
+                _ = drops.RemoveAll(x => Item.GetQuality(x.Type) != 9);
             }
             else if (await Kernel.ChanceCalcAsync(625, 4000000))
             {
-                drops.RemoveAll(x => Item.GetQuality(x.Type) != 8);
+                _ = drops.RemoveAll(x => Item.GetQuality(x.Type) != 8);
             }
             else if (await Kernel.ChanceCalcAsync(100, 40000))
             {
-                drops.RemoveAll(x => Item.GetQuality(x.Type) != 7);
+                _ = drops.RemoveAll(x => Item.GetQuality(x.Type) != 7);
             }
             else if (await Kernel.ChanceCalcAsync(312, 25000))
             {
-                drops.RemoveAll(x => Item.GetQuality(x.Type) != 6);
+                _ = drops.RemoveAll(x => Item.GetQuality(x.Type) != 6);
             }
             else if (await Kernel.ChanceCalcAsync(2, 5))
             {
-                drops.RemoveAll(x => !Item.IsMedicine(x.Type));
+                _ = drops.RemoveAll(x => !Item.IsMedicine(x.Type));
             }
             else
             {
-                drops.RemoveAll(x => Item.GetQuality(x.Type) > 5 || Item.GetQuality(x.Type) < 3);
+                _ = drops.RemoveAll(x => Item.GetQuality(x.Type) > 5 || Item.GetQuality(x.Type) < 3);
             }
 
             if (drops.Count < 1)
@@ -715,7 +715,7 @@ namespace Comet.Game.States
         {
             Map = Kernel.MapManager.GetMap(MapIdentity);
             if (Map != null)
-                await Map.AddAsync(this);
+                _ = await Map.AddAsync(this);
 
             await BroadcastRoomMsgAsync(new MsgAction
             {
@@ -732,8 +732,8 @@ namespace Comet.Game.States
             IdentityGenerator.Monster.ReturnIdentity(Identity);
             if (Map != null)
             {
-                await Map.RemoveAsync(Identity);
-                Kernel.RoleManager.RemoveRole(Identity);
+                _ = await Map.RemoveAsync(Identity);
+                _ = Kernel.RoleManager.RemoveRole(Identity);
             }
             Map = null;
         }
@@ -841,7 +841,7 @@ namespace Comet.Game.States
             {
                 if (!Map.IsMoveEnable(MapX, MapY, m_nextDir))
                 {
-                    DetectPath(m_nextDir);
+                    _ = DetectPath(m_nextDir);
                     return m_nextDir != FacingDirection.Invalid;
                 }
             }
@@ -1125,7 +1125,7 @@ namespace Comet.Game.States
                     }
                 }
 
-                FindPath();
+                _ = FindPath();
                 return m_actTarget != null;
             }
             return true;
@@ -1147,7 +1147,7 @@ namespace Comet.Game.States
             }
 
             if (m_nextDir == FacingDirection.Invalid)
-                FindPath(ViewRange * 2);
+                _ = FindPath(ViewRange * 2);
 
             if (m_actTarget == null)
             {
@@ -1161,7 +1161,7 @@ namespace Comet.Game.States
                 return;
             }
 
-            await PathMoveAsync(RoleMoveMode.Run);
+            _ = await PathMoveAsync(RoleMoveMode.Run);
         }
 
         private async Task AttackAsync()
@@ -1207,7 +1207,7 @@ namespace Comet.Game.States
                 m_actTarget = null;
                 m_moveTarget = null;
 
-                await FarJumpAsync(pos.X, pos.Y, Direction);
+                _ = await FarJumpAsync(pos.X, pos.Y, Direction);
                 ClearPath();
                 await ChangeModeAsync(AiStage.Idle);
                 return;
@@ -1215,7 +1215,7 @@ namespace Comet.Game.States
 
             if ((IsGuard() || IsPkKiller() || IsEvilKiller()) && m_actTarget != null && GetDistance(m_actTarget.MapX, m_actTarget.MapY) >= GetAttackRange(m_actTarget.SizeAddition))
             {
-                await JumpPosAsync(m_actTarget.MapX, m_actTarget.MapY, true);
+                _ = await JumpPosAsync(m_actTarget.MapX, m_actTarget.MapY, true);
                 return;
             }
 
@@ -1227,7 +1227,7 @@ namespace Comet.Game.States
                     {
                         if (IsJumpEnable())
                         {
-                            await JumpBlockAsync(m_actTarget.MapX, m_actTarget.MapY, Direction);
+                            _ = await JumpBlockAsync(m_actTarget.MapX, m_actTarget.MapY, Direction);
                             return;
                         }
 
@@ -1246,9 +1246,9 @@ namespace Comet.Game.States
             {
                 if (GetDistance(m_actTarget) <= ViewRange)
                 {
-                    FindPath();
-                    m_tAttackMs.Update();
-                    await PathMoveAsync(RoleMoveMode.Run);
+                    _ = FindPath();
+                    _ = m_tAttackMs.Update();
+                    _ = await PathMoveAsync(RoleMoveMode.Run);
                 }
                 else
                 {
@@ -1298,7 +1298,7 @@ namespace Comet.Game.States
             {
                 if (m_nextDir == FacingDirection.Invalid && m_generator.GetWidth() > 1 && m_generator.GetHeight() > 1)
                 {
-                    await PathMoveAsync(RoleMoveMode.Walk);
+                    _ = await PathMoveAsync(RoleMoveMode.Walk);
                     return;
                 }
 
@@ -1319,14 +1319,14 @@ namespace Comet.Game.States
                         int y = MapY + await Kernel.NextAsync(m_generator.GetHeight());
 
                         if (FindPath(x, y))
-                            await PathMoveAsync(RoleMoveMode.Walk);
+                            _ = await PathMoveAsync(RoleMoveMode.Walk);
                     }
                 }
                 else
                 {
                     FacingDirection dir = (FacingDirection) (await Kernel.NextAsync(int.MaxValue)%8);
                     if (TestPath(dir))
-                        await PathMoveAsync(RoleMoveMode.Walk);
+                        _ = await PathMoveAsync(RoleMoveMode.Walk);
                 }
             }
             else
@@ -1338,11 +1338,11 @@ namespace Comet.Game.States
                         Point pos = m_generator.GetCenter();
                         if (FindPath(pos.X, pos.Y))
                         {
-                            await PathMoveAsync(RoleMoveMode.Walk);
+                            _ = await PathMoveAsync(RoleMoveMode.Walk);
                         }
                         else
                         {
-                            await JumpBlockAsync(pos.X, pos.Y, Direction);
+                            _ = await JumpBlockAsync(pos.X, pos.Y, Direction);
                         }
                     }
                 }
@@ -1397,7 +1397,7 @@ namespace Comet.Game.States
 
                         if (!stts.IsValid && stts.Identity != StatusSet.GHOST && stts.Identity != StatusSet.DEAD)
                         {
-                            await StatusSet.DelObjAsync(stts.Identity);
+                            _ = await StatusSet.DelObjAsync(stts.Identity);
                         }
                     });
                 }

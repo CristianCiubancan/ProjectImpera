@@ -186,7 +186,7 @@ namespace Comet.Game.Packets
             {
                 // Save the character and continue with login
                 await CharactersRepository.CreateAsync(character);
-                Kernel.Registration.Remove(client.Creation.Token);
+                _ = Kernel.Registration.Remove(client.Creation.Token);
             }
             catch
             {
@@ -290,7 +290,7 @@ namespace Comet.Game.Packets
             item.Magic3 = add;
             item.Gem1 = (byte) gem1;
             item.Gem2 = (byte) gem2;
-            await BaseRepository.SaveAsync(item);
+            _ = await BaseRepository.SaveAsync(item);
         }
 
         private Task CreateMagicAsync(uint idOwner, ushort type, byte level = 0)

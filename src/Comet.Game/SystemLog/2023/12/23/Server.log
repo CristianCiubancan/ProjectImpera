@@ -1,0 +1,216 @@
+14:38:32.939 [Debug     ] - Creating ServerProcessor with 6 partitions
+14:38:33.496 [Debug     ] - Loading 185 maps...
+14:38:33.575 [Error     ] - Failed to start Kernel: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\map\map'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at System.IO.Directory.GetFiles(String path, String searchPattern, EnumerationOptions enumerationOptions)
+   at Comet.Game.World.Maps.GameMapData.FileExists(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 331
+   at Comet.Game.World.Maps.GameMapData.Load(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 104
+   at Comet.Game.World.Managers.MapManager.LoadDataAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\MapManager.cs:line 61
+   at Comet.Game.Kernel.StartupAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\Kernel.cs:line 136
+14:39:13.369 [Debug     ] - Creating ServerProcessor with 6 partitions
+14:39:13.875 [Debug     ] - Loading 185 maps...
+14:39:13.934 [Error     ] - Failed to start Kernel: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\map\map'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at System.IO.Directory.GetFiles(String path, String searchPattern, EnumerationOptions enumerationOptions)
+   at Comet.Game.World.Maps.GameMapData.FileExists(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 331
+   at Comet.Game.World.Maps.GameMapData.Load(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 104
+   at Comet.Game.World.Managers.MapManager.LoadDataAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\MapManager.cs:line 61
+   at Comet.Game.Kernel.StartupAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\Kernel.cs:line 136
+14:39:57.424 [Debug     ] - Creating ServerProcessor with 6 partitions
+14:39:57.749 [Debug     ] - Loading 185 maps...
+14:39:57.807 [Error     ] - Failed to start Kernel: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\map\map'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at System.IO.Directory.GetFiles(String path, String searchPattern, EnumerationOptions enumerationOptions)
+   at Comet.Game.World.Maps.GameMapData.FileExists(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 331
+   at Comet.Game.World.Maps.GameMapData.Load(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 104
+   at Comet.Game.World.Managers.MapManager.LoadDataAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\MapManager.cs:line 61
+   at Comet.Game.Kernel.StartupAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\Kernel.cs:line 136
+14:41:52.229 [Debug     ] - Creating ServerProcessor with 6 partitions
+14:41:52.742 [Debug     ] - Loading 185 maps...
+14:41:52.801 [Error     ] - Failed to start Kernel: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\map\map'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at System.IO.Directory.GetFiles(String path, String searchPattern, EnumerationOptions enumerationOptions)
+   at Comet.Game.World.Maps.GameMapData.FileExists(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 331
+   at Comet.Game.World.Maps.GameMapData.Load(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 104
+   at Comet.Game.World.Managers.MapManager.LoadDataAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\MapManager.cs:line 61
+   at Comet.Game.Kernel.StartupAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\Kernel.cs:line 136
+14:42:19.785 [Debug     ] - Creating ServerProcessor with 6 partitions
+14:42:20.355 [Debug     ] - Loading 185 maps...
+14:42:20.430 [Error     ] - Failed to start Kernel: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\map\map'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at System.IO.Directory.GetFiles(String path, String searchPattern, EnumerationOptions enumerationOptions)
+   at Comet.Game.World.Maps.GameMapData.FileExists(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 331
+   at Comet.Game.World.Maps.GameMapData.Load(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 104
+   at Comet.Game.World.Managers.MapManager.LoadDataAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\MapManager.cs:line 61
+   at Comet.Game.Kernel.StartupAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\Kernel.cs:line 136
+14:43:10.628 [Debug     ] - Creating ServerProcessor with 6 partitions
+14:43:10.984 [Debug     ] - Loading 185 maps...
+14:43:11.056 [Error     ] - Failed to start Kernel: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\map\map'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at System.IO.Directory.GetFiles(String path, String searchPattern, EnumerationOptions enumerationOptions)
+   at Comet.Game.World.Maps.GameMapData.FileExists(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 331
+   at Comet.Game.World.Maps.GameMapData.Load(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 104
+   at Comet.Game.World.Managers.MapManager.LoadDataAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\MapManager.cs:line 61
+   at Comet.Game.Kernel.StartupAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\Kernel.cs:line 136
+14:43:20.084 [Debug     ] - Creating ServerProcessor with 6 partitions
+14:43:20.812 [Debug     ] - Loading 185 maps...
+14:43:20.871 [Error     ] - Failed to start Kernel: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\map\map'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at System.IO.Directory.GetFiles(String path, String searchPattern, EnumerationOptions enumerationOptions)
+   at Comet.Game.World.Maps.GameMapData.FileExists(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 331
+   at Comet.Game.World.Maps.GameMapData.Load(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 104
+   at Comet.Game.World.Managers.MapManager.LoadDataAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\MapManager.cs:line 61
+   at Comet.Game.Kernel.StartupAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\Kernel.cs:line 136
+14:43:40.841 [Debug     ] - Creating ServerProcessor with 6 partitions
+14:43:41.238 [Debug     ] - Loading 185 maps...
+14:43:41.301 [Error     ] - Failed to start Kernel: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\map\map'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at System.IO.Directory.GetFiles(String path, String searchPattern, EnumerationOptions enumerationOptions)
+   at Comet.Game.World.Maps.GameMapData.FileExists(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 331
+   at Comet.Game.World.Maps.GameMapData.Load(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 104
+   at Comet.Game.World.Managers.MapManager.LoadDataAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\MapManager.cs:line 61
+   at Comet.Game.Kernel.StartupAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\Kernel.cs:line 136
+14:43:54.876 [Debug     ] - Creating ServerProcessor with 6 partitions
+14:43:55.193 [Debug     ] - Loading 185 maps...
+14:43:55.249 [Error     ] - Failed to start Kernel: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\map\map'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at System.IO.Directory.GetFiles(String path, String searchPattern, EnumerationOptions enumerationOptions)
+   at Comet.Game.World.Maps.GameMapData.FileExists(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 331
+   at Comet.Game.World.Maps.GameMapData.Load(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 104
+   at Comet.Game.World.Managers.MapManager.LoadDataAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\MapManager.cs:line 61
+   at Comet.Game.Kernel.StartupAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\Kernel.cs:line 136
+14:44:05.437 [Debug     ] - Creating ServerProcessor with 6 partitions
+14:44:05.770 [Debug     ] - Loading 185 maps...
+14:44:05.830 [Error     ] - Failed to start Kernel: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\map\map'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at System.IO.Directory.GetFiles(String path, String searchPattern, EnumerationOptions enumerationOptions)
+   at Comet.Game.World.Maps.GameMapData.FileExists(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 331
+   at Comet.Game.World.Maps.GameMapData.Load(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 104
+   at Comet.Game.World.Managers.MapManager.LoadDataAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\MapManager.cs:line 61
+   at Comet.Game.Kernel.StartupAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\Kernel.cs:line 136
+14:44:45.919 [Debug     ] - Creating ServerProcessor with 6 partitions
+14:44:57.121 [Debug     ] - Loading 185 maps...
+14:44:57.195 [Error     ] - Failed to start Kernel: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\map\map'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at System.IO.Directory.GetFiles(String path, String searchPattern, EnumerationOptions enumerationOptions)
+   at Comet.Game.World.Maps.GameMapData.FileExists(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 331
+   at Comet.Game.World.Maps.GameMapData.Load(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 104
+   at Comet.Game.World.Managers.MapManager.LoadDataAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\MapManager.cs:line 61
+   at Comet.Game.Kernel.StartupAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\Kernel.cs:line 136
+14:45:36.543 [Debug     ] - Creating ServerProcessor with 6 partitions
+14:45:46.297 [Debug     ] - Loading 185 maps...
+14:45:52.213 [Error     ] - Failed to start Kernel: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\map\map'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at System.IO.Directory.GetFiles(String path, String searchPattern, EnumerationOptions enumerationOptions)
+   at Comet.Game.World.Maps.GameMapData.FileExists(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 331
+   at Comet.Game.World.Maps.GameMapData.Load(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 104
+   at Comet.Game.World.Managers.MapManager.LoadDataAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\MapManager.cs:line 61
+   at Comet.Game.Kernel.StartupAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\Kernel.cs:line 136
+14:46:14.899 [Debug     ] - Creating ServerProcessor with 6 partitions
+14:46:25.524 [Debug     ] - Loading 185 maps...
+14:46:32.917 [Error     ] - Failed to start Kernel: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\map\map'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at System.IO.Directory.GetFiles(String path, String searchPattern, EnumerationOptions enumerationOptions)
+   at Comet.Game.World.Maps.GameMapData.FileExists(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 331
+   at Comet.Game.World.Maps.GameMapData.Load(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 104
+   at Comet.Game.World.Managers.MapManager.LoadDataAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\MapManager.cs:line 61
+   at Comet.Game.Kernel.StartupAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\Kernel.cs:line 136
+14:47:16.051 [Debug     ] - Creating ServerProcessor with 6 partitions
+14:52:58.592 [Debug     ] - Creating ServerProcessor with 6 partitions
+14:53:07.656 [Debug     ] - Creating ServerProcessor with 6 partitions
+14:53:16.340 [Debug     ] - Loading 185 maps...
+14:53:20.542 [Error     ] - Failed to start Kernel: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\map\map'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at System.IO.Directory.GetFiles(String path, String searchPattern, EnumerationOptions enumerationOptions)
+   at Comet.Game.World.Maps.GameMapData.FileExists(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 331
+   at Comet.Game.World.Maps.GameMapData.Load(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 104
+   at Comet.Game.World.Managers.MapManager.LoadDataAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\MapManager.cs:line 61
+   at Comet.Game.Kernel.StartupAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\Kernel.cs:line 136
+14:54:53.186 [Debug     ] - Creating ServerProcessor with 6 partitions
+14:55:05.756 [Debug     ] - Loading 185 maps...
+14:55:57.802 [Debug     ] - Creating ServerProcessor with 6 partitions
+14:55:58.596 [Debug     ] - Loading 185 maps...
+14:56:29.110 [Error     ] - Failed to start Kernel: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\map\map'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at System.IO.Directory.GetFiles(String path, String searchPattern, EnumerationOptions enumerationOptions)
+   at Comet.Game.World.Maps.GameMapData.FileExists(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 331
+   at Comet.Game.World.Maps.GameMapData.Load(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 104
+   at Comet.Game.World.Managers.MapManager.LoadDataAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\MapManager.cs:line 61
+   at Comet.Game.Kernel.StartupAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\Kernel.cs:line 136
+14:56:41.359 [Debug     ] - Creating ServerProcessor with 6 partitions
+14:56:41.890 [Debug     ] - Loading 185 maps...
+14:59:57.279 [Debug     ] - Creating ServerProcessor with 6 partitions
+15:00:25.567 [Debug     ] - Creating ServerProcessor with 6 partitions
+15:00:26.123 [Debug     ] - Loading 185 maps...
+15:00:26.125 [Debug     ] - Loading map data for file 1000 'map/map/desert.DMap'...
+15:00:30.358 [Error     ] - Failed to start Kernel: System.IO.DirectoryNotFoundException: Could not find a part of the path 'C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\map\map'.
+   at System.IO.Enumeration.FileSystemEnumerator`1.CreateDirectoryHandle(String path, Boolean ignoreNotFound)
+   at System.IO.Enumeration.FileSystemEnumerator`1.Init()
+   at System.IO.Enumeration.FileSystemEnumerable`1..ctor(String directory, FindTransform transform, EnumerationOptions options, Boolean isNormalized)
+   at System.IO.Enumeration.FileSystemEnumerableFactory.UserFiles(String directory, String expression, EnumerationOptions options)
+   at System.IO.Directory.InternalEnumeratePaths(String path, String searchPattern, SearchTarget searchTarget, EnumerationOptions options)
+   at System.IO.Directory.GetFiles(String path, String searchPattern, EnumerationOptions enumerationOptions)
+   at Comet.Game.World.Maps.GameMapData.FileExists(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 332
+   at Comet.Game.World.Maps.GameMapData.Load(String path) in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Maps\GameMapData.cs:line 105
+   at Comet.Game.World.Managers.MapManager.LoadDataAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\World\Managers\MapManager.cs:line 61
+   at Comet.Game.Kernel.StartupAsync() in C:\Users\CRSGRS\Desktop\CONQUER_5187\PROJECT_IMPERA\src\Comet.Game\Kernel.cs:line 136

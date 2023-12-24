@@ -102,7 +102,7 @@ namespace Comet.Game.States.Guide
                     GuideIdentity = GuideIdentity
                 };
                 tutorAccess.Experience += addExpTime;
-                await BaseRepository.SaveAsync(tutorAccess);
+                _ = await BaseRepository.SaveAsync(tutorAccess);
             }
             return await SaveAsync();
         }
@@ -124,7 +124,7 @@ namespace Comet.Game.States.Guide
                     GuideIdentity = GuideIdentity
                 };
                 tutorAccess.Blessing += addGodTime;
-                await BaseRepository.SaveAsync(tutorAccess);
+                _ = await BaseRepository.SaveAsync(tutorAccess);
             }
             return await SaveAsync();
         }
@@ -146,7 +146,7 @@ namespace Comet.Game.States.Guide
                     GuideIdentity = GuideIdentity
                 };
                 tutorAccess.Composition += addTime;
-                await BaseRepository.SaveAsync(tutorAccess);
+                _ = await BaseRepository.SaveAsync(tutorAccess);
             }
             return await SaveAsync();
         }
@@ -177,7 +177,7 @@ namespace Comet.Game.States.Guide
         public async Task BetrayAsync()
         {
             m_tutor.BetrayalFlag = UnixTimestamp.Now();
-            await SaveAsync();
+            _ = await SaveAsync();
         }
 
         public async Task SendTutorAsync()
@@ -266,7 +266,7 @@ namespace Comet.Game.States.Guide
                         Student.Guide = null;
                     }
 
-                    await DeleteAsync();
+                    _ = await DeleteAsync();
                 }
             }
         }
@@ -278,8 +278,8 @@ namespace Comet.Game.States.Guide
 
         public async Task<bool> DeleteAsync()
         {
-            await BaseRepository.DeleteAsync(m_tutor);
-            await BaseRepository.DeleteAsync(m_access);
+            _ = await BaseRepository.DeleteAsync(m_tutor);
+            _ = await BaseRepository.DeleteAsync(m_access);
             return true;
         }
     }

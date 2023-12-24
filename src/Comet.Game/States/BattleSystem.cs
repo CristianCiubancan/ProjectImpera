@@ -60,7 +60,7 @@ namespace Comet.Game.States
                 return false;
             }
 
-            await m_owner.MagicData.AbortMagicAsync(true);
+            _ = await m_owner.MagicData.AbortMagicAsync(true);
 
             Role target = m_owner.Map.QueryRole(m_idTarget);
             if (target == null)
@@ -121,19 +121,19 @@ namespace Comet.Game.States
             if (damage == 0)
                 return true;
 
-            await target.BeAttackAsync(MagicType.None, m_owner, damage, true);
+            _ = await target.BeAttackAsync(MagicType.None, m_owner, damage, true);
 
             if (user?.CurrentEvent != null)
                 await user.CurrentEvent.OnHitAsync(m_owner, target);
 
             if (user != null)
-                await user.CheckCrimeAsync(target);
+                _ = await user.CheckCrimeAsync(target);
 
             if (target is Monster targetMob 
                 && m_owner.QueryStatus(StatusSet.FATAL_STRIKE) != null
                 && !targetMob.IsGuard())
             {
-                await m_owner.JumpPosAsync(target.MapX, target.MapY);
+                _ = await m_owner.JumpPosAsync(target.MapX, target.MapY);
 
                 var ninjaStepMsg = new MsgAction
                 {

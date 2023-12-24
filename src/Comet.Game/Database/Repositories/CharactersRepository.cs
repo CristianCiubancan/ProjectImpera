@@ -93,8 +93,8 @@ namespace Comet.Game.Database.Repositories
         public static async Task CreateAsync(DbCharacter character)
         {
             await using var db = new ServerDbContext();
-            db.Characters.Add(character);
-            await db.SaveChangesAsync();
+            _ = db.Characters.Add(character);
+            _ = await db.SaveChangesAsync();
         }
     }
 }

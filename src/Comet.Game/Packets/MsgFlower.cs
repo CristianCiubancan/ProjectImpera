@@ -216,7 +216,7 @@ namespace Comet.Game.Packets
                             }
 
                             user.SendFlowerTime = DateTime.Now;
-                            await user.SaveAsync();
+                            _ = await user.SaveAsync();
                         }
                         else
                         {
@@ -249,7 +249,7 @@ namespace Comet.Game.Packets
                             }
 
                             amount = flower.Durability;
-                            await user.UserPackage.SpendItemAsync(flower);
+                            _ = await user.UserPackage.SpendItemAsync(flower);
                         }
 
                          var flowersToday = await Kernel.FlowerManager.QueryFlowersAsync(target);
@@ -298,7 +298,7 @@ namespace Comet.Game.Packets
                             Mode = RequestMode.QueryIcon
                         });
 
-                        await BaseRepository.SaveAsync(flowersToday.GetDatabaseObject());
+                        _ = await BaseRepository.SaveAsync(flowersToday.GetDatabaseObject());
                         break;
                     }
                 default:

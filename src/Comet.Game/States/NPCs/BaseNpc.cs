@@ -153,7 +153,7 @@ namespace Comet.Game.States.NPCs
             Map = Kernel.MapManager.GetMap(MapIdentity);
             if (Map != null)
             {
-                await Map.AddAsync(this);
+                _ = await Map.AddAsync(this);
             }
         }
 
@@ -161,7 +161,7 @@ namespace Comet.Game.States.NPCs
         {
             if (Map != null)
             {
-                await Map.RemoveAsync(Identity);
+                _ = await Map.RemoveAsync(Identity);
             }
         }
 

@@ -42,11 +42,11 @@ namespace Comet.Game.Database.Repositories
         {
             DbSyndicateAllies ally = (await GetAsync(id0)).FirstOrDefault(x => x.AllyIdentity == id1);
             if (ally != null)
-                await BaseRepository.DeleteAsync(ally);
+                _ = await BaseRepository.DeleteAsync(ally);
 
             ally = (await GetAsync(id1)).FirstOrDefault(x => x.AllyIdentity == id0);
             if (ally != null)
-                await BaseRepository.DeleteAsync(ally);
+                _ = await BaseRepository.DeleteAsync(ally);
         }
     }
 }

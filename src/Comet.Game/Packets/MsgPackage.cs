@@ -269,11 +269,11 @@ namespace Comet.Game.Packets
                     return;
                 }
 
-                await user.UserPackage.AddToStorageAsync(Identity, storeItem, Mode, true);
+                _ = await user.UserPackage.AddToStorageAsync(Identity, storeItem, Mode, true);
             }
             else if (Action == WarehouseMode.CheckOut)
             {
-                await user.UserPackage.GetFromStorageAsync(Identity, Param, Mode, true);
+                _ = await user.UserPackage.GetFromStorageAsync(Identity, Param, Mode, true);
             }
         }
     }

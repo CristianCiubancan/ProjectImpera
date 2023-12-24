@@ -94,7 +94,7 @@ namespace Comet.Game.States.Items
 
             if (m_dbItem.Id == 0)
             {
-                await SaveAsync();
+                _ = await SaveAsync();
                 m_user.LastAddItemIdentity = Identity;
             }
             return true;
@@ -185,38 +185,38 @@ namespace Comet.Game.States.Items
                 StringBuilder builder = new StringBuilder();
                 switch (GetQuality())
                 {
-                    case 9: builder.Append("Super"); break;
-                    case 8: builder.Append("Elite"); break;
-                    case 7: builder.Append("Unique"); break;
-                    case 6: builder.Append("Refined"); break;
+                    case 9: _ = builder.Append("Super"); break;
+                    case 8: _ = builder.Append("Elite"); break;
+                    case 7: _ = builder.Append("Unique"); break;
+                    case 6: _ = builder.Append("Refined"); break;
                 }
-                builder.Append(Name);
+                _ = builder.Append(Name);
                 if (Plus > 0)
                 {
-                    builder.Append($"(+{Plus})");
+                    _ = builder.Append($"(+{Plus})");
                 }
                 if (SocketOne != SocketGem.NoSocket)
                 {
                     if (SocketTwo != SocketGem.NoSocket)
                     {
-                        builder.Append(" 2-Socketed");
+                        _ = builder.Append(" 2-Socketed");
                     }
                     else
                     {
-                        builder.Append(" 1-Socketed");
+                        _ = builder.Append(" 1-Socketed");
                     }
                 }
                 if (ReduceDamage > 0)
                 {
-                    builder.Append($" -{ReduceDamage}%");
+                    _ = builder.Append($" -{ReduceDamage}%");
                 }
                 if (Enchantment > 0)
                 {
-                    builder.Append($" +{Enchantment}HP");
+                    _ = builder.Append($" +{Enchantment}HP");
                 }
                 if (Effect != ItemEffect.None && !IsMount())
                 {
-                    builder.Append($" {Effect}");
+                    _ = builder.Append($" {Effect}");
                 }
                 return builder.ToString();
             }
@@ -831,17 +831,17 @@ namespace Comet.Game.States.Items
 
         public async Task ChangeOwnerAsync(uint idNewOwner, ChangeOwnerType type)
         {
-            await BaseRepository.SaveAsync(new DbItemOwnerHistory
+            _ = await BaseRepository.SaveAsync(new DbItemOwnerHistory
             {
                 OldOwnerIdentity = PlayerIdentity,
                 NewOwnerIdentity = idNewOwner,
-                Operation = (byte) type,
+                Operation = (byte)type,
                 Time = DateTime.Now,
                 ItemIdentity = Identity
             });
 
             PlayerIdentity = idNewOwner;
-            await SaveAsync();
+            _ = await SaveAsync();
         }
 
         public async Task<bool> ChangeTypeAsync(uint newType)
@@ -858,7 +858,7 @@ namespace Comet.Game.States.Items
 
             m_dbItemAddition = Kernel.ItemManager.GetItemAddition(newType, m_dbItem.Magic3);
             await m_user.SendAsync(new MsgItemInfo(this, MsgItemInfo.ItemMode.Update));
-            await SaveAsync();
+            _ = await SaveAsync();
             return true;
         }
 
@@ -1377,7 +1377,7 @@ namespace Comet.Game.States.Items
         {
             MaximumDurability = OriginalMaximumDurability;
             await m_user.SendAsync(new MsgItemInfo(this, MsgItemInfo.ItemMode.Update));
-            await SaveAsync();
+            _ = await SaveAsync();
             return true;
         }
 
@@ -1402,7 +1402,7 @@ namespace Comet.Game.States.Items
                 }
 
                 Durability = MaximumDurability;
-                await SaveAsync();
+                _ = await SaveAsync();
                 await m_user.SendAsync(new MsgItemInfo(this, MsgItemInfo.ItemMode.Update));
                 await Log.GmLogAsync("Repair", string.Format("User [{2}] repaired broken [{0}][{1}] with 5 meteors.", Type, Identity, PlayerIdentity));
                 return;
@@ -1418,7 +1418,7 @@ namespace Comet.Game.States.Items
                 return;
 
             Durability = MaximumDurability;
-            await SaveAsync();
+            _ = await SaveAsync();
             await m_user.SendAsync(new MsgItemInfo(this, MsgItemInfo.ItemMode.Update));
             await Log.GmLogAsync("Repair", string.Format("User [{2}] repaired broken [{0}][{1}] with {3} silvers.", Type, Identity, PlayerIdentity, nRepairCost));
         }
@@ -1958,9 +1958,9 @@ namespace Comet.Game.States.Items
             {
                 await using var db = new ServerDbContext();
                 if (m_dbItem.Id == 0)
-                    db.Add(m_dbItem);
+                    _ = db.Add(m_dbItem);
                 else
-                    db.Update(m_dbItem);
+                    _ = db.Update(m_dbItem);
                 m_dbItem.SaveTime = DateTime.Now;
                 return await db.SaveChangesAsync() != 0;
             }

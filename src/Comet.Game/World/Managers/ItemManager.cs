@@ -50,13 +50,13 @@ namespace Comet.Game.World.Managers
             m_dicItemtype = new Dictionary<uint, DbItemtype>();
             foreach (var item in await ItemtypeRepository.GetAsync())
             {
-                m_dicItemtype.TryAdd(item.Type, item);
+                _ = m_dicItemtype.TryAdd(item.Type, item);
             }
 
             m_dicItemAddition = new Dictionary<ulong, DbItemAddition>();
             foreach (var addition in await ItemAdditionRepository.GetAsync())
             {
-                m_dicItemAddition.TryAdd(AdditionKey(addition.TypeId, addition.Level), addition);
+                _ = m_dicItemAddition.TryAdd(AdditionKey(addition.TypeId, addition.Level), addition);
             }
         }
 
@@ -137,9 +137,9 @@ namespace Comet.Game.World.Managers
             if (item.PlayerIdentity != discharger.Identity) // item must be owned by the discharger
                 return false;
 
-            await discharger.UserPackage.UnEquipAsync(item.Position, UserPackage.RemovalType.RemoveAndDisappear);
+            _ = await discharger.UserPackage.UnEquipAsync(item.Position, UserPackage.RemovalType.RemoveAndDisappear);
             item.Position = Item.ItemPosition.Detained;
-            await item.SaveAsync();
+            _ = await item.SaveAsync();
 
             await Log.GmLogAsync("discharge_item", $"did:{discharger.Identity},dname:{discharger.Name},detid:{detainer.Identity},detname:{detainer.Name},itemid:{item.Identity},mapid:{discharger.MapIdentity}");
 
@@ -236,13 +236,13 @@ namespace Comet.Game.World.Managers
                 await item.ChangeOwnerAsync(user.Identity, Item.ChangeOwnerType.DetainEquipment);
                 item.Position = Item.ItemPosition.Inventory;
 
-                await user.UserPackage.AddItemAsync(item);
+                _ = await user.UserPackage.AddItemAsync(item);
 
                 await Kernel.RoleManager.BroadcastMsgAsync(string.Format(Language.StrGetEquipBonus, dbDetain.HunterName, dbDetain.TargetName, item.FullName),
                     MsgTalk.TalkChannel.Talk);
             }
 
-            await BaseRepository.DeleteAsync(dbDetain);
+            _ = await BaseRepository.DeleteAsync(dbDetain);
             return true;
         }
 
@@ -286,13 +286,13 @@ namespace Comet.Game.World.Managers
             }
 
             item.Position = Item.ItemPosition.Inventory;
-            await user.UserPackage.AddItemAsync(item);
+            _ = await user.UserPackage.AddItemAsync(item);
 
             await Kernel.RoleManager.BroadcastMsgAsync(string.Format(Language.StrRedeemEquip, user.Name, dbDetain.RedeemPrice, dbDetain.HunterName),
                 MsgTalk.TalkChannel.Talk);
 
             dbDetain.ItemIdentity = 0;
-            await BaseRepository.SaveAsync(dbDetain);
+            _ = await BaseRepository.SaveAsync(dbDetain);
 
             Character hunter = Kernel.RoleManager.GetUser(dbDetain.HunterIdentity);
             if (hunter != null)

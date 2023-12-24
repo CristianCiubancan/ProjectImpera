@@ -90,13 +90,13 @@ namespace Comet.Game.Packets
             RequestNpc = reader.ReadUInt32();
             SubAction = reader.ReadUInt32();
             OccupyName = reader.ReadString(16);
-            reader.BaseStream.Seek(20, SeekOrigin.Current);
+            _ = reader.BaseStream.Seek(20, SeekOrigin.Current);
             CityName = reader.ReadString(16);
-            reader.BaseStream.Seek(24, SeekOrigin.Current);
+            _ = reader.BaseStream.Seek(24, SeekOrigin.Current);
             OccupyDays = reader.ReadUInt32();
             DailyPrize = reader.ReadUInt32();
             WeeklyPrize = reader.ReadUInt32();
-            reader.BaseStream.Seek(12, SeekOrigin.Current);
+            _ = reader.BaseStream.Seek(12, SeekOrigin.Current);
             GoldFee = reader.ReadUInt32();
         }
 
@@ -109,9 +109,9 @@ namespace Comet.Game.Packets
             writer.Write(RequestNpc);
             writer.Write(SubAction);
             writer.Write(OccupyName, 16);
-            writer.BaseStream.Seek(20, SeekOrigin.Current);
+            _ = writer.BaseStream.Seek(20, SeekOrigin.Current);
             writer.Write(CityName, 16);
-            writer.BaseStream.Seek(20, SeekOrigin.Current);
+            _ = writer.BaseStream.Seek(20, SeekOrigin.Current);
             writer.Write(WarRunning);
             writer.Write(CanApplyChallenge);
             writer.Write(CanRemoveChallenge);
@@ -168,7 +168,7 @@ namespace Comet.Game.Packets
 
                     user.Family.Money -= fee;
                     user.Family.ChallengeMap = (uint) npc.Data1;
-                    await user.Family.SaveAsync();
+                        _ = await user.Family.SaveAsync();
                     await user.SendFamilyAsync();
 
                     GameMap map = Kernel.MapManager.GetMap(user.Family.ChallengeMap);
@@ -193,7 +193,7 @@ namespace Comet.Game.Packets
                         return;
 
                     user.Family.ChallengeMap = 0;
-                    await user.Family.SaveAsync();
+                        _ = await user.Family.SaveAsync();
                     await user.SendFamilyAsync();
                     break;
                 }
@@ -269,7 +269,7 @@ namespace Comet.Game.Packets
                     if ((DateTime.Now - user.FamilyMember.JoinDate).TotalHours < 24)
                         return;
 
-                    await user.FlyMapAsync(map.Identity, 50, 50);
+                        _ = await user.FlyMapAsync(map.Identity, 50, 50);
                     break;
                 }
 
@@ -321,7 +321,7 @@ namespace Comet.Game.Packets
                     await Kernel.RoleManager.BroadcastMsgAsync(string.Format(Language.StrFetchFamilyNpcExpSuccess, user.Name, map.Name, user.Level, exp * 100), MsgTalk.TalkChannel.Center);
 
                     long awardExp = (long) (currLevExp.Exp * exp);
-                    await user.AwardExperienceAsync(awardExp);
+                        _ = await user.AwardExperienceAsync(awardExp);
                     await war.SetExpRewardAwardedAsync(user);
                     break;
                 }
@@ -363,7 +363,7 @@ namespace Comet.Game.Packets
 
                     await war.SetRewardAwardedAsync(user);
 
-                    await user.UserPackage.AwardItemAsync(idItem);
+                        _ = await user.UserPackage.AwardItemAsync(idItem);
                     await user.Family.SendAsync(string.Format(Language.StrFetchFamilyNpcIncomeSuccess, user.Name, map.Name));
                     break;
                 }

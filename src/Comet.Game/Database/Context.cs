@@ -94,8 +94,8 @@ namespace Comet.Game.Database
         /// <param name="options">Builder to create the context</param>
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseLazyLoadingProxies(false);
-            options.UseMySql(string.Format("server={0};database={1};user={2};password={3}",
+            _ = options.UseLazyLoadingProxies(false);
+            _ = options.UseMySql(string.Format("server={0};database={1};user={2};password={3}",
                 ServerDbContext.Configuration.Hostname,
                 ServerDbContext.Configuration.Schema,
                 ServerDbContext.Configuration.Username,
@@ -111,7 +111,7 @@ namespace Comet.Game.Database
         /// <param name="builder">Builder for creating models in the context</param>
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<DbCharacter>(e => e.HasKey(x => x.Identity));
+            _ = builder.Entity<DbCharacter>(e => e.HasKey(x => x.Identity));
         }
 
         /// <summary>

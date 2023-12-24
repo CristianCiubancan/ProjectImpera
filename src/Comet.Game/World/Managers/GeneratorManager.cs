@@ -69,7 +69,7 @@ namespace Comet.Game.World.Managers
                     Generator gen = new Generator(dbGen);
                     if (gen.CanBeProcessed)
                     {
-                        await AddGeneratorAsync(gen);
+                        _ = await AddGeneratorAsync(gen);
                     }
                 }
 
@@ -83,12 +83,15 @@ namespace Comet.Game.World.Managers
 
         public async Task OnTimerAsync()
         {
+            // await Log.WriteLogAsync(LogLevel.Debug, "GeneratorManager.OnTimerAsync()");
             Stopwatch sw = new Stopwatch();
             sw.Start();
             foreach (var partition in m_generators.Keys)
             {
+                // await Log.WriteLogAsync(LogLevel.Debug, $"GeneratorManager.OnTimerAsync() - Partition {partition}");
                 foreach (var gen in m_generators[partition])
                 {
+                    // await Log.WriteLogAsync(LogLevel.Debug, $"GeneratorManager.OnTimerAsync() - Generator {gen.Identity}");
                     await gen.GenerateAsync();
                 }
             }
@@ -109,7 +112,7 @@ namespace Comet.Game.World.Managers
                     m_generators[map.Partition].Add(generator);
                 else
                 {
-                    m_generators.TryAdd(map.Partition, new List<Generator>());
+                    _ = m_generators.TryAdd(map.Partition, new List<Generator>());
                     m_generators[map.Partition].Add(generator);
                 }
             }
